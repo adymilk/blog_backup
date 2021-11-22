@@ -1,0 +1,220 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: 詹姆斯的个人网站
+subtitle: "James Wang's Personal Website "
+description: '一个有趣的灵魂 —— 想法，随笔，思考，感叹，瞬间，笔记...'
+keywords: '詹姆斯的个人网站'
+author: 王恒
+language: zh-CN
+timezone: ''
+
+# URL
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+url: https://adymilk.github.io
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+
+highlight:
+  enable: true
+  auto_detect: false
+  line_number: true
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+  
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## updated_option supports 'mtime', 'date', 'empty'
+updated_option: 'mtime'
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the 'source/' folder
+include:
+exclude:
+ignore:
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+# theme: landscape
+theme: hexo-theme-stun
+
+
+  
+
+# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+- type: git
+  repo:
+    github: git@github.com:adymilk/adymilk.github.io.git,master
+    coding: git@git.coding.net:xfhelp/xfhelp.git,master
+    gitee: git@gitee.com:adymilk/adymilk.git,master
+  branch: master
+- type: baidu_url_submitter
+
+
+
+# Sass
+node_sass:
+  outputStyle: nested
+  precision: 5
+  sourceComments: false
+
+# Autoprefixer
+autoprefixer:
+  exclude:
+    - '*.min.css'
+  browsers:
+    - 'last 2 versions'
+
+# Lunr
+lunr:
+  field: all
+  fulltext: false
+  path: assets/lunr/
+
+# filter_cleanup
+hfc_useref:
+  enable: true
+  concat: true
+
+hfc_html:
+  enable: true
+  exclude:
+
+hfc_css:
+  enable: true
+  exclude: 
+    - '*.min.css'
+
+hfc_js:
+  enable: true
+  mangle: true
+  exclude: 
+    - '*.min.js'
+
+hfc_img:
+  enable: false
+  interlaced: false
+  multipass: false
+  optimizationLevel: 2
+  pngquant: false
+  progressive: false
+
+hfc_favicons:
+  enable: false
+  src: img/blog-logo.png
+  target: img/
+  icons:
+    android: true
+    appleIcon: true
+    appleStartup: false
+    coast: false
+    favicons: true
+    firefox: false
+    opengraph: false
+    windows: true
+    yandex: false
+
+# Security
+encrypt: # hexo-blog-encrypt
+  abstract: 有东西被加密了, 请输入密码查看.
+  message: 您好, 这里需要密码.
+  tags:
+  - {name: tagName, password: 密码A}
+  - {name: tagName, password: 密码B}
+  wrong_pass_message: 抱歉, 这个密码看着不太对, 请再试试.
+  wrong_hash_message: 抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.
+
+# Busuanzi
+busuanzi: true
+
+
+# 评论框
+Valine:
+  appId: rgBgYoslSGOswjaHqVArAnPp-gzGzoHsz
+  appKey: zG3mb3kGasYAEy7begNCbRED
+  avatar: 'data:image/jpeg;base64,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'
+  
+
+# 打赏
+reward:
+  alipay: /img/alipay.jpg
+  weixin: /img/wechatPay.jpg
+
+# 百度站长推送
+baidu_url_submit:
+  count: 5 ## 比如3，代表提交最新的三个链接
+  host: adymilk.github.io ## 在百度站长平台中注册的域名
+  token: mNwpkrTHZb3V41ex ## 请注意这是您的秘钥， 请不要发布在公共仓库里!
+  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
+
+search:
+  path: search.json
+  field: post
+  content: true

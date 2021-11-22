@@ -1,0 +1,37 @@
+friend_links:
+  - name: 枫电科技官网
+    desc: 枫电科技官网
+    link: http://m.adymilk.cn
+
+  - name: 编码猿
+    desc: 人送 刘叫兽
+    link: http://geekhelp.cn/
+
+  - name: 前端大神
+    desc: hexo-theme-skapp 作者
+    link: http://blog.minfive.com/  
+  
+  - name: 凹凸实验室
+    desc: 京东技术团队
+    link: https://aotu.io
+
+  - name: 淘宝 FED
+    desc: 淘宝技术团队
+    link: http://taobaofed.org/
+
+  - name: 程序员在旅途 
+    desc: IT 之旅
+    link: https://meijindong.top  
+    
+build_tools:
+  - name: Hexo
+    desc: Blog Framework
+    link: https://hexo.io/
+
+  - name: Valine
+    desc: 简洁且高效的无后端评论系统
+    link: https://valine.js.org/
+
+  - name: BootCDN
+    desc: 稳定、快速、免费的前端开源项目 CDN 加速服务
+    link: http://www.bootcdn.cn/
