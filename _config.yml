@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://adymilk.gitee.io
+url: https://adymilk.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -112,10 +112,7 @@ deploy:
 - type: git
   repo:
     github: git@github.com:adymilk/adymilk.github.io.git,master
-    coding: git@git.coding.net:xfhelp/xfhelp.git,master
-    gitee: git@gitee.com:adymilk/adymilk.git,master
   branch: master
-- type: baidu_url_submitter
 
 
 
@@ -207,12 +204,13 @@ reward:
   alipay: /img/alipay.jpg
   weixin: /img/wechatPay.jpg
 
-# 百度站长推送
-baidu_url_submit:
-  count: 5 ## 比如3，代表提交最新的三个链接
-  host: adymilk.gitee.io ## 在百度站长平台中注册的域名
-  token: mNwpkrTHZb3V41ex ## 请注意这是您的秘钥， 请不要发布在公共仓库里!
-  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
+# 百度站长推送（已停用：站点主要受众在海外，百度收录价值低，
+# 且 token 是明文密钥。如需恢复，请用环境变量注入 token。）
+# baidu_url_submit:
+#   count: 5
+#   host: adymilk.github.io
+#   token: <从百度站长平台获取，勿提交进仓库>
+#   path: baidu_urls.txt
 
 search:
   path: search.json
