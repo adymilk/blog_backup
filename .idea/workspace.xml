@@ -19,7 +19,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03735982-3fa8-4504-9ccc-ea6b391d1192" name="Default Changelist" comment="" />
+    <list default="true" id="03735982-3fa8-4504-9ccc-ea6b391d1192" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/themes/auto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/hexo-theme-stun" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_data/friends.json" beforeDir="false" afterPath="$PROJECT_DIR$/source/_data/friends.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2016-12-01.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/20210624-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/20210624-1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Instagram_Youtube_google.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/about/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/about/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/friends/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/friends/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/source/robots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/auto/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/auto/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/auto/layout/_partial/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/auto/layout/_partial/head.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/auto/source/css/_partial/article.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/auto/source/css/_partial/article.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/auto/source/css/_partial/others.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/auto/source/css/_partial/others.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/auto/source/css/_partial/sidebar-aside.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/auto/source/css/_partial/sidebar-aside.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/auto/source/css/images/banner_sky.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/themes/auto/source/css/images/banner_sky.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/auto/source/css/style.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/auto/source/css/style.styl" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +49,7 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/auto" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes" />
   </component>
   <component name="ProjectId" id="1uNLF1Q3Rkhqi2C3JwZmG5cGVUE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -40,6 +60,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -50,6 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1624500992954</updated>
       <workItem from="1624500994269" duration="38000" />
+      <workItem from="1640055769688" duration="3438000" />
     </task>
     <servers />
   </component>
@@ -66,5 +89,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="264" y="71" width="751" height="616" key="find.popup" timestamp="1640056376579">
+      <screen x="0" y="25" width="1280" height="708" />
+    </state>
+    <state x="264" y="71" width="751" height="616" key="find.popup/0.25.1280.708@0.25.1280.708" timestamp="1640056376579" />
   </component>
 </project>

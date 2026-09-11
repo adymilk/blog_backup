@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 詹姆斯的个人网站
+title: 攻城狮🦁️
 subtitle: "James Wang's Personal Website "
 description: '一个有趣的灵魂 —— 想法，随笔，思考，感叹，瞬间，笔记...'
-keywords: '詹姆斯的个人网站'
+keywords: 'James_wang的个人网站'
 author: 王恒
 language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://adymilk.github.io
+url: https://adymilk.gitee.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -210,7 +210,7 @@ reward:
 # 百度站长推送
 baidu_url_submit:
   count: 5 ## 比如3，代表提交最新的三个链接
-  host: adymilk.github.io ## 在百度站长平台中注册的域名
+  host: adymilk.gitee.io ## 在百度站长平台中注册的域名
   token: mNwpkrTHZb3V41ex ## 请注意这是您的秘钥， 请不要发布在公共仓库里!
   path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
 

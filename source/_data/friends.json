@@ -1,20 +1,14 @@
 [
   {
-    "avatar": "https://s1.ax1x.com/2020/05/14/YD6wTI.png",
-    "name": "GeminiPlanet",
-    "introduction": "李四是大佬，李四是大佬，李四是大佬，李四是大佬，李四是大佬",
-    "url": "https://geminiplanet.cn/"
+    "avatar": "https://www.barretlee.com/blogimgs/avatar150.png",
+    "name": "小胡子哥的个人博客",
+    "introduction": "小胡子哥的个人博客",
+    "url": "https://www.barretlee.com/"
   },
   {
-    "avatar": "https://timemachine.icu/assets/241601814382_.pic_hd.jpg",
-    "name": "Notes",
-    "introduction": "我不是大佬，我不是大佬，我不是大佬，我不是大佬，我不是大佬",
-    "url": "https://timemachine.icu/"
-  },
-  {
-    "avatar": "https://placehold.it/100x100.jpg",
-    "name": "王五",
-    "introduction": "我是小白",
-    "url": "https://liuyib.github.io/"
+    "avatar": "https://www.ruanyifeng.com/blog/images/person2_s.jpg",
+    "name": "阮一峰的博客",
+    "introduction": "ECMAScript 6 入门教程 作者",
+    "url": "http://www.ruanyifeng.com/"
   }
 ]

@@ -13,6 +13,7 @@ Life is colorful, this website was, is and will be the window which used to pres
 I like programming, reading book, surfing internet, traveling, and I love making friends very much.
 
 
+[查看我的在线简历](https://www.linkedin.com/in/adymilk/)
 
 ## Hello World!
 ```json
@@ -43,4 +44,4 @@ I like programming, reading book, surfing internet, traveling, and I love making
 
 
 ## 其他
-> [申请友情连接点击这里](http://wpa.qq.com/msgrd?v=3&uin=924114103&site=qq&menu=yes)
+> [申请友情连接点击这里](mail:924114103@qq.com)
