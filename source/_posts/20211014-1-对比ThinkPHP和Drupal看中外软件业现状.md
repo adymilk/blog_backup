@@ -1,10 +1,10 @@
 ---
 title: 对比ThinkPHP和Drupal看中外软件业现状
+tags:
+  - ThinkPHP
+  - Drupal
+categories: 后端工程
 date: 2021-10-14 16:54:54
-tags: 
-- ThinkPHP
-- Drupal
-categories: 代码笔记
 ---
 
 

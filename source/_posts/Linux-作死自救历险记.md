@@ -1,9 +1,9 @@
 ---
 title: Linux 作死自救历险记
-date: 2017-07-18 18:49:12
 tags:
-- sudoers
-categories: 代码笔记
+  - sudoers
+categories: 基础设施
+date: 2017-07-18 18:49:12
 ---
 
 今天作死不小心修改了系统 `/etc/sudoers` 文件

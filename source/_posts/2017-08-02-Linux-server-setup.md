@@ -1,10 +1,9 @@
 ---
 title: Linux服务器的初步配置流程
-date: 2017-08-02 12:40:48
 tags:
-- Linux
-- server
-categories: 代码笔记
+  - Linux
+categories: 基础设施
+date: 2017-08-02 12:40:48
 ---
 开发网站的时候，常常需要自己配置Linux服务器。
 

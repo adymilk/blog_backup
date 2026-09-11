@@ -1,12 +1,11 @@
 ---
 title: 深圳自由行（图文 + 视频）
-date: 2017-04-10 22:48:57
 tags:
-- 旅行
-- 深圳
-- 华强北
-
-categories: 生活笔记
+  - 旅行
+  - 深圳
+  - 华强北
+categories: 生活随笔
+date: 2017-04-10 22:48:57
 ---
 ### 开篇
 ![Instagram](/img/traval-in-shenzheng.png)

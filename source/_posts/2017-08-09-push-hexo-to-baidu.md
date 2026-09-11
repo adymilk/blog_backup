@@ -1,10 +1,9 @@
 ---
 title: hexo 向百度主动推送链接
-date: 2017-08-09 10:59:16
 tags:
-- hexo
-- 百度站长
-categories: 代码笔记
+  - Hexo
+categories: 基础设施
+date: 2017-08-09 10:59:16
 ---
 
 ## 分析

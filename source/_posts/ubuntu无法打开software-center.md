@@ -1,10 +1,9 @@
 ---
 title: ubuntu无法打开software-center
-date: 2017-07-08 16:20:27
 tags:
-- ubuntu
-- software-center
-categories: 代码笔记
+  - Linux
+categories: 基础设施
+date: 2017-07-08 16:20:27
 ---
 ### 1.1 报错
 

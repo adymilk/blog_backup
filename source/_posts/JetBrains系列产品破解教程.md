@@ -1,11 +1,13 @@
 ---
 title: JetBrains系列产品破解教程
-date: 2016-11-21 16:55:19
-tags: JetBrains
-categories: 代码笔记
+tags:
+  - JetBrains
+categories: 基础设施
 author:
-	ncik: 王恒
+  ncik: 王恒
 cover: /img/20180529-2.png
+published: false
+date: 2016-11-21 16:55:19
 ---
 
 JetBrains系列的IDE都非常棒，支持多种插件和主题。深受广大程序员的喜爱。可能有人会说他喜欢用Sublime Text，是因为它的轻便和支持永久试用(相当于免费比如我之前)。

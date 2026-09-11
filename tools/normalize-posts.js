@@ -39,23 +39,34 @@ const APPLY = process.argv.includes('--apply')
 // 顺序重要：先匹配到的胜出。
 // ---------------------------------------------------------------------------
 const CATEGORY_RULES = [
-  // --- AI 与数据 ---
-  { cat: 'AI 与数据', re: /Minitab|20210629|20200715|20180630|20210903/ },
-  { cat: 'AI 与数据', re: /StudyPython|20180518-3|nodejs_pachong|Python/i },
+  // ─── 第 0 层：文件名规则（最可靠）──────────────────────────────
+  // 这些文件名带出版本号，用标题判断会误判（例：
+  // 20211028-Mac 电脑开盖唤醒...【解决方案】正文混了 PHP
+  // 版本降级的内容，名字里带 PHP，但它本质是 macOS 问题）
+  { cat: '基础设施', re: /Mac 电脑开盖|Mac电脑开盖/ },
 
-  // --- 后端工程 ---
-  { cat: '后端工程', re: /Laravel|laravel|20210623|20210901|20210908-[124]|20211021|20220124|20211014|20211015|php|PHP/i },
+  // ─── AI 与数据（FDE 核心叙事线，优先级高）──────────────────
+  { cat: 'AI 与数据', re: /Minitab|20210629|20200715|20180630/ },
+  // 注意词边界：无 \b 时子串会碰撞。
+  // (?<!反) 排除「Nginx 反爬虫」—— 那是基础设施不是爬虫开发。
+  { cat: 'AI 与数据', re: /\bPython\b|\bpython\b|20180518-3|nodejs_pachong|(?<!反)爬虫/ },
 
-  // --- 前端工程 ---
-  { cat: '前端工程', re: /vue-cli|React|Swiper|swiper|JavaScript|callback|20180601|20180602|20181126|HTML-template|3分钟轻松学会编译安卓/ },
+  // ─── 后端工程 ─────────────────────────────────────────
+  // \bPHP\b 而非 PHP：避免匹配到 "开盖唤醒" 这类文件名
+  { cat: '后端工程', re: /Laravel|laravel|20210623|20210901|20211021|20220124|20211014|20211015|\bPHP\b|\bphp\b/ },
+  { cat: '后端工程', re: /20210908-[14]|当前页面|Jetstream|\bGo\b|20210923|socket/ },
 
-  // --- 基础设施 ---
-  { cat: '基础设施', re: /Linux|linux|ubuntu|Ubuntu|Mac|mac|win-10|Node版本|what-is-git|JetBrains|sublime|atom|curl|dpkg|Android|android|2017-08|hexo|20210908-(6|7|8|9|10)|20211013|Docker|Nginx/i },
-  { cat: '基础设施', re: /20180518-1|20180624/ },
+  // ─── 前端工程 ─────────────────────────────────────────
+  { cat: '前端工程', re: /vue-cli|React|Swiper|swiper|JavaScript|callback|20180602|20181126|HTML-template|模板分离|小程序/ },
+  { cat: '前端工程', re: /3分钟轻松学会编译安卓|Promise/ },
 
-  // --- 生活随笔 ---
+  // ─── 生活随笔 ─────────────────────────────────────────
   // 20180527-1 是「视频原理了解一下（压缩）」—— 科普随笔，不是工程笔记
-  { cat: '生活随笔', re: /ShenZhen|淘宝|12123|识破|陷阱|Instagram|20180720|20180527/ }
+  { cat: '生活随笔', re: /ShenZhen|淘宝|12123|识破|陷阱|Instagram|20180720|20180527|公众号/ },
+
+  // ─── 基础设施（兜底）──────────────────────────────────
+  // 放在最后：它的模式最宽，放前面会吃掉后面的规则
+  { cat: '基础设施', re: /Linux|linux|ubuntu|Ubuntu|macOS|Mac|mac|win-10|Node版本|what-is-git|JetBrains|sublime|atom|curl|dpkg|Android|android|2017-08|hexo|20210908-(6|7|8|9|10)|20211013|Docker|Nginx|服务器|双系统|黑苹果/ }
 ]
 
 // ---------------------------------------------------------------------------
@@ -78,6 +89,8 @@ const TAG_ALIAS = {
   'mac os': 'macOS',
   'Mac': 'macOS',
   'mac': 'macOS',
+  'Mac OS': 'macOS',
+  '黑苹果': 'macOS',
   'node.js': 'Node.js',
   'Node': 'Node.js',
   'nodejs': 'Node.js',
@@ -88,11 +101,23 @@ const TAG_ALIAS = {
   '模板分离': '前端',
   'webapp': '前端',
   'xiaochengxu': '微信小程序',
+  'vue-cli': 'Vue',
+  'vue': 'Vue',
+  'git': 'Git',
+  'hexo': 'Hexo',
+  'docker': 'Docker',
+  'nginx': 'Nginx',
+  'mysql': 'MySQL',
+  'react': 'React',
+  'go': 'Go',
+  'Ai': 'AI',
+  'swiper.js': 'Swiper',
+  'github': 'GitHub',
+  '计算机视觉': 'AI',
 
   // 统一到大写技术名
   'php': 'PHP',
   'laravel': 'Laravel',
-  'vue': 'Vue',
 
   // 移除：无检索价值（文章属性而非技术名词）
   '12123': null,
@@ -105,7 +130,16 @@ const TAG_ALIAS = {
   '网站': null,
   '翻译': null,
   '系统': null,
-  '微信公众号': null
+  '微信公众号': null,
+  '百度站长': null,
+  'software-center': null,
+  'game': null,
+  'video': null,
+  '压缩': null,
+  '开源': null,
+  '生活笔记': null,   // 这是旧分类名误当 tag 用（20200715-1 内容明显是技术）
+  '黑客': null,       // Linux 命令那篇是教程，不是黑客内容，避免负面联想
+  '黑苹果系统': 'macOS'
 }
 
 // ---------------------------------------------------------------------------
@@ -126,7 +160,7 @@ const UNPUBLISH = new Set([
 
 // ---------------------------------------------------------------------------
 
-const stats = { total: 0, tagFixed: 0, catFixed: 0, unpublished: 0, tagRemoved: 0 }
+const stats = { total: 0, tagFixed: 0, catFixed: 0, unpublished: 0, tagRemoved: 0, skipped: 0 }
 const changes = []
 
 for (const file of fs.readdirSync(POSTS_DIR).filter(f => f.endsWith('.md')).sort()) {
@@ -157,7 +191,15 @@ for (const file of fs.readdirSync(POSTS_DIR).filter(f => f.endsWith('.md')).sort
   }
 
   // --- 2. categories ---
-  const rule = CATEGORY_RULES.find(r => r.re.test(file))
+  // haystack 只用「文件名 + front-matter title」。
+  //
+  // 有意不包含 original tags：这些文章的原 tag 本身就大量错标
+  // （20210901 是 laravel socket 却打着 Minitab 标签、
+  //   ubuntu解决dpkg 打着 Python 标签），把它们加进来会让错误自我强化。
+  // 只匹配文件名也不够 —— 仓库里有大量 20210908-3.md 这类无意义数字名，
+  // 真正的语义信息在 title 里。
+  const haystack = [file, fm.title || ''].join(' ')
+  const rule = CATEGORY_RULES.find(r => r.re.test(haystack))
   if (rule && fm.categories !== rule.cat) {
     notes.push(`category: ${fm.categories || '(无)'} → ${rule.cat}`)
     fm.categories = rule.cat
@@ -179,8 +221,33 @@ for (const file of fs.readdirSync(POSTS_DIR).filter(f => f.endsWith('.md')).sort
   if (JSON.stringify(fm) !== before) {
     changes.push({ file, notes })
     if (APPLY) {
-      const body = raw.replace(/^---[\s\S]*?\n---\n?/, '')
-      fs.writeFileSync(full, '---\n' + stringify(fm) + '---\n' + body, 'utf8')
+      const m = raw.match(/^(---\r?\n)([\s\S]*?)\r?\n---\r?\n?/)
+      if (!m) {
+        console.error(`  ✗ 跳过 ${file}：无法定位 front-matter 边界`)
+        stats.skipped++
+        continue
+      }
+      const body = raw.slice(m[0].length)
+
+      // ⚠️ 两个必须同时满足的条件，否则正文会被写坏：
+      //
+      // 1. parse() 的结果带一个 _content 字段，stringify() 会把它一并输出。
+      //    不清掉就会出现「正文 + 正文」重复。（曾经 61 篇全中招）
+      // 2. stringify() 自带末尾的 '---\n'，所以只需在前面补开头的，
+      //    然后直接接 body —— 不要再插 '\n'，否则正文会被顶下去一个空行。
+      delete fm._content
+      const out = m[1] + stringify(fm) + body
+
+      // 断言：清理后正文必须恰好出现一次。
+      // 只检查尾部是不够的 —— 正文重复时尾部依然匹配，正是这个盲区
+      // 让上面第 1 个 bug 溜过了第一版校验。
+      const occurrences = out.split(body).length - 1
+      if (occurrences !== 1) {
+        console.error(`  ✗ 跳过 ${file}：正文出现 ${occurrences} 次（应为 1），未写入`)
+        stats.skipped++
+        continue
+      }
+      fs.writeFileSync(full, out, 'utf8')
     }
   }
 }
@@ -196,6 +263,7 @@ console.log(`扫描 ${stats.total} 篇，需改动 ${changes.length} 篇`)
 console.log(`  tags 调整:   ${stats.tagFixed}  (移除无价值 tag ${stats.tagRemoved} 个)`)
 console.log(`  category 调整: ${stats.catFixed}`)
 console.log(`  下架:        ${stats.unpublished}`)
+if (stats.skipped) console.log(`  ⚠️ 跳过:      ${stats.skipped}`)
 
 if (!APPLY) {
   console.log('\n这是 dry-run，未写入任何文件。')

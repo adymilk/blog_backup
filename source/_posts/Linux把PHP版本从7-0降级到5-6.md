@@ -1,12 +1,12 @@
 ---
 title: Linux把PHP版本从7.0降级到5.6
-date: 2017-06-07 18:57:57
 tags:
-- php
-categories: 代码笔记
+  - PHP
+categories: 后端工程
 author:
-	nick: 王恒
-cover: 
+  nick: 王恒
+date: 2017-06-07 18:57:57
+cover:
 ---
 
 在您的系统上，如果您已安装了多个版本的PHP（例如PHP 7.1和PHP 5.6两者）。 PHP 7.1作为Apache和CLI的默认PHP运行。对于任何需求，您需要使用PHP 5.6。然后你不需要删除php 7.1。你可以简单地切换php版本为默认用于Apache和命令行。

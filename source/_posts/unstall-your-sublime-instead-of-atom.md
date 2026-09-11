@@ -1,10 +1,10 @@
 ---
 title: It's time to unstall your sublime
-date: 2017-04-25 16:54:57
 tags:
-- IDE
-- atom
-categories: 代码笔记
+  - IDE
+  - atom
+categories: 基础设施
+date: 2017-04-25 16:54:57
 ---
 ### Atom 更为先进的文本代码编辑器
 ![atom](/img/aotm.png)

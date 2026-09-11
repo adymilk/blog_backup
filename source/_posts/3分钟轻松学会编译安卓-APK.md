@@ -1,10 +1,9 @@
 ---
 title: 3分钟轻松学会编译安卓 APK
+tags:
+  - Android
+categories: 前端工程
 date: 2017-07-30 12:08:15
-tags: 
-- android
-- 开源
-categories: 代码笔记
 ---
 ![](/img/https://developer.coolapk.com.png)
 

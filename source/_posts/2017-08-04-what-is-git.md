@@ -1,10 +1,9 @@
 ---
 title: Git recipes in Chinese. 高质量的Git中文教程.
-date: 2017-08-04 00:52:45
 tags:
-- git
-- 翻译
-categories: 代码笔记
+  - Git
+categories: 基础设施
+date: 2017-08-04 00:52:45
 ---
 # Git 图解
 

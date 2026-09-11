@@ -1,8 +1,9 @@
 ---
 title: JavaScript callback function 理解
+tags:
+  - 前端
+categories: 前端工程
 date: 2016-10-25 21:56:19
-tags: 前端
-categories: 代码笔记
 ---
 最近做的一个项目中用到了callback函数，于是就研究了下总结下我对javascript callback的理解；首先从callback的字面翻译“回调”可以理解这是一个函数被调用的机制当我们遇到一个名词首先可能是百度谷歌搜索看官方是怎么解释的；
 <!-- more -->

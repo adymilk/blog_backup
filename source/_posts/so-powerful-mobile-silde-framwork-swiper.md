@@ -1,9 +1,9 @@
 ---
 title: 'Swiper.js '
+tags:
+  - Swiper
+categories: 前端工程
 date: 2017-04-23 10:10:59
-tags: 
-- swiper.js
-categories: 代码笔记
 ---
 
 ### 强大的移动端触摸欢动插件Swiper

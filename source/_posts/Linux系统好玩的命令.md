@@ -1,11 +1,10 @@
 ---
 title: Linux系统那些牛逼的命令
-date: 2017-04-25 17:13:05
 tags:
-- Linux
-- 黑客
-- 命令行
-categories: 代码笔记
+  - Linux
+  - 命令行
+categories: 基础设施
+date: 2017-04-25 17:13:05
 ---
 ### 打开Linux 命令行开启装逼模式
 ![](/img/linux-terimal.png)

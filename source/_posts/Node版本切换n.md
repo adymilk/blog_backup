@@ -1,10 +1,10 @@
 ---
 title: Node版本切换n
-date: 2017-06-14 14:14:04
 tags:
-- node.js
-- 前端
-categories: 代码笔记
+  - Node.js
+  - 前端
+categories: 基础设施
+date: 2017-06-14 14:14:04
 ---
 ### n是什么？
 de的一个模块，作者是TJ Holowaychuk（鼎鼎大名的Express框架作者），就像它的名字一样，它的理念就是简单：
