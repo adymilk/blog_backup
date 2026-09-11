@@ -1,0 +1,175 @@
+# =============================================================================
+# 履历唯一数据源
+#
+# 被以下页面读取：
+#   - themes/hexo-theme-stun/layout/resume.pug      (site.data.profile)
+#   - source/about/index.md                          ({% profile <key> %} 标签)
+#   - (可选) 首页
+#
+# 改这里 = 全站同步。**切勿在其他页面硬编码同样的信息** ——
+# 之前 about 页写「安徽理工大学/上海」，简历页写「安徽电子大学/合肥/PHP 6k~8k」，
+# 就是这个文件不存在时多份数据源漂移的直接后果。
+#
+# ⚠️ 硬规则：本文件只放「短、结构化、多处复用」的字段。
+#    任何超过 3 行的叙事，一律回 markdown（见 source/resume/index.md）。
+#    YAML 的块标量写多段带列表的文本会失控。
+#
+# ⚠️ 真实值一律留空 + TODO(James)。填完用 `npm run check` 检查残留。
+# =============================================================================
+
+# ---------------------------------------------------------------- 身份
+identity:
+  name: 王恒
+  name_en: James Wang
+
+  # TODO(James): 目标职位名。建议直接写 FDE 相关，让 HR 关键词匹配能命中。
+  # 例：Forward Deployed Engineer / 解决方案工程师 / AI 应用工程师
+  title: ""
+
+  location: 上海
+
+  # TODO(James): 一句话定位。要和 source/resume/index.md 的「一句话定位」一致。
+  # 参考方向（据实调整，不要照抄）：
+  #   「懂工业现场与统计数据的全栈工程师，能亲手把 LLM 落地到制造业工作流。」
+  one_liner: ""
+
+  # TODO(James): 工作年限（数字，不带单位）
+  years: 0
+
+  # TODO(James): 是否接受驻场/出差。FDE 岗位普遍要求驻客户现场，
+  # 主动写明是加分项而非减分项。true / false
+  open_to_travel: false
+
+# ---------------------------------------------------------------- 联系方式
+contact:
+  # TODO(James): 逐项核实后填写。注意 source/about/index.md 里现在写的是
+  # 924114103@qq.com，source/resume/index.md 里写的是 xingy0918@gmail.com，
+  # 二选一，改到两处一致（或删掉简历页那份，只留这里）
+  email: ""
+  github: https://github.com/adymilk
+  linkedin: ""
+
+  # 技术博客（站内相对路径）
+  blog: /
+
+  # TODO(James): 简历 PDF 路径。把 PDF 放到 source/uploads/resume.pdf 后填
+  # "/uploads/resume.pdf"
+  resume_pdf: ""
+
+# ---------------------------------------------------------------- 求职意向
+job_target:
+  # TODO(James): 目标岗位关键词，同时用作 HR 机器筛选的关键词
+  roles: []
+  #   - Forward Deployed Engineer
+  #   - Solutions Engineer
+  #   - AI 应用工程师
+
+  # TODO(James): 期望城市，例：["上海"]
+  locations: []
+
+  # TODO(James): 到岗时间，例："一个月内"
+  availability: ""
+
+# ---------------------------------------------------------------- FDE 六维能力
+# level: 1(了解) ~ 5(精通/可教学)。请诚实自评 —— FDE 面试会在系统设计轮
+#        验证你写的每一维。
+#
+# evidence 必须是可指认的东西（项目名、可复现的数字、文章链接）。
+# ⚠️ 不要写「熟悉」「了解」「掌握」这类无证据词 —— 写了等于没写。
+skills:
+  dimensions:
+    - key: software_data
+      name: 软件与数据工程
+      level: 0   # TODO(James)
+      # TODO(James): 例：
+      # - "Laravel + Vue 全栈交付 <项目名>（2022，至今运行）"
+      # - "设计 Minitab 分析结果表结构，支撑 OrderID 轮询取数"
+      evidence: []
+
+    - key: ai_engineering
+      name: AI 应用工程（模型 / 检索 / Agent / 评测）
+      level: 0   # TODO(James): ← P0 缺口，当前大概是最低分，如实写
+      # TODO(James): 这是最需要补的一维。哪怕先从评测集做起：
+      # - "为 <场景> 建立 40 条 golden set，回归准确率 <数字>%"
+      evidence: []
+
+    - key: production_reliability
+      name: 生产与可靠性（权限 / 可观测 / SLO / 回滚）
+      level: 0   # TODO(James)
+      # TODO(James): 提示 —— source/_posts/20200715-1.md 提到 Windows 服务
+      # 「开机后自动运行」，但没提失败重试、日志、告警。
+      # 如果能补上这些描述，这一维立刻有证据。
+      evidence: []
+
+    - key: customer_discovery
+      name: 客户发现与产品判断（访谈 / 流程 / 成功指标 / 控范围）
+      level: 0   # TODO(James): ← P1 缺口
+      # TODO(James): 制造业现场经验是你的独特优势，但过去只讲技术不讲业务。
+      # 把「和客户怎么对齐需求、怎么砍掉不该做的需求」写出来。
+      evidence: []
+
+    - key: field_delivery
+      name: 现场交付与采用（集成 / 培训 / 交接）
+      level: 0   # TODO(James)
+      evidence: []
+
+    - key: communication
+      name: 沟通与影响力
+      level: 0   # TODO(James)
+      # 已有可用证据：本站 60+ 篇技术文章
+      evidence: []
+
+  # HR 机器筛选用的关键词。从真实 JD 的高频词里挑。
+  # ⚠️ 只写你真会的 —— 技术面会验证。
+  keywords: []
+  # TODO(James): 参考（按你实际技术栈裁剪）：
+  # - PHP  - Laravel  - Go  - React  - Vue  - Docker  - MySQL
+  # - Python  - Linux  - Nginx  - Redis
+  # - LLM  - RAG  - Agent  - Prompt Engineering  - Evaluation
+  # - Minitab  - SPC  - 统计过程控制  - 质量工程
+  # - Forward Deployed  - 客户现场  - ToB
+
+# ---------------------------------------------------------------- 旗舰项目索引
+# 与 /works/ 页呼应。
+#
+# evidence_level 是最重要的字段（引自 FDE 作品集调研）：
+#   L0 声称      — "系统很稳定"，无测量方法。不能算证据，不要写。
+#   L1 展示      — 截图、架构图、一次成功演示
+#   L2 可复现    — 有数据、命令、版本、预期输出，别人能重跑 ← 旗舰项目核心链路至少到这
+#   L3 经使用验证 — 有真实试点用户、基线、结果与限制
+#
+# ⚠️ status 若非真实客户，必须写「模拟企业场景」。诚实标注反而加分 ——
+#    可信度比规模重要。
+projects:
+  - name: Minitab COM 桥接服务
+    status: ""            # TODO(James): 生产中 / 已交付 / 模拟企业场景
+    evidence_level: L1    # TODO(James): 目标至少 L2
+    domain: 工业质量分析
+    stack: []             # TODO(James): ["C#", ".NET", "Minitab COM", "HTTP 轮询"]
+    url: "/2020/07/14/数据科学/"
+    case_anchor: ""       # TODO(James): resume 页里对应案例的锚点
+
+  - name: Minitab 二次开发实时生成控制图
+    status: ""            # TODO(James)
+    evidence_level: L1    # TODO(James)
+    domain: 工业质量分析
+    stack: []
+    url: "/2021/06/29/20210629-1/"
+    case_anchor: ""
+
+  # TODO(James): 补充其他项目。宁少勿滥，2–4 个足够。
+  # ⚠️ 优先补 LLM/GenAI 方向的 —— 这是当前最大的缺口。
+
+# ---------------------------------------------------------------- 填写说明
+# 这个字段不会被页面渲染，保留在文件里是为了新增案例时不跑偏。
+case_template:
+  fields:
+    - 场景
+    - 模糊点
+    - 边界(in/out scope)
+    - 关键决策(≥2 个备选 + 各自代价)
+    - 交付节奏
+    - 结果(对比基线)
+    - 运营与交接
+    - 复盘
+  note: 案例正文写在 source/resume/index.md，不要写在这里。

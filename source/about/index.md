@@ -1,47 +1,59 @@
 ---
-title: 关于|about me
+title: 关于我
 date: 2018-05-14 15:41:00
 type: about
 layout: about
 ---
 
-## 一个有趣的灵魂/about me 
+<!--
+  ===========================================================================
+  本页的身份信息、联系方式、求职意向都从 source/_data/profile.yml 读取。
+  改那一处，本页和 /resume/ 同步更新。不要在下面硬编码同样的信息。
+  ===========================================================================
+-->
 
-> &nbsp;&nbsp;&nbsp;My name is James Wang(王恒). You can call me James. I was born in 1995.
-I am a software engineer, graduated from anhui University Of Science and Technology, and now am employed by Techmax in ShangHai.
-Life is colorful, this website was, is and will be the window which used to present the color of my life.
-I like programming, reading book, surfing internet, traveling, and I love making friends very much.
+## 我是谁
 
+> 我是王恒（James），1995 年生，软件工程师，现居上海。
+>
+> 这个网站是我的技术笔记，也是我的在线简历。如果你在找
+> **Forward Deployed Engineer（前沿部署工程师）** 方向的人，
+> 欢迎直接看 [作品与证据](/works/) 和 [简历](/resume/)。
 
-[查看我的在线简历](https://www.linkedin.com/in/adymilk/)
+<!-- TODO(James): 上面这段是骨架。请按你的真实经历展开 2–3 段：
+     - 从什么背景出发（学校 / 第一份工作）
+     - 现在在做什么（公司 / 方向 / 最投入的事）
+     - 为什么想做 FDE，你想解决什么问题
+     注意：本页的学校/公司/城市必须和 profile.yml 及 resume 页一致 ——
+     之前这三处互相矛盾（about 写安徽理工大学/上海，resume 写安徽电子大学/合肥）。 -->
 
-## Hello World!
-```json
-{
-  "Name": "王恒（James）",
-  "Hobbies": ["Coding", "Photography", "Song","Reading"],
-  "Location": "ShangHai China",
-  "Company": "Minitab in China",
-  "School": "AnHui University",
-  "Contacts": {
-    "Email": "924114103@qq.com",
-    "Weibo": "@adymilk",
-    "Github": "https://github.com/adymilk",
-    "QQ": "924114103"
-  }
-}
-```
+## 技术方向
 
+<!-- TODO(James): 用 3–5 条说清你的技术纵深。建议突出「工业 + 数据」这条线：
+     Minitab 二次开发、统计过程控制（SPC）、质量工程、Laravel 全栈。
+
+     为什么这条线值得突出：FDE 招聘明确看重 enterprise vertical 背景，
+     而「懂制造业现场 + 懂统计数据」是稀缺组合。
+     参见 /works/ 页里两个 Minitab 案例。 -->
+
+## 联系方式
+
+{% profile contact %}
+
+## 我在找什么
+
+{% profile job_target %}
 
 ## 本站的小历史
 
-| 时间 | 事件 | 操作 |
+| 时间 | 事件 |
 | ------------------ | ------- |
-| 2015 年 5 月 23日  | 网站第一次上线，这是本站最原始的模型。当初刚刚接触到前端开发的基础，就想着一定要搞出点东西玩玩。带着好奇心我就一些静态页面传到了服务器 | [查看](/) |
-| 2016 年 6 月 12日  | 那段时间爱上了谷歌的 Material Design 风格，欲罢不能。风格确实挺好看的 | [查看](/) |
-| 2017 年 1 月 8日  | 网站上线了评论功能，访客可以直接通过第三方账号登录评论。RRS订阅功能 | [查看](/) |
-| 2018 年 05 月 12 日  | 网站整体网格大改版，由原先的简约紧凑的风格改为视觉性更强，功能更加丰富的展现方式博客后期还会融入更多简单好玩的元素。敬请期待 | [查看](/) |
-
+| 2015 年 5 月 23 日 | 网站第一次上线，最初的静态页面 |
+| 2016 年 6 月 12 日 | 改用 Google Material Design 风格 |
+| 2017 年 1 月 8 日 | 上线评论功能与 RSS 订阅 |
+| 2018 年 5 月 12 日 | 整体网格改版 |
+| 2026 年 9 月 | 重构为求职门户：新增作品与证据页、重写简历页、接入 CI |
 
 ## 其他
-> [申请友情连接点击这里](mail:924114103@qq.com)
+
+> 想交换友链？[点这里](/friends/)，或者直接邮件联系我。
