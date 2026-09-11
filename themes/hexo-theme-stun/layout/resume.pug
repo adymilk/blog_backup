@@ -1,0 +1,120 @@
+extends ./_layout.pug
+
+//-
+  简历页采用「双读者分层」：
+    · 上半部分（头部卡片 + 六维能力 + 技能关键词）给 HR —— 20 秒扫完
+      这部分全部来自 source/_data/profile.yml，改一处全站生效
+    · 下半部分（page.content）给面试官 —— 3 分钟读决策链
+      这部分写在 source/resume/index.md，因为长叙事放 YAML 是自虐
+
+  注意：extends 模板的顶层只能放具名 block 和 mixin，
+  所以变量声明必须写在 block content 内部。
+
+block content
+  -
+    var profile = (site.data && site.data.profile) || {}
+    var id = profile.identity || {}
+    var ct = profile.contact || {}
+    var jt = profile.job_target || {}
+    var sk = profile.skills || {}
+
+  div.resume
+
+    //- ================= 1. 头部卡片（HR 扫这里）=================
+    header.resume-head
+      h1.resume-head__name
+        = id.name || config.author
+        if id.name_en
+          span.resume-head__name-en= id.name_en
+
+      if id.title
+        p.resume-head__title= id.title
+
+      if id.one_liner
+        p.resume-head__oneliner= id.one_liner
+
+      ul.resume-contact
+        if id.location
+          li
+            i.fas.fa-map-marker-alt
+            span= id.location
+        if ct.email
+          li
+            i.fas.fa-envelope
+            a(href=`mailto:${ct.email}`)= ct.email
+        if ct.github
+          li
+            i.fab.fa-github
+            a(href=ct.github target="_blank" rel="noopener")= ct.github.replace(/^https?:\/\/(www\.)?/, '')
+        if ct.linkedin
+          li
+            i.fab.fa-linkedin
+            a(href=ct.linkedin target="_blank" rel="noopener") LinkedIn
+        if ct.resume_pdf
+          li
+            i.fas.fa-file-pdf
+            a(href=url_for(ct.resume_pdf) target="_blank" rel="noopener") 下载 PDF 版
+
+      //- 求职意向的三项摘要（HR 最先找的就是这个）
+      if jt.roles && jt.roles.length
+        p.resume-target
+          span.resume-target__label 目标岗位
+          each r, i in jt.roles
+            span.resume-target__tag= r
+      if jt.availability
+        p.resume-target
+          span.resume-target__label 到岗时间
+          span= jt.availability
+      if id.open_to_travel
+        p.resume-target
+          span.resume-target__label 出差/驻场
+          span 可接受
+
+    //- ================= 2. FDE 六维能力矩阵 =================
+    if sk.dimensions && sk.dimensions.length
+      section.resume-section
+        h2.resume-section__title 核心能力
+        p.resume-section__hint 按 FDE 能力模型自评，每条都附可指认的证据
+
+        div.resume-dims
+          each d in sk.dimensions
+            div.resume-dim(data-level=(d.level || 0))
+              div.resume-dim__head
+                span.resume-dim__name= d.name
+                span.resume-dim__level
+                  //- level: 0 未填 / 1 了解 / 2 熟悉 / 3 熟练 / 4 精通 / 5 可教学
+                  - var lv = d.level || 0
+                  span.resume-dim__level-num= lv > 0 ? lv + ' / 5' : '未自评'
+                  span.resume-dim__level-bar
+                    span.resume-dim__level-fill(style=`width: ${lv > 0 ? (lv / 5 * 100) : 0}%`)
+              if d.evidence && d.evidence.length
+                ul.resume-dim__evidence
+                  each e in d.evidence
+                    li= e
+              else
+                p.resume-dim__empty 待补充证据
+
+    //- ================= 3. 技能关键词（HR 机器筛选）=================
+    if sk.keywords && sk.keywords.length
+      section.resume-section
+        h2.resume-section__title 技能关键词
+        div.resume-keywords
+          each k in sk.keywords
+            span.resume-keyword= k
+
+    //- ================= 4. 正文：case study 决策链 =================
+    //- 内容来自 source/resume/index.md 的 markdown
+    if page.content
+      section.resume-section.resume-body
+        != page.content
+
+    //- ================= 5. 页脚提示 =================
+    footer.resume-foot
+      p
+        | 本页信息与
+        a(href=url_for('/works/'))  作品与证据
+        | 、
+        a(href=url_for('/about/'))  关于我
+        | 同源。案例均标注证据等级（L0–L3），欢迎按
+        a(href=url_for('/works/'))  可复现证据
+        | 一节自行验证。
