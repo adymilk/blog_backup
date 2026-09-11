@@ -1,5 +1,8 @@
 version: 2
 updates:
+  # ---------------------------------------------------------------------------
+  # 根项目依赖
+  # ---------------------------------------------------------------------------
   - package-ecosystem: npm
     directory: "/"
     schedule:
@@ -14,3 +17,18 @@ updates:
         update-types:
           - minor
           - patch
+    # 主版本升级（如 hexo-renderer-marked 4→7）往往是破坏性的，
+    # 对个人站不划算 —— 忽略掉，需要时手动升。
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-major
+
+  # ---------------------------------------------------------------------------
+  # GitHub Actions（我们自己的 workflow）
+  # ---------------------------------------------------------------------------
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3
