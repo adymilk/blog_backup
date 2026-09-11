@@ -1,0 +1,34 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      # 这个仓库的历史教训：gulpfile.js 里 require 了两个从未安装的包，
+      # 导致 `npm run build` 必然崩溃，而没人发现 —— 因为从来没有 CI。
+      # 这一步就是为了让「构建挂掉」立刻可见。
+      - name: Build
+        run: npm run build
+
+      - name: Report unfilled TODOs
+        run: npm run check -- --warn

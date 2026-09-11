@@ -1,7 +1,16 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 20
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      # 原来是 daily。对这样一个长期低维护的个人站，
+      # 每天检查会产生大量破坏性升级 PR，反而淹没真正重要的安全更新。
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      # minor 和 patch 合并成一个 PR，减少噪音
+      minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - minor
+          - patch

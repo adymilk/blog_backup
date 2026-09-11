@@ -1,0 +1,60 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: # 支持手动触发
+
+permissions:
+  contents: read
+
+# 同一分支的连续推送，取消掉还在跑的旧任务
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # hexo 的 updated 字段依赖 git 时间
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          # 锁 LTS，不要跟着本地环境漂
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build
+        run: npm run build
+
+      # 未填完的 TODO 只警告不阻断 —— 简历页内容需要时间填，
+      # 不该因此卡住部署。想看完整报告就在本地跑 npm run check。
+      - name: Check for unfilled TODOs
+        run: npm run check -- --warn
+
+      - name: Setup SSH for deployment
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts 2>/dev/null
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # 推送到 adymilk/adymilk.github.io
+      # ⚠️ 必须用 Deploy Key 而不是 GITHUB_TOKEN ——
+      #    hexo-deployer-git 用 SSH 推到「另一个」仓库，
+      #    而 GITHUB_TOKEN 的作用域仅限当前仓库。
+      - name: Deploy
+        run: npx hexo deploy
