@@ -829,6 +829,10 @@ html.nightmode
 .prose
   color: var(--text-secondary)
 
+  // 固定导航栏高 64px，锚点跳转时给标题留出偏移，否则点目录后标题会被顶栏遮住一截
+  h2, h3, h4, h5
+    scroll-margin-top: 84px
+
   h2
     margin: 36px 0 14px
     font-size: 1.25rem
