@@ -754,7 +754,10 @@ gallery_waterfall:
 # Lazy load the images of post.
 # See: https://github.com/tuupola/lazyload
 lazyload:
-  enable: true
+  # 关闭原因：本主题的 lazyload 只会把 img 改成 data-src 占位写法，
+  # 但 vendors.lazyload 未配置任何脚本，导致图片永远停在 loading.svg 占位图。
+  # 站内配图均为 3-5KB 的小 SVG，懒加载收益可忽略，直接关闭。
+  enable: false
   # Optional values: gif | block
   placeholder: gif
 
