@@ -55,6 +55,9 @@ body
   line-height: 1.75
   -webkit-font-smoothing: antialiased
   text-rendering: optimizeLegibility
+  // 防止 iOS Safari / 微信内置浏览器自动放大正文字号（会表现为「缩放比例不对、错位」）
+  -webkit-text-size-adjust: 100%
+  text-size-adjust: 100%
 
 a
   color: inherit
@@ -1056,7 +1059,9 @@ html.nightmode
     outline: none
     background: transparent
     color: var(--text)
-    font-size: 0.95rem
+    // 必须 >=16px：iOS Safari 对小于 16px 的输入框会在聚焦时强制放大页面，
+    // 且收起键盘后不会还原，导致页面看起来「错位、比例不对」
+    font-size: 1rem
 
   &__results
     max-height: 360px
