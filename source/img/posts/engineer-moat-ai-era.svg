@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'PingFang SC', sans-serif">
+  <rect width="1200" height="675" fill="#FAFAFA"/>
+  <rect x="32" y="32" width="1136" height="611" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+
+  <text x="68" y="88" font-size="13" font-weight="700" fill="#2B5B84" letter-spacing="2">CAREER MOAT · INDUSTRIAL ENGINEER IN AI ERA</text>
+  <text x="68" y="126" font-size="28" font-weight="800" fill="#111827">AI 时代深耕传统产业技术人的三重护城河</text>
+  <line x1="68" y1="150" x2="1132" y2="150" stroke="#E5E7EB" stroke-width="1"/>
+
+  <!-- Apex -->
+  <polygon points="600,178 790,266 410,266" fill="#2B5B84"/>
+  <text x="600" y="232" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">不可替代的产业商业价值</text>
+  <text x="600" y="253" text-anchor="middle" font-size="12" fill="#DBEAFE">Defensible Value</text>
+
+  <!-- 3 Pillars -->
+  <rect x="112" y="294" width="300" height="176" rx="8" fill="#FFFFFF" stroke="#111827" stroke-width="1.5"/>
+  <text x="136" y="328" font-size="13" font-weight="700" fill="#2B5B84">01 / DOMAIN TACIT KNOWLEDGE</text>
+  <text x="136" y="356" font-size="17" font-weight="700" fill="#111827">垂直行业隐性规则</text>
+  <text x="136" y="388" font-size="13" fill="#4B5563">• 懂 SPC 判异与子组划分偏差</text>
+  <text x="136" y="412" font-size="13" fill="#4B5563">• 识别现场脏数据与时间戳漂移</text>
+  <text x="136" y="436" font-size="13" fill="#4B5563">• 用业务语言定义正确的问题</text>
+
+  <rect x="450" y="294" width="300" height="176" rx="8" fill="#FFFFFF" stroke="#2B5B84" stroke-width="2"/>
+  <text x="474" y="328" font-size="13" font-weight="700" fill="#2B5B84">02 / BROWNFIELD INTEGRATION</text>
+  <text x="474" y="356" font-size="17" font-weight="700" fill="#111827">存量系统跨界整合</text>
+  <text x="474" y="388" font-size="13" fill="#4B5563">• 桌面 COM / 私有协议桥接</text>
+  <text x="474" y="412" font-size="13" fill="#4B5563">• 异构 MES/ERP/LIMS 数据治理</text>
+  <text x="474" y="436" font-size="13" fill="#4B5563">• 将 AI 安全嵌入既有生产流</text>
+
+  <rect x="788" y="294" width="300" height="176" rx="8" fill="#FFFFFF" stroke="#111827" stroke-width="1.5"/>
+  <text x="812" y="328" font-size="13" font-weight="700" fill="#2B5B84">03 / BUSINESS TRANSLATION</text>
+  <text x="812" y="356" font-size="17" font-weight="700" fill="#111827">技术到商业的翻译力</text>
+  <text x="812" y="388" font-size="13" fill="#4B5563">• 把模糊需求收敛为可交付边界</text>
+  <text x="812" y="412" font-size="13" fill="#4B5563">• 面向管理层的 ROI 方案宣讲</text>
+  <text x="812" y="436" font-size="13" fill="#4B5563">• 跨研发与业务团队协同推进</text>
+
+  <!-- Base: Commodity Coding -->
+  <rect x="112" y="498" width="976" height="96" rx="8" fill="#111827"/>
+  <text x="600" y="538" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">基础编码与常规 CRUD（正在被 AI 工具快速平权）</text>
+  <text x="600" y="566" text-anchor="middle" font-size="13" fill="#9CA3AF">单一语言与框架红利消退 · 模型越强，越需要上层三项复合护城河</text>
+</svg>

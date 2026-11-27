@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'PingFang SC', sans-serif">
+  <rect width="1200" height="675" fill="#FAFAFA"/>
+  <rect x="32" y="32" width="1136" height="611" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+
+  <text x="68" y="88" font-size="13" font-weight="700" fill="#2B5B84" letter-spacing="2">SYSTEM ARCHITECTURE · ENTERPRISE INDUSTRIAL AI</text>
+  <text x="68" y="126" font-size="28" font-weight="800" fill="#111827">RAG + MCP + Golden Set 评测闭环协同架构</text>
+  <line x1="68" y1="150" x2="1132" y2="150" stroke="#E5E7EB" stroke-width="1"/>
+
+  <!-- User Query -->
+  <rect x="68" y="255" width="180" height="100" rx="8" fill="#F8FAFC" stroke="#111827" stroke-width="1.5"/>
+  <text x="158" y="298" text-anchor="middle" font-size="16" font-weight="700" fill="#111827">自然语言查询</text>
+  <text x="158" y="324" text-anchor="middle" font-size="12" fill="#6B7280">质量异常 / CPK 分析</text>
+
+  <path d="M248 305 L302 305" stroke="#111827" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Orchestrator -->
+  <rect x="306" y="240" width="210" height="130" rx="8" fill="#2B5B84"/>
+  <text x="411" y="294" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">Agent 编排核心</text>
+  <text x="411" y="320" text-anchor="middle" font-size="12" fill="#DBEAFE">任务拆解 · 参数校验</text>
+  <text x="411" y="340" text-anchor="middle" font-size="12" fill="#DBEAFE">工具路由 · 边界守卫</text>
+
+  <!-- Branches to RAG & MCP -->
+  <path d="M516 278 L588 228" stroke="#111827" stroke-width="2" marker-end="url(#a1)"/>
+  <path d="M516 332 L588 382" stroke="#111827" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- RAG Box -->
+  <rect x="592" y="176" width="280" height="114" rx="8" fill="#FFFFFF" stroke="#111827" stroke-width="1.5"/>
+  <text x="614" y="208" font-size="15" font-weight="700" fill="#2B5B84">Metadata-Filtered RAG</text>
+  <text x="614" y="234" font-size="13" fill="#4B5563">• 按产线 / 工序 / 生效日期过滤</text>
+  <text x="614" y="256" font-size="13" fill="#4B5563">• SOP 与历史异常案例引用溯源</text>
+
+  <!-- MCP Box -->
+  <rect x="592" y="326" width="280" height="114" rx="8" fill="#FFFFFF" stroke="#2B5B84" stroke-width="2"/>
+  <text x="614" y="358" font-size="15" font-weight="700" fill="#2B5B84">MCP Server（受控工具层）</text>
+  <text x="614" y="384" font-size="13" fill="#4B5563">• JSON Schema 强类型参数约束</text>
+  <text x="614" y="406" font-size="13" fill="#4B5563">• 调用 SPC / ETL / Minitab 引擎</text>
+
+  <!-- Merge to Output -->
+  <path d="M872 233 L932 285" stroke="#111827" stroke-width="2" marker-end="url(#a1)"/>
+  <path d="M872 383 L932 325" stroke="#111827" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="936" y="245" width="196" height="120" rx="8" fill="#F8FAFC" stroke="#111827" stroke-width="1.5"/>
+  <text x="1034" y="294" text-anchor="middle" font-size="16" font-weight="700" fill="#111827">结构化决策输出</text>
+  <text x="1034" y="320" text-anchor="middle" font-size="12" fill="#6B7280">精确指标 + 图表</text>
+  <text x="1034" y="340" text-anchor="middle" font-size="12" fill="#6B7280">+ SOP 原文出处</text>
+
+  <!-- Bottom Golden Set Eval Bar -->
+  <rect x="306" y="488" width="826" height="112" rx="8" fill="#F3F4F6" stroke="#2B5B84" stroke-width="1.5"/>
+  <text x="334" y="524" font-size="16" font-weight="700" fill="#111827">CI/CD Golden Set 自动化评测闭环（上线守门员）</text>
+  <text x="334" y="552" font-size="13" fill="#4B5563">1. 参数提取准确率（≥95%）    2. MCP 工具调用成功率    3. 数值零幻觉校验    4. Prompt 变更自动回归</text>
+  <text x="334" y="576" font-size="12" fill="#2B5B84" font-weight="600">每次 Prompt / 检索策略调整，必须跑通 30–50 条真实业务黄金样本基线</text>
+
+  <path d="M1034 365 L1034 482" stroke="#2B5B84" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a2)"/>
+  <path d="M411 488 L411 376" stroke="#2B5B84" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a2)"/>
+
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#111827"/>
+    </marker>
+    <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2B5B84"/>
+    </marker>
+  </defs>
+</svg>

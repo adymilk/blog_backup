@@ -110,8 +110,11 @@ theme: hexo-theme-stun
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repo:
-    github: git@github.com:adymilk/adymilk.github.io.git,master
+  # 注意：必须用 ~/.ssh/config 里的 Host 别名 github-pages-adymilk，
+  # 它绑定了专用于本仓库的密钥 id_ed25519_adymilk_pages。
+  # 直接用 git@github.com 会命中默认的 id_rsa，而那是另一个仓库的 deploy key，
+  # 会导致 "Permission to adymilk/adymilk.github.io.git denied to deploy key"。
+  repo: git@github-pages-adymilk:adymilk/adymilk.github.io.git
   branch: master
 
 

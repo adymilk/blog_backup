@@ -72,8 +72,16 @@ published: true          # 设为 false 可下架隐藏文章
 
 ---
 
-## 三、部署上线
+## 三、部署上线与项目规则
 
-仓库已配置 `.github/workflows/deploy.yml`：
+> **项目强制规则**：
+> 1. **内容深度与配图规范**：每篇文章必须具备行业或工程深度，避免泛泛而谈，且必须配备清晰的架构图或信息图辅助讲解（图表统一存入 `source/img/posts/` 目录）。
+> 2. **自动构建与部署**：每次修改博客内容、主题样式或配置后，必须执行以下命令完成生成并推送部署到线上站点（同时建议将源码提交推送至 `blog_backup`）：
+>
+> ```bash
+> npx hexo g -d
+> ```
+
+仓库也已配置 `.github/workflows/deploy.yml`：
 1. 推送代码至 `master` 分支后，GitHub Actions 会自动执行 `npm ci` 与 `npm run build` 并部署到 `adymilk/adymilk.github.io`。
 2. 如需配置自定义域名，请在 `source/CNAME` 写入域名，并同步更新 `_config.yml` 中的 `url` 与 `source/robots.txt` 中的 `Sitemap` 地址。

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'PingFang SC', sans-serif">
+  <rect width="1200" height="675" fill="#FAFAFA"/>
+  <rect x="32" y="32" width="1136" height="611" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+
+  <text x="68" y="88" font-size="13" font-weight="700" fill="#2B5B84" letter-spacing="2">COMMERCIALIZATION · B2B INDUSTRIAL SOFTWARE</text>
+  <text x="68" y="126" font-size="28" font-weight="800" fill="#111827">B2B 工业产品破局：避开“定制外包陷阱”，构建可复制分层架构</text>
+  <line x1="68" y1="150" x2="1132" y2="150" stroke="#E5E7EB" stroke-width="1"/>
+
+  <!-- Left: Trap -->
+  <rect x="68" y="182" width="490" height="418" rx="8" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="96" y="222" font-size="18" font-weight="700" fill="#374151">❌ 定制项目陷阱（边际成本失控）</text>
+  <line x1="96" y1="240" x2="530" y2="240" stroke="#E5E7EB"/>
+
+  <rect x="96" y="264" width="434" height="72" rx="6" fill="#FFFFFF" stroke="#D1D5DB"/>
+  <text x="116" y="295" font-size="15" font-weight="600" fill="#111827">1. 代码分叉：每家客户一套独立分支</text>
+  <text x="116" y="320" font-size="13" fill="#6B7280">核心逻辑与现场业务逻辑硬编码耦合</text>
+
+  <rect x="96" y="354" width="434" height="72" rx="6" fill="#FFFFFF" stroke="#D1D5DB"/>
+  <text x="116" y="385" font-size="15" font-weight="600" fill="#111827">2. 周期拉长：大半年清洗底层数据才见效</text>
+  <text x="116" y="410" font-size="13" fill="#6B7280">管理层看不到短期 ROI，内部推动阻力大</text>
+
+  <rect x="96" y="444" width="434" height="72" rx="6" fill="#FFFFFF" stroke="#D1D5DB"/>
+  <text x="116" y="475" font-size="15" font-weight="600" fill="#111827">3. 价值错位：满屏技术参数，缺少业务语言</text>
+  <text x="116" y="500" font-size="13" fill="#6B7280">厂长/质量总监只关心风险降低与工时节省</text>
+
+  <text x="313" y="564" text-anchor="middle" font-size="14" font-weight="700" fill="#6B7280">结果：交付越重、毛利越低、难以规模复制</text>
+
+  <!-- Right: Composable Architecture -->
+  <rect x="596" y="182" width="536" height="418" rx="8" fill="#F8FAFC" stroke="#2B5B84" stroke-width="2"/>
+  <text x="624" y="222" font-size="18" font-weight="700" fill="#2B5B84">✓ 可复制产品化架构（价值楔子 + 分层解耦）</text>
+  <line x1="624" y1="240" x2="1104" y2="240" stroke="#CBD5E1"/>
+
+  <rect x="624" y="264" width="480" height="84" rx="6" fill="#2B5B84"/>
+  <text x="646" y="298" font-size="16" font-weight="700" fill="#FFFFFF">L3 · 快速 ROI 价值楔子（2–4 周轻量试点）</text>
+  <text x="646" y="324" font-size="13" fill="#DBEAFE">不推翻 MES/ERP，先切入高频痛点（如自动控制图 / 异常归因）</text>
+
+  <rect x="624" y="366" width="480" height="84" rx="6" fill="#FFFFFF" stroke="#2B5B84" stroke-width="1.5"/>
+  <text x="646" y="400" font-size="16" font-weight="700" fill="#111827">L2 · 可配置适配层（ETL / 桥接器 / 规则映射）</text>
+  <text x="646" y="426" font-size="13" fill="#4B5563">把客户差异收口在配置与适配器中，不动产品主干</text>
+
+  <rect x="624" y="468" width="480" height="84" rx="6" fill="#111827"/>
+  <text x="646" y="502" font-size="16" font-weight="700" fill="#FFFFFF">L1 · 标准化核心引擎（SPC / AI Agent / 评测集）</text>
+  <text x="646" y="528" font-size="13" fill="#D1D5DB">跨客户复用、持续迭代、形成真正产品壁垒</text>
+
+  <text x="864" y="582" text-anchor="middle" font-size="14" font-weight="700" fill="#2B5B84">结果：快速验证价值 → 标准化扩展 → 高毛利复购</text>
+</svg>
