@@ -1,9 +1,31 @@
 extends ./_layout.pug
-include ./_mixins/timeline.pug
 
 block content
-  div.archive
-    div.archive-total
-      = site.posts.length === 0 ? __('page.posts-empty') : _p('page.posts-total', site.posts.length)
+  -
+    var allPosts = site.posts.sort('date', -1).toArray()
+    var byYear = {}
+    allPosts.forEach(function(p) {
+      var y = date(p.date, 'YYYY')
+      if (!byYear[y]) byYear[y] = []
+      byYear[y].push(p)
+    })
+    var years = Object.keys(byYear).sort(function(a, b) { return Number(b) - Number(a) })
 
-    +timeline(theme.post_list.paginate.archives ? page.posts.data : site.posts.data)
+  section.channel-hero
+    div.site-container
+      span.eyebrow ARCHIVES
+      h1.channel-hero__title 全部写作归档
+      p.channel-hero__desc 共 #{site.posts.length} 篇深度实践、行业观察与思考沉淀，按年份时间线整理。
+
+  section.site-container(style="padding:36px 24px 72px")
+    each y in years
+      div.archive-year-group
+        h2.archive-year-group__title.mono= y
+        div.archive-year-group__list
+          each post in byYear[y]
+            -
+              var catName = (post.categories && post.categories.length) ? post.categories.toArray()[0].name : (post.channel || '专栏')
+            a.archive-row(href=url_for(post.path))
+              span.archive-row__date.mono= date(post.date, 'MM-DD')
+              span.archive-row__title= post.title
+              span.archive-row__cat= catName

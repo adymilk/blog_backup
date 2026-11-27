@@ -1,0 +1,171 @@
+extends ./_layout.pug
+
+block content
+  -
+    var data = (site.data && site.data.about) || {}
+    var hero = data.hero || {}
+    var intro = data.intro || {}
+    var cap = data.capabilities || {}
+    var spk = data.speaking || {}
+    var proj = data.projects || {}
+    var phil = data.philosophy || {}
+    var ahead = data.looking_ahead || {}
+    var ct = data.contact || {}
+    var mailHref = `mailto:${ct.email || 'adymilk@icloud.com'}?subject=${encodeURIComponent('个人品牌网站交流与合作')}`
+
+  div.about-page
+    //- ================= 01. Hero 个人形象首屏 =================
+    section.ab-hero
+      div.site-container.ab-hero__grid
+        div.ab-hero__content
+          span.eyebrow= hero.eyebrow
+          h1.ab-hero__title
+            = hero.headline_line1
+            br
+            = hero.headline_line2
+          p.ab-hero__pos
+            strong= hero.positioning
+            span.ab-hero__pos-en= hero.positioning_en
+          div.ab-hero__bio
+            each p in (hero.bio || [])
+              p= p
+          div.ab-hero__tags
+            each t in (hero.tags || [])
+              span.ab-tag= t
+          div.ab-hero__actions
+            a.btn.btn--primary(href="#what-i-do") 探索我的专业领域
+            a.btn.btn--secondary(href=mailHref) 演讲与商务合作
+        div.ab-hero__media
+          img.ab-hero__img(src=url_for(hero.portrait) alt=hero.portrait_alt loading="eager")
+
+    //- ================= 02. 个人职业介绍 =================
+    section.ab-section.ab-section--bordered(data-reveal)
+      div.site-container.ab-intro
+        div.ab-intro__head
+          span.eyebrow 02 / BACKGROUND
+          h2.ab-display= intro.title_en
+          p.ab-zh-sub= intro.title_zh
+        div.ab-intro__body
+          each p in (intro.paragraphs || [])
+            p= p
+
+    //- ================= 03. 专业能力 (What I Do) =================
+    section#what-i-do.ab-section.ab-section--bordered(data-reveal)
+      div.site-container
+        div.ab-head
+          span.eyebrow 03 / CAPABILITIES
+          h2.ab-title= cap.title
+        div.ab-cap-grid
+          each item in (cap.items || [])
+            div.ab-cap-card
+              div.ab-cap-card__top
+                span.mono.ab-cap-card__num #{item.num} / #{item.tag}
+                span.ab-cap-card__dot
+              h3.ab-cap-card__title= item.title
+              p.ab-cap-card__desc= item.desc
+
+    //- ================= 04. 演讲与行业交流 =================
+    section.ab-section.ab-section--bordered(data-reveal)
+      div.site-container
+        div.ab-head
+          span.eyebrow 04 / SPEAKING & SHARING
+          h2.ab-display= spk.title_en
+          p.ab-zh-sub= spk.title_zh
+          p.ab-lead= spk.subtitle
+
+        div.ab-gallery
+          if spk.main_photo && spk.main_photo.src
+            figure.ab-gallery__main
+              img.speaking-card__img(src=url_for(spk.main_photo.src) alt=spk.main_photo.alt loading="lazy")
+              figcaption.ab-gallery__cap= spk.main_photo.caption
+
+          div.ab-gallery__side
+            each g in (spk.gallery || [])
+              if g.src
+                figure.ab-gallery__item
+                  img.speaking-card__img(src=url_for(g.src) alt=g.alt loading="lazy")
+                  figcaption.ab-gallery__cap= g.caption
+              else
+                div.ab-gallery__placeholder
+                  span.eyebrow PHOTO SLOT
+                  p.ab-gallery__ph-title= g.caption
+                  code.ab-gallery__ph-path= g.placeholder_path
+
+        div.ab-hero__tags(style="margin-top:24px")
+          each st in (spk.tags || [])
+            span.ab-tag= st
+
+    //- ================= 05. 代表性项目与实践 =================
+    section.ab-section.ab-section--bordered(data-reveal)
+      div.site-container
+        div.ab-head
+          span.eyebrow 05 / PRACTICE & IMPACT
+          h2.ab-display= proj.title
+        div.ab-proj-list
+          each item, idx in (proj.items || [])
+            a.ab-proj-row(href=url_for(item.link))
+              div.ab-proj-row__left
+                span.mono.ab-proj-row__idx 0#{idx + 1}
+                div
+                  span.ab-proj-row__type= item.type
+                  h3.ab-proj-row__name= item.name
+              div.ab-proj-row__right
+                div.ab-proj-row__detail
+                  span
+                    strong 背景：
+                    = item.background
+                  span
+                    strong 痛点：
+                    = item.problem
+                  span
+                    strong 参与：
+                    = item.role
+                  span
+                    strong 成果：
+                    = item.outcome
+
+    //- ================= 06. 职业理念 (My Philosophy) =================
+    section.ab-section.ab-section--bordered(data-reveal)
+      div.site-container
+        div.ab-head
+          span.eyebrow 06 / PHILOSOPHY
+          h2.ab-title= phil.title
+        div.ab-phil-list
+          each item in (phil.items || [])
+            div.ab-phil-item
+              span.mono.ab-phil-item__num= item.num
+              p.ab-phil-item__text= item.text
+
+    //- ================= 07. 未来关注方向 (Looking Ahead) =================
+    section.ab-section.ab-section--bordered(data-reveal)
+      div.site-container
+        div.ab-head
+          span.eyebrow 07 / FUTURE FOCUS
+          h2.ab-display= ahead.title
+          p.ab-lead= ahead.subtitle
+        div.ab-ahead-grid
+          each area in (ahead.areas || [])
+            div.ab-ahead-card
+              h3.ab-ahead-card__title= area.name
+              p.ab-ahead-card__desc= area.desc
+
+    //- ================= 08. 联系与合作 =================
+    section#contact.ab-section.ab-section--bordered(data-reveal)
+      div.site-container
+        div.ab-contact-box
+          div.ab-contact-box__left
+            span.eyebrow 08 / COLLABORATION
+            h2.ab-display= ct.title_en
+            p.ab-zh-sub= ct.title_zh
+            div.ab-contact-box__actions
+              a.btn.btn--primary(href=mailHref) 发送邮件：#{ct.email}
+              button.btn.btn--secondary(type="button" data-copy=ct.email) 复制邮箱
+              if ct.github
+                a.btn.btn--secondary(href=ct.github target="_blank" rel="noopener") GitHub
+              if ct.linkedin
+                a.btn.btn--secondary(href=ct.linkedin target="_blank" rel="noopener") LinkedIn
+          div.ab-contact-box__right
+            h3.ab-contact-box__list-title 合作与交流方向
+            ul.ab-contact-box__list
+              each d in (ct.directions || [])
+                li= d

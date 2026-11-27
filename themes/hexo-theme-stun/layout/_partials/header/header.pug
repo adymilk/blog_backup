@@ -34,6 +34,8 @@ if !isNoHeader
           img(
             src=theme.header.one_word
           )
+      else if theme.index_subtitle && config.subtitle
+        div.header-banner-info__subtitle= config.subtitle
     if theme.header.scroll_down_icon.enable
       div.header-banner-arrow
         div.header-banner-arrow__icon

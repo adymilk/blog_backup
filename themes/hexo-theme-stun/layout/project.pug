@@ -1,0 +1,62 @@
+extends ./_layout.pug
+
+block content
+  -
+    var projectsData = (site.data && site.data.projects) || {}
+    var allProjects = projectsData.projects || []
+    var currentIdx = -1
+    var proj = null
+    allProjects.forEach(function(item, i) {
+      if (page.slug && item.slug === page.slug) {
+        proj = item
+        currentIdx = i
+      }
+    })
+    var prevProj = currentIdx > 0 ? allProjects[currentIdx - 1] : null
+    var nextProj = (currentIdx >= 0 && currentIdx < allProjects.length - 1) ? allProjects[currentIdx + 1] : null
+
+  section.channel-hero
+    div.site-container
+      a.back-link(href=url_for('/projects/')) ← 返回全部项目 / All Projects
+      div(style="margin-top:14px")
+        span.eyebrow= page.eyebrow || (proj ? proj.category : 'PROJECT CASE')
+        h1.channel-hero__title= page.title
+        if page.description
+          p.channel-hero__desc= page.description
+
+  section.site-container(style="padding:36px 24px 72px")
+    div.project-layout
+      article.prose
+        != page.content
+
+        if prevProj || nextProj
+          nav.post-nav(aria-label="项目切换")
+            if prevProj
+              a.post-nav__item(href=url_for(prevProj.url))
+                span.post-nav__label ← 上一个项目
+                span.post-nav__title= prevProj.title_zh
+            else
+              div
+            if nextProj
+              a.post-nav__item.post-nav__item--next(href=url_for(nextProj.url))
+                span.post-nav__label 下一个项目 →
+                span.post-nav__title= nextProj.title_zh
+
+      aside.project-aside
+        div.aside-card
+          span.eyebrow CASE METADATA
+          if proj
+            div.meta-rows
+              div.meta-row
+                span.meta-row__label 所属领域
+                span.meta-row__val= proj.category
+              div.meta-row
+                span.meta-row__label 当前状态
+                span.meta-row__val= proj.status
+            if proj.tags && proj.tags.length
+              div(style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px")
+                each t in proj.tags
+                  span.filter-chip(style="cursor:default;font-size:0.75rem;padding:3px 10px")= t
+          div(style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)")
+            p(style="font-size:0.82rem;color:var(--text-secondary);margin:0 0 12px") 对工业软件集成或 AI 落地架构感兴趣？
+            a.btn.btn--primary(href="mailto:adymilk@icloud.com?subject=个人品牌网站合作与交流" style="width:100%;justify-content:center") 预约交流与合作

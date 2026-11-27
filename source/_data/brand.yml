@@ -1,0 +1,99 @@
+# =============================================================================
+# 个人品牌核心配置 (Brand & Editorial Content Source)
+# 修改本文件即可更新首页与各栏目的核心展示内容，无需改动模板代码。
+# =============================================================================
+
+brand:
+  name: 王恒
+  name_en: James Wang
+  title_zh: 工业数字化与 AI 商业化实践者
+  title_en: Industrial Digitalization & AI Practitioner
+  tagline_zh: 用技术洞察产业，用产品创造价值，用 AI 探索未来。
+  tagline_en: Turning industrial data and AI into measurable business value.
+  location: 上海 · Shanghai
+  email: adymilk@icloud.com
+  github: https://github.com/adymilk
+  linkedin: ""              # [可编辑占位：填写您的 LinkedIn 主页链接]
+
+hero:
+  headline_zh: 探索技术的边界，创造商业的价值。
+  headline_en: Exploring the frontier of technology, creating measurable business value.
+  subtitle_zh: 工业数字化 · AI 创新 · 产品实践
+  subtitle_en: Industrial Digitalization · AI Innovation · Product Practice
+  intro_zh: 专注于工业软件、数据智能与企业 AI 应用，探索技术如何真正解决业务问题，以及创新如何转化为商业价值。
+  intro_en: Focused on industrial software, data intelligence, and enterprise AI—bridging architecture, product strategy, and commercial delivery.
+  portrait: /img/avatar-pro.jpg
+  portrait_alt: 王恒（James Wang）演讲现场
+
+focus_areas:
+  - key: industrial
+    label_en: Industrial Digitalization
+    title_zh: 工业数字化与智能制造
+    title_en: Industrial Digitalization & Smart Manufacturing
+    desc_zh: 深耕工业软件、SPC/MSA 质量数据分析与产线数字化转型，打通底层统计引擎与现代系统架构。
+    desc_en: Deep domain expertise in industrial software, SPC/MSA quality analytics, and manufacturing digital transformation.
+    link: /projects/
+  - key: ai
+    label_en: Artificial Intelligence
+    title_zh: AI Agent 与企业 AI 应用
+    title_en: AI Agent & Enterprise AI Applications
+    desc_zh: 探索 AI Agent、RAG 知识库、自动化工作流（n8n）与评测体系在传统产业中的真实落地。
+    desc_en: Building enterprise AI Agents, RAG pipelines, automated workflows, and evaluation frameworks for traditional industries.
+    link: /technology/
+  - key: product
+    label_en: Product Innovation
+    title_zh: 软件产品创新与商业化
+    title_en: Software Product Innovation & Commercialization
+    desc_zh: 贯通需求调研、产品规划、技术方案到项目交付与商务沟通，将复杂技术转化为可持续的商业回报。
+    desc_en: End-to-end product strategy, solution architecture, and commercial delivery turning complexity into business impact.
+    link: /insights/
+
+philosophy:
+  quote_zh: 技术本身不是目的，能够深入产业现场、经受真实业务检验并创造商业回报的产品，才具有长期生命力。
+  quote_en: Technology is a means, not an end. Lasting value comes from products tested in real industrial workflows that deliver measurable commercial return.
+  principles:
+    - title_zh: 深入现场，从业务痛点出发
+      title_en: Start from the shop floor and real pain points
+      desc_zh: 避免在没有理清业务边界前堆砌技术框架，先定义问题与成功指标。
+      desc_en: Define business boundaries and success metrics before choosing technical stacks.
+    - title_zh: 架构服务于产品与交付
+      title_en: Architecture serves product & delivery
+      desc_zh: 好的系统设计不仅追求优雅，更要考虑客户环境约束、可运维性与交付成本。
+      desc_en: Good architecture balances elegance with deployment constraints, reliability, and total cost of ownership.
+    - title_zh: 用 AI 重塑传统产业工作流
+      title_en: Reshaping traditional workflows with AI
+      desc_zh: 关注 AI Agent 与数据智能在制造业等传统行业中的高价值切入点与商业机会。
+      desc_en: Exploring high-ROI applications of AI Agents and data intelligence in manufacturing and enterprise workflows.
+
+speaking:
+  summary_zh: 具备公开场合演讲、行业论坛分享、企业内部培训及复杂技术方案宣讲能力。
+  summary_en: Experienced in public speaking, industry forums, enterprise training, and executive solution briefings.
+  topics:
+    - 工业软件与质量数据分析的现代化架构实践
+    - 制造业数字化转型中的产品规划与商业化落地
+    - AI Agent 与数据智能在企业工作流中的探索
+  events:
+    - title_zh: Minitab 战略合作研讨会 · 客户案例与数据分析自动化分享
+      title_en: Minitab Strategic Partner Seminar · Industrial Data Automation
+      date: "2025-02-28"
+      location: 中国 · 上海
+      image: /img/speaking-minitab.jpg
+      desc_zh: 围绕制造企业质量数据整合与实时分析痛点，分享自动化统计分析与数字化交付方案。
+      desc_en: Shared automated statistical analysis and digital delivery practices for manufacturing quality workflows.
+      video: ""   # [可编辑占位：如有演讲视频链接可填在此处]
+    - title_zh: 行业论坛与解决方案架构主题分享
+      title_en: Industry Forum · Solution Architecture Keynote
+      date: "2026-03-20"
+      location: 中国 · 上海
+      image: /img/about/speaking-01.jpg
+      desc_zh: 面向企业客户与行业伙伴，探讨工业软件二次开发、数据集成与 AI 创新应用的落地路径。
+      desc_en: Discussed industrial software extensibility, data integration, and practical AI adoption paths.
+      video: ""
+    - title_zh: 制造企业现场产品培训与实时分析方案宣讲
+      title_en: Enterprise On-site Training & Live Analytics Demo
+      date: "2026-09-12"
+      location: 企业现场
+      image: /img/about/event-01.jpg
+      desc_zh: 面向一线制造质量与工程团队开展 MSA / SPC / 过程能力实时分析平台实战培训与交流。
+      desc_en: Delivered hands-on enterprise training on real-time MSA, SPC, and process capability analytics.
+      video: ""

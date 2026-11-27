@@ -1,10 +1,20 @@
 extends ./_layout.pug
-include ./_mixins/timeline.pug
 
 block content
-  div.categorypage
-    div.categorypage-title
-      span.categorypage-title__text= `${__('page.categories')} -- `
-      span.categorypage-title__name= page.category
+  section.channel-hero
+    div.site-container
+      span.eyebrow CATEGORY
+      h1.channel-hero__title= page.category
+      p.channel-hero__desc 共 #{page.posts.length} 篇文章。
 
-    +timeline(page.posts.data)
+  section.site-container(style="padding:32px 24px 72px")
+    div.insights-grid
+      each post in page.posts.sort('date', -1).toArray()
+        -
+          var rawExcerpt = post.description || strip_html(post.excerpt || post.content || '').replace(/\s+/g, ' ').slice(0, 110) + '...'
+        a.insight-card(href=url_for(post.path))
+          div.insight-card__meta
+            span.mono= date(post.date, 'YYYY-MM-DD')
+            span.insight-card__cat= page.category
+          h2.insight-card__title= post.title
+          p.insight-card__excerpt= rawExcerpt

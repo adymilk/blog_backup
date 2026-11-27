@@ -54,16 +54,8 @@ menu:
   works: /works/ || fas fa-cubes
   resume: /resume/ || fas fa-id-card
   archives: /archives/ || fas fa-book
-  # You can add a secondary menu like follow.
-  about: javascript:; || fas fa-angle-double-down
-  bbs: /bbs/ || fas fa-feather-alt
+  about: /about/ || fas fa-user
 
-# Secondary menu
-submenu:
-  # Add item of secondary menu in here.
-  about:
-    about: /about/ || fas fa-user
-    friends: /friends/ || fas fa-handshake
 menu_settings:
   # Only show by icon.
   icon_only: false
@@ -109,9 +101,9 @@ night_mode:
 # The layout for sidebar and content of site.
 layout:
   # The width of the content area in website.
-  content: 768px
+  content: 820px
   # The width of the sidebar in website.
-  sidebar: 300px
+  sidebar: 280px
   # The width between the content and the sidebar.
   content_sidebar_gap: 30px
   # The padding property of the main tag.
@@ -130,14 +122,14 @@ layout:
 
 # The header of site.
 header:
-  enable: true
+  enable: false
   show_on:
     # Whether to show on the article page.
     post: true
   # If you set a percentage, it will be calculated based on the height of screen (Supports all CSS units)
-  height: 80%
+  height: 46%
   # 每日一言API
-  one_word: https://v2.jinrishici.com/one.svg?font-size=20&spacing=2&color=white
+  one_word: ""
   # Background image of site header.
   bg_image:
     enable: true
@@ -146,17 +138,17 @@ header:
     # You can also use a link of image.
     # url: https://liuyib.github.io/assets/banner/1.jpg
     # url: https://www.lingan1996.top/assets/background.jpg
-    url: https://www.talklee.com/api/bing
+    url: /img/bg.jpeg
   # Mask effect of the background image.
   mask:
     enable: true
     # Opacity of the mask (value: 0 ~ 1)
-    opacity: 0.3
+    opacity: 0.45
   nav:
     # Height of the navigation bar (Supports all CSS units)
-    height: 50px
+    height: 54px
     # Background color of the navigation bar (Please use "" to wrap the value).
-    bg_color: "#333"
+    bg_color: "rgba(15, 23, 42, 0.85)"
   # The icon that prompts the user to pull down.
   scroll_down_icon:
     enable: false
@@ -269,7 +261,7 @@ back2top:
     # (Please use "" to wrap the value)
     color: "#49b1f5"
     # Color when the mouse hovers it (Please use "" to wrap the value)
-    hover_color: "#fc6423"
+    hover_color: "#3b82f6"
 
 # ---------------------------------------------------------------
 # Sidebar config
@@ -277,7 +269,7 @@ back2top:
 
 # The sidebar of site.
 sidebar:
-  enable: true
+  enable: false
   # Optional values: left | right
   position: right
   # The distance from the top of the page when the sidebar is fixed (Only `px` unit is supported)
@@ -293,7 +285,7 @@ author:
     # In site directory (source/uploads): /uploads/avatar.png
     # You can also use a link of image.
     # url: /images/icons/stun-logo.svg
-    url: /img/avatar.jpg
+    url: /img/avatar-pro.jpg
     # If true, the avatar would be displayed in a circle.
     rounded: true
     # Opacity of avatar (value: 0 ~ 1)
@@ -318,9 +310,8 @@ social:
   # segmentfault: https://segmentfault.com/ || origin:sf
   weibo: https://weibo.com/adymilk || fab fa-weibo
   # zhihu: https://www.zhihu.com/ || origin:知
-  wechat: 924114103 || fab fa-weixin
   # telegram: yournumber || fab fa-telegram
-  qq: 924114103 || fab fa-qq
+  email: mailto:adymilk@icloud.com || fas fa-envelope
 
 social_setting:
   enable: true
@@ -358,7 +349,7 @@ reading_progress:
   enable: true
   # (Please use "" to wrap the value)
   color: "#fc6423"
-  height: 1px
+  height: 2px
 
 # ---------------------------------------------------------------
 # Page config
@@ -379,7 +370,7 @@ heading_line: true
 
 # Reward QR Code
 reward:
-  enable: true
+  enable: false
   # Your QR code for collecting money.
   alipay: /img/alipay.jpg
   wechat: /img/wechatPay.jpg
@@ -448,7 +439,7 @@ post_widget:
     # The text displayed before the share button.
     label: "Share to: "
     # Optional values: qzone | qq | weibo | wechat | douban | linkedin | facebook | twitter | google
-    target: qzone, qq, weibo, wechat, douban, linkedin, facebook, twitter, google
+    target: wechat, weibo, linkedin, twitter
 
 # Stick post to the top
 # Dependency: https://github.com/netcan/hexo-generator-index-pin-top/
@@ -683,7 +674,7 @@ assist_search:
 # Canvas-ribbon
 # Dependency: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: true
+  enable: false
   # The width of the ribbon.
   size: 120
   # The transparency of the ribbon.
@@ -819,7 +810,7 @@ pjax:
 
 # Google AdSense
 google_adsense:
-  enable: true
+  enable: false
   client: ca-pub-2865988826734713
   js_src: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
 

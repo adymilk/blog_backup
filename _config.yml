@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 攻城狮🦁️
-subtitle: "James Wang's Personal Website "
-description: '一个有趣的灵魂 —— 想法，随笔，思考，感叹，瞬间，笔记...'
-keywords: 'James_wang的个人网站'
+title: 王恒 · James Wang
+subtitle: "工业数字化 · AI 创新 · 产品实践"
+description: '工业数字化与 AI 商业化实践者。专注于工业软件、数据智能与企业 AI 应用，探索技术如何真正解决业务问题，以及创新如何转化为商业价值。'
+keywords: '王恒, James Wang, 工业数字化, AI 商业化, 智能制造, 工业数据分析, AI Agent, SPC, Minitab, 产品创新'
 author: 王恒
 language: zh-CN
 timezone: ''

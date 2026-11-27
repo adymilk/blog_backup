@@ -24,14 +24,14 @@ identity:
 
   # TODO(James): 目标职位名。建议直接写 FDE 相关，让 HR 关键词匹配能命中。
   # 例：Forward Deployed Engineer / 解决方案工程师 / AI 应用工程师
-  title: ""
+  title: "工业软件与企业级 AI 产品架构师 / 数字化解决方案负责人"
 
   location: 上海
 
   # TODO(James): 一句话定位。要和 source/resume/index.md 的「一句话定位」一致。
   # 参考方向（据实调整，不要照抄）：
   #   「懂工业现场与统计数据的全栈工程师，能亲手把 LLM 落地到制造业工作流。」
-  one_liner: ""
+  one_liner: "长期深耕工业软件与智能制造数字化领域，具备从技术架构、产品战略到商业化落地的复合型经验，专注于工业数据分析与 AI Agent 企业级应用。"
 
   # TODO(James): 工作年限（数字，不带单位）
   years: 0
@@ -43,9 +43,8 @@ identity:
 # ---------------------------------------------------------------- 联系方式
 contact:
   # TODO(James): 逐项核实后填写。注意 source/about/index.md 里现在写的是
-  # 924114103@qq.com，source/resume/index.md 里写的是 xingy0918@gmail.com，
   # 二选一，改到两处一致（或删掉简历页那份，只留这里）
-  email: ""
+  email: "adymilk@icloud.com"
   github: https://github.com/adymilk
   linkedin: ""
 
@@ -121,7 +120,17 @@ skills:
 
   # HR 机器筛选用的关键词。从真实 JD 的高频词里挑。
   # ⚠️ 只写你真会的 —— 技术面会验证。
-  keywords: []
+  keywords:
+    - 工业软件
+    - 智能制造数字化
+    - 工业数据分析
+    - AI Agent
+    - 数据智能
+    - 产品战略
+    - 商业化落地
+    - 技术架构
+    - Minitab / SPC
+    - 企业级 AI 应用
   # TODO(James): 参考（按你实际技术栈裁剪）：
   # - PHP  - Laravel  - Go  - React  - Vue  - Docker  - MySQL
   # - Python  - Linux  - Nginx  - Redis

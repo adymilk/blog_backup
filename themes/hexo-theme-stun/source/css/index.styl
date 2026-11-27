@@ -1,12 +1,1996 @@
-// Variables Layer
-// --------------------------------------------------
-@import './_variables/index.styl';
-// Mixins Layer
-// --------------------------------------------------
-@import './_mixins/index.styl';
-// Common Layer
-// --------------------------------------------------
-@import './_common/index.styl';
-// Custom Layer
-// --------------------------------------------------
-@import './_custom/index.styl';
+// =============================================================================
+// Premium Editorial + Modern Technology Design System
+// Palette: White / Off-White / Deep Charcoal / Low-Saturation Steel Blue
+// =============================================================================
+
+:root
+  --bg: #fafafa
+  --surface: #ffffff
+  --surface-alt: #f3f4f6
+  --border: #e5e7eb
+  --border-strong: #d1d5db
+  --text: #111827
+  --text-secondary: #4b5563
+  --text-muted: #6b7280
+  --accent: #2b5b84
+  --accent-hover: #1e4363
+  --accent-soft: rgba(43, 91, 132, 0.08)
+  --nav-bg: rgba(250, 250, 250, 0.88)
+  --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.04)
+  --shadow-md: 0 8px 28px rgba(17, 24, 39, 0.06)
+  --radius-sm: 6px
+  --radius-md: 10px
+  --radius-lg: 14px
+
+html.nightmode
+  --bg: #0b0d11
+  --surface: #12151c
+  --surface-alt: #1a1e28
+  --border: #232834
+  --border-strong: #323949
+  --text: #f3f4f6
+  --text-secondary: #9ca3af
+  --text-muted: #6b7280
+  --accent: #6897c8
+  --accent-hover: #8ab2db
+  --accent-soft: rgba(104, 151, 200, 0.14)
+  --nav-bg: rgba(11, 13, 17, 0.86)
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3)
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45)
+
+*, *::before, *::after
+  box-sizing: border-box
+
+html
+  font-size: 16px
+  scroll-behavior: smooth
+
+body
+  margin: 0
+  padding-top: 64px
+  background-color: var(--bg)
+  color: var(--text)
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif
+  font-size: 0.96875rem
+  line-height: 1.75
+  -webkit-font-smoothing: antialiased
+  text-rendering: optimizeLegibility
+
+a
+  color: inherit
+  text-decoration: none
+
+img, video
+  max-width: 100%
+  height: auto
+
+code, pre, .mono
+  font-family: "JetBrains Mono", "SF Mono", Menlo, Monaco, Consolas, monospace
+  font-variant-numeric: tabular-nums
+
+.site-container
+  width: 100%
+  max-width: 1080px
+  margin: 0 auto
+  padding: 0 24px
+
+.prose-container
+  width: 100%
+  max-width: 720px
+  margin: 0 auto
+
+// -----------------------------------------------------------------------------
+// Fixed Editorial Header & Mobile Drawer
+// -----------------------------------------------------------------------------
+.site-header
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: 40
+  height: 64px
+  background-color: var(--nav-bg)
+  backdrop-filter: blur(12px)
+  -webkit-backdrop-filter: blur(12px)
+  border-bottom: 1px solid transparent
+  transition: border-color 0.2s ease, box-shadow 0.2s ease
+
+  &.is-scrolled
+    border-bottom-color: var(--border)
+    box-shadow: var(--shadow-sm)
+
+  &__inner
+    height: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 16px
+
+.site-brand
+  display: inline-flex
+  align-items: center
+  gap: 10px
+  flex-shrink: 0
+
+  &__name
+    font-size: 1rem
+    font-weight: 700
+    letter-spacing: -0.02em
+    color: var(--text)
+
+  &__tag
+    font-size: 0.72rem
+    padding: 2px 8px
+    border-radius: 999px
+    background-color: var(--accent-soft)
+    color: var(--accent)
+    font-weight: 500
+
+.site-nav
+  display: flex
+  align-items: center
+  gap: 20px
+
+  &__link
+    font-size: 0.84rem
+    font-weight: 500
+    color: var(--text-muted)
+    transition: color 0.16s ease
+    white-space: nowrap
+
+    &:hover,
+    &.is-active
+      color: var(--text)
+
+    &.is-active
+      position: relative
+
+      &::after
+        content: ""
+        position: absolute
+        left: 0
+        right: 0
+        bottom: -6px
+        height: 1.5px
+        background-color: var(--accent)
+
+.site-controls
+  display: flex
+  align-items: center
+  gap: 8px
+  flex-shrink: 0
+
+.icon-btn,
+.lang-btn
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  height: 32px
+  padding: 0 8px
+  border-radius: var(--radius-sm)
+  border: 1px solid transparent
+  background: transparent
+  color: var(--text-secondary)
+  font-size: 0.78rem
+  font-weight: 600
+  cursor: pointer
+  transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease
+
+  &:hover
+    background-color: var(--surface-alt)
+    color: var(--text)
+
+.theme-sun
+  display: none
+
+html.nightmode
+  .theme-sun
+    display: block
+  .theme-moon
+    display: none
+
+.contact-cta
+  display: inline-flex
+  align-items: center
+  height: 32px
+  padding: 0 12px
+  border-radius: var(--radius-sm)
+  background-color: var(--accent)
+  color: #ffffff !important
+  font-size: 0.8rem
+  font-weight: 500
+  transition: background-color 0.16s ease
+
+  &:hover
+    background-color: var(--accent-hover)
+
+.menu-btn
+  display: none
+  align-items: center
+  justify-content: center
+  width: 34px
+  height: 34px
+  border: none
+  background: transparent
+  color: var(--text)
+  cursor: pointer
+
+@media (max-width: 960px)
+  .site-nav,
+  .contact-cta
+    display: none
+  .menu-btn
+    display: inline-flex
+
+@media (max-width: 480px)
+  .site-brand__tag
+    display: none
+
+// Mobile Drawer
+.mobile-drawer
+  position: fixed
+  inset: 0
+  z-index: 60
+  pointer-events: none
+  opacity: 0
+  transition: opacity 0.22s ease
+
+  &.is-open
+    pointer-events: auto
+    opacity: 1
+
+    .mobile-drawer__panel
+      transform: translateX(0)
+
+  &__backdrop
+    position: absolute
+    inset: 0
+    background: rgba(0, 0, 0, 0.45)
+
+  &__panel
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    width: min(300px, 84vw)
+    background: var(--surface)
+    border-left: 1px solid var(--border)
+    padding: 20px 24px
+    transform: translateX(100%)
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)
+
+  &__head
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding-bottom: 16px
+    border-bottom: 1px solid var(--border)
+
+  &__nav
+    display: flex
+    flex-direction: column
+    gap: 4px
+    margin-top: 16px
+
+    a
+      padding: 10px 8px
+      border-radius: var(--radius-sm)
+      font-size: 0.94rem
+      font-weight: 500
+      color: var(--text-secondary)
+
+      &:hover
+        background: var(--surface-alt)
+        color: var(--text)
+
+// -----------------------------------------------------------------------------
+// Buttons & Micro-labels
+// -----------------------------------------------------------------------------
+.btn
+  display: inline-flex
+  align-items: center
+  gap: 8px
+  padding: 10px 20px
+  border-radius: var(--radius-sm)
+  font-size: 0.875rem
+  font-weight: 500
+  transition: all 0.18s ease
+  cursor: pointer
+
+  &--primary
+    background-color: var(--accent)
+    color: #ffffff !important
+    border: 1px solid var(--accent)
+
+    &:hover
+      background-color: var(--accent-hover)
+      transform: translateY(-1px)
+
+  &--secondary
+    background-color: var(--surface)
+    color: var(--text) !important
+    border: 1px solid var(--border-strong)
+
+    &:hover
+      border-color: var(--text-muted)
+      background-color: var(--surface-alt)
+
+.eyebrow
+  display: inline-block
+  font-family: "JetBrains Mono", monospace
+  font-size: 0.72rem
+  font-weight: 600
+  letter-spacing: 0.08em
+  text-transform: uppercase
+  color: var(--accent)
+
+// -----------------------------------------------------------------------------
+// Home Sections (Hero + A~G)
+// -----------------------------------------------------------------------------
+.section
+  padding: 64px 0
+
+  &--bordered
+    border-top: 1px solid var(--border)
+
+  &__head
+    display: flex
+    align-items: flex-end
+    justify-content: space-between
+    gap: 16px
+    margin-bottom: 32px
+
+  &__title
+    margin: 6px 0 0
+    font-size: 1.5rem
+    font-weight: 700
+    letter-spacing: -0.02em
+    line-height: 1.3
+
+  &__more
+    font-size: 0.85rem
+    font-weight: 500
+    color: var(--accent)
+    white-space: nowrap
+
+    &:hover
+      text-decoration: underline
+      text-underline-offset: 4px
+
+// Hero (Split Asymmetric Editorial)
+.hero
+  padding: 56px 0 64px
+
+  &__grid
+    display: grid
+    grid-template-columns: 1.25fr 0.95fr
+    gap: 48px
+    align-items: center
+
+  &__subtitle
+    margin: 10px 0 0
+    font-size: 0.95rem
+    font-weight: 500
+    color: var(--text-muted)
+
+  &__title
+    margin: 14px 0 0
+    font-size: 2.5rem
+    font-weight: 800
+    letter-spacing: -0.03em
+    line-height: 1.22
+    color: var(--text)
+
+  &__desc
+    margin: 18px 0 0
+    font-size: 1rem
+    line-height: 1.75
+    color: var(--text-secondary)
+    max-width: 540px
+
+  &__actions
+    display: flex
+    flex-wrap: wrap
+    gap: 12px
+    margin-top: 28px
+
+  &__visual
+    position: relative
+
+  &__photo
+    display: block
+    width: 100%
+    aspect-ratio: 3 / 2
+    object-fit: cover
+    object-position: center 20%
+    border-radius: var(--radius-lg)
+    border: 1px solid var(--border)
+    box-shadow: var(--shadow-md)
+
+  &__caption
+    margin-top: 10px
+    font-size: 0.78rem
+    color: var(--text-muted)
+    display: flex
+    justify-content: space-between
+
+@media (max-width: 840px)
+  .hero
+    padding: 32px 0 48px
+
+    &__grid
+      grid-template-columns: 1fr
+      gap: 28px
+
+    &__title
+      font-size: 1.95rem
+
+// A. Personal Profile Strip
+.profile-strip
+  display: grid
+  grid-template-columns: 1fr 1.6fr
+  gap: 36px
+  padding: 28px 32px
+  border-radius: var(--radius-md)
+  background-color: var(--surface)
+  border: 1px solid var(--border)
+  box-shadow: var(--shadow-sm)
+
+  &__role
+    margin: 6px 0 0
+    font-size: 1.15rem
+    font-weight: 700
+
+  &__en
+    margin: 4px 0 0
+    font-size: 0.84rem
+    color: var(--text-muted)
+
+  &__points
+    margin: 0
+    padding-left: 18px
+    color: var(--text-secondary)
+    font-size: 0.92rem
+
+    li
+      margin-bottom: 8px
+
+      &:last-child
+        margin-bottom: 0
+
+@media (max-width: 768px)
+  .profile-strip
+    grid-template-columns: 1fr
+    gap: 18px
+    padding: 22px
+
+// B. Focus Areas (3 Cards)
+.focus-grid
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: 20px
+
+.focus-card
+  display: flex
+  flex-direction: column
+  padding: 26px 24px
+  border-radius: var(--radius-md)
+  background-color: var(--surface)
+  border: 1px solid var(--border)
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease
+
+  &:hover
+    transform: translateY(-3px)
+    border-color: var(--accent)
+    box-shadow: var(--shadow-md)
+
+  &__en
+    font-family: "JetBrains Mono", monospace
+    font-size: 0.72rem
+    color: var(--accent)
+    margin-bottom: 8px
+
+  &__title
+    margin: 0 0 10px
+    font-size: 1.05rem
+    font-weight: 700
+
+  &__desc
+    margin: 0
+    font-size: 0.875rem
+    color: var(--text-secondary)
+    line-height: 1.7
+
+@media (max-width: 840px)
+  .focus-grid
+    grid-template-columns: 1fr
+
+// C. Featured Projects (Large Visual Cards)
+.project-grid
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: 22px
+
+.project-card
+  display: flex
+  flex-direction: column
+  border-radius: var(--radius-md)
+  background-color: var(--surface)
+  border: 1px solid var(--border)
+  overflow: hidden
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease
+
+  &:hover
+    transform: translateY(-3px)
+    box-shadow: var(--shadow-md)
+    border-color: var(--border-strong)
+
+    .project-card__cover img
+      transform: scale(1.03)
+
+  &__cover
+    aspect-ratio: 16 / 10
+    overflow: hidden
+    background-color: var(--surface-alt)
+    border-bottom: 1px solid var(--border)
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+      object-position: center 25%
+      transition: transform 0.35s ease
+
+  &__body
+    display: flex
+    flex-direction: column
+    flex: 1
+    padding: 20px
+
+  &__cat
+    font-size: 0.74rem
+    color: var(--accent)
+    font-weight: 600
+    margin-bottom: 6px
+
+  &__title
+    margin: 0 0 8px
+    font-size: 1.02rem
+    font-weight: 700
+    line-height: 1.4
+
+  &__desc
+    margin: 0 0 16px
+    font-size: 0.85rem
+    color: var(--text-secondary)
+    flex: 1
+
+  &__tags
+    display: flex
+    flex-wrap: wrap
+    gap: 6px
+
+    span
+      font-size: 0.72rem
+      padding: 2px 8px
+      border-radius: 4px
+      background-color: var(--surface-alt)
+      color: var(--text-muted)
+
+@media (max-width: 840px)
+  .project-grid
+    grid-template-columns: 1fr
+
+// D. Latest Insights (Magazine Layout)
+.insights-grid
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 20px
+
+.insight-card
+  display: flex
+  flex-direction: column
+  padding: 24px
+  border-radius: var(--radius-md)
+  background-color: var(--surface)
+  border: 1px solid var(--border)
+  transition: border-color 0.18s ease, box-shadow 0.18s ease
+
+  &:hover
+    border-color: var(--accent)
+    box-shadow: var(--shadow-sm)
+
+  &__meta
+    display: flex
+    align-items: center
+    gap: 10px
+    font-size: 0.78rem
+    color: var(--text-muted)
+    margin-bottom: 10px
+
+  &__cat
+    padding: 2px 8px
+    border-radius: 4px
+    background-color: var(--accent-soft)
+    color: var(--accent)
+    font-weight: 500
+
+  &__title
+    margin: 0 0 8px
+    font-size: 1.06rem
+    font-weight: 700
+    line-height: 1.45
+
+  &__excerpt
+    margin: 0
+    font-size: 0.86rem
+    color: var(--text-secondary)
+    line-height: 1.65
+
+@media (max-width: 768px)
+  .insights-grid
+    grid-template-columns: 1fr
+
+// E. Personal Philosophy
+.philosophy-box
+  padding: 36px
+  border-radius: var(--radius-lg)
+  background-color: var(--surface)
+  border: 1px solid var(--border)
+
+  &__quote
+    margin: 12px 0 28px
+    font-size: 1.32rem
+    font-weight: 700
+    line-height: 1.55
+    letter-spacing: -0.015em
+    max-width: 780px
+
+  &__grid
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 24px
+    padding-top: 24px
+    border-top: 1px solid var(--border)
+
+  &__item
+    h3
+      margin: 0 0 6px
+      font-size: 0.95rem
+      font-weight: 700
+
+    p
+      margin: 0
+      font-size: 0.85rem
+      color: var(--text-secondary)
+
+@media (max-width: 768px)
+  .philosophy-box
+    padding: 24px
+
+    &__quote
+      font-size: 1.12rem
+
+    &__grid
+      grid-template-columns: 1fr
+
+// F. Speaking & Collaboration Split (Respects 3:4 portrait IMG_0027.JPG)
+.speaking-split
+  display: grid
+  grid-template-columns: 0.72fr 1.28fr
+  gap: 36px
+  align-items: center
+  padding: 28px
+  border-radius: var(--radius-lg)
+  background-color: var(--surface)
+  border: 1px solid var(--border)
+
+  &__img
+    display: block
+    width: 100%
+    aspect-ratio: 3 / 4
+    object-fit: cover
+    border-radius: var(--radius-md)
+    border: 1px solid var(--border)
+
+  &__topics
+    margin: 16px 0 22px
+    padding-left: 18px
+    color: var(--text-secondary)
+    font-size: 0.9rem
+
+    li
+      margin-bottom: 6px
+
+  &__actions
+    display: flex
+    flex-wrap: wrap
+    gap: 12px
+
+@media (max-width: 768px)
+  .speaking-split
+    grid-template-columns: 1fr
+    padding: 20px
+
+// -----------------------------------------------------------------------------
+// Channel Index Pages (Insights / Technology / Thoughts / Projects / Speaking)
+// -----------------------------------------------------------------------------
+.channel-hero
+  padding: 44px 0 28px
+  border-bottom: 1px solid var(--border)
+
+  &__title
+    margin: 8px 0 10px
+    font-size: 2rem
+    font-weight: 800
+    letter-spacing: -0.025em
+
+  &__desc
+    margin: 0
+    font-size: 0.96rem
+    color: var(--text-secondary)
+    max-width: 660px
+
+.filter-bar
+  display: flex
+  flex-wrap: wrap
+  gap: 8px
+  margin: 24px 0 28px
+
+.filter-chip
+  padding: 5px 14px
+  border-radius: 999px
+  border: 1px solid var(--border)
+  background: var(--surface)
+  color: var(--text-secondary)
+  font-size: 0.82rem
+  font-weight: 500
+  cursor: pointer
+  transition: all 0.16s ease
+
+  &:hover
+    border-color: var(--text-muted)
+    color: var(--text)
+
+  &.is-active
+    background: var(--accent)
+    border-color: var(--accent)
+    color: #ffffff
+
+// Article Reading Layout (With Sticky TOC)
+.article-wrap
+  display: grid
+  grid-template-columns: minmax(0, 720px) 220px
+  gap: 48px
+  padding: 48px 0 72px
+  align-items: start
+
+.article-header
+  margin-bottom: 32px
+  padding-bottom: 24px
+  border-bottom: 1px solid var(--border)
+
+  &__title
+    margin: 10px 0 12px
+    font-size: 1.9rem
+    font-weight: 800
+    letter-spacing: -0.025em
+    line-height: 1.3
+
+  &__meta
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    gap: 12px
+    font-size: 0.82rem
+    color: var(--text-muted)
+
+.toc-aside
+  position: sticky
+  top: 88px
+  padding-left: 16px
+  border-left: 1px solid var(--border)
+  font-size: 0.8rem
+
+  &__title
+    font-weight: 700
+    margin-bottom: 10px
+    color: var(--text)
+
+  .toc
+    list-style: none
+    margin: 0
+    padding: 0
+
+    ol
+      list-style: none
+      padding-left: 12px
+      margin: 4px 0
+
+    li
+      margin-bottom: 5px
+
+    a
+      color: var(--text-muted)
+      transition: color 0.15s ease
+
+      &:hover
+        color: var(--accent)
+
+@media (max-width: 960px)
+  .article-wrap
+    grid-template-columns: 1fr
+  .toc-aside
+    display: none
+
+.prose
+  color: var(--text-secondary)
+
+  h2
+    margin: 36px 0 14px
+    font-size: 1.25rem
+    font-weight: 700
+    color: var(--text)
+
+  h3
+    margin: 24px 0 10px
+    font-size: 1.05rem
+    font-weight: 600
+    color: var(--text)
+
+  p
+    margin: 0 0 16px
+
+  a
+    color: var(--accent)
+    text-decoration: underline
+    text-underline-offset: 4px
+
+  ul, ol
+    margin: 0 0 18px
+    padding-left: 20px
+
+    li
+      margin-bottom: 6px
+
+  strong
+    color: var(--text)
+
+  blockquote
+    margin: 20px 0
+    padding: 8px 16px
+    border-left: 3px solid var(--accent)
+    background: var(--accent-soft)
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0
+
+  img
+    border-radius: var(--radius-md)
+    border: 1px solid var(--border)
+    margin: 20px 0
+    cursor: zoom-in
+
+  table
+    width: 100%
+    border-collapse: collapse
+    margin: 20px 0
+    font-size: 0.875rem
+
+    th, td
+      padding: 10px 12px
+      border-bottom: 1px solid var(--border)
+      text-align: left
+
+  code
+    padding: 2px 6px
+    border-radius: 4px
+    background: var(--surface-alt)
+    font-size: 0.85em
+
+  figure.highlight
+    margin: 20px 0
+    border-radius: var(--radius-md)
+    background: var(--surface-alt)
+    border: 1px solid var(--border)
+    overflow-x: auto
+
+    table
+      margin: 0
+
+    td
+      border: none
+      padding: 12px 14px
+
+    td.gutter
+      width: 1%
+      opacity: 0.5
+      user-select: none
+
+    pre
+      margin: 0
+      font-size: 0.84rem
+
+.related-posts
+  margin-top: 48px
+  padding-top: 28px
+  border-top: 1px solid var(--border)
+
+  &__title
+    margin: 0 0 16px
+    font-size: 1rem
+    font-weight: 700
+
+  &__list
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: 14px
+
+  &__item
+    padding: 14px 16px
+    border-radius: var(--radius-sm)
+    background: var(--surface)
+    border: 1px solid var(--border)
+    font-size: 0.88rem
+    font-weight: 500
+
+    &:hover
+      border-color: var(--accent)
+
+@media (max-width: 640px)
+  .related-posts__list
+    grid-template-columns: 1fr
+
+// -----------------------------------------------------------------------------
+// Footer, Search Modal, Lightbox, Toast & Subtle Reveal
+// -----------------------------------------------------------------------------
+.site-footer
+  border-top: 1px solid var(--border)
+  padding: 48px 0 36px
+  background-color: var(--surface)
+
+  &__grid
+    display: grid
+    grid-template-columns: 1.5fr 1fr
+    gap: 40px
+
+  &__name
+    margin: 0
+    font-size: 1rem
+    font-weight: 700
+
+  &__tagline
+    margin: 8px 0 16px
+    font-size: 0.86rem
+    color: var(--text-secondary)
+    max-width: 420px
+
+  &__contact
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    gap: 12px
+    font-size: 0.82rem
+
+    a
+      color: var(--accent)
+
+  &__nav
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: 20px
+
+    h4
+      margin: 0 0 10px
+      font-size: 0.82rem
+      color: var(--text)
+
+    a
+      display: block
+      margin-bottom: 6px
+      font-size: 0.84rem
+      color: var(--text-muted)
+
+      &:hover
+        color: var(--text)
+
+  &__bottom
+    margin-top: 32px
+    padding-top: 20px
+    border-top: 1px solid var(--border)
+    display: flex
+    justify-content: space-between
+    font-size: 0.78rem
+    color: var(--text-muted)
+
+@media (max-width: 768px)
+  .site-footer__grid
+    grid-template-columns: 1fr
+
+.copy-btn
+  padding: 5px 12px
+  border-radius: var(--radius-sm)
+  border: 1px solid var(--border)
+  background: var(--surface-alt)
+  color: var(--text)
+  font-size: 0.8rem
+  cursor: pointer
+
+  &:hover
+    border-color: var(--accent)
+
+.search-modal
+  position: fixed
+  inset: 0
+  z-index: 70
+  display: none
+  align-items: flex-start
+  justify-content: center
+  padding: 80px 16px 24px
+
+  &.is-open
+    display: flex
+
+  &__backdrop
+    position: absolute
+    inset: 0
+    background: rgba(0, 0, 0, 0.5)
+
+  &__dialog
+    position: relative
+    width: 100%
+    max-width: 580px
+    border-radius: var(--radius-md)
+    background: var(--surface)
+    border: 1px solid var(--border)
+    box-shadow: var(--shadow-md)
+    overflow: hidden
+
+  &__input-wrap
+    display: flex
+    align-items: center
+    padding: 12px 16px
+    border-bottom: 1px solid var(--border)
+
+  &__input
+    flex: 1
+    border: none
+    outline: none
+    background: transparent
+    color: var(--text)
+    font-size: 0.95rem
+
+  &__results
+    max-height: 360px
+    overflow-y: auto
+    padding: 8px
+
+.search-item
+  display: block
+  padding: 10px 12px
+  border-radius: var(--radius-sm)
+  font-size: 0.9rem
+
+  &:hover
+    background: var(--surface-alt)
+
+.search-empty
+  padding: 20px
+  text-align: center
+  color: var(--text-muted)
+  font-size: 0.85rem
+
+.lightbox
+  position: fixed
+  inset: 0
+  z-index: 80
+  display: none
+  align-items: center
+  justify-content: center
+  padding: 24px
+  background: rgba(0, 0, 0, 0.85)
+  cursor: zoom-out
+
+  &.is-open
+    display: flex
+
+  &__img
+    max-width: 92vw
+    max-height: 90vh
+    border-radius: var(--radius-sm)
+
+.toast
+  position: fixed
+  bottom: 24px
+  left: 50%
+  transform: translateX(-50%) translateY(16px)
+  padding: 8px 16px
+  border-radius: 999px
+  background: var(--text)
+  color: var(--bg)
+  font-size: 0.82rem
+  opacity: 0
+  pointer-events: none
+  transition: opacity 0.2s ease, transform 0.2s ease
+  z-index: 90
+
+  &.is-visible
+    opacity: 1
+    transform: translateX(-50%) translateY(0)
+
+[data-reveal]
+  opacity: 0
+  transform: translateY(12px)
+  transition: opacity 0.45s ease, transform 0.45s ease
+
+[data-reveal].is-revealed
+  opacity: 1
+  transform: translateY(0)
+
+// Note plugin & Resume compatibility
+.note
+  margin: 20px 0
+  padding: 14px 16px
+  border-radius: var(--radius-sm)
+  background: var(--surface-alt)
+  border: 1px solid var(--border)
+  font-size: 0.88rem
+
+.resume
+  padding: 40px 0 64px
+
+  .resume-head
+    padding-bottom: 24px
+    margin-bottom: 28px
+    border-bottom: 1px solid var(--border)
+
+    &__top
+      display: flex
+      align-items: center
+      justify-content: space-between
+      gap: 20px
+
+    &__avatar
+      width: 76px
+      height: 76px
+      border-radius: 50%
+      object-fit: cover
+      border: 1px solid var(--border)
+
+    &__name
+      margin: 0
+      font-size: 1.65rem
+      font-weight: 700
+
+    &__title
+      margin: 6px 0 0
+      color: var(--accent)
+      font-weight: 600
+
+  .resume-section
+    margin-bottom: 32px
+
+    &__title
+      font-size: 1.1rem
+      font-weight: 700
+      margin-bottom: 12px
+
+  .resume-dim
+    padding: 14px 16px
+    border-radius: var(--radius-sm)
+    border: 1px solid var(--border)
+    background: var(--surface)
+    margin-bottom: 10px
+
+  .resume-keywords
+    display: flex
+    flex-wrap: wrap
+    gap: 8px
+
+  .resume-keyword
+    padding: 3px 10px
+    border-radius: 999px
+    background: var(--surface-alt)
+    border: 1px solid var(--border)
+    font-size: 0.8rem
+
+
+// -----------------------------------------------------------------------------
+// Upgraded Sub-pages: About, Project Detail, Channel Lead, Speaking, Archive
+// -----------------------------------------------------------------------------
+.about-grid,
+.project-layout
+  display: grid
+  grid-template-columns: minmax(0, 1fr) 300px
+  gap: 44px
+  align-items: start
+
+.about-aside,
+.project-aside
+  position: sticky
+  top: 88px
+
+.aside-card
+  padding: 22px
+  border-radius: var(--radius-md)
+  background: var(--surface)
+  border: 1px solid var(--border)
+  box-shadow: var(--shadow-sm)
+
+  &__photo
+    display: block
+    width: 100%
+    aspect-ratio: 3 / 2
+    object-fit: cover
+    object-position: center 20%
+    border-radius: var(--radius-sm)
+    margin-bottom: 16px
+    border: 1px solid var(--border)
+
+  &__name
+    margin: 0
+    font-size: 1.1rem
+    font-weight: 700
+
+  &__role
+    margin: 4px 0 14px
+    font-size: 0.84rem
+    color: var(--text-muted)
+
+  &__meta
+    display: flex
+    flex-direction: column
+    gap: 8px
+    font-size: 0.84rem
+    color: var(--text-secondary)
+    margin-bottom: 18px
+
+  &__links
+    display: flex
+    flex-direction: column
+    gap: 8px
+
+@media (max-width: 860px)
+  .about-grid,
+  .project-layout
+    grid-template-columns: 1fr
+
+  .about-aside,
+  .project-aside
+    position: static
+
+.back-link
+  display: inline-block
+  font-size: 0.84rem
+  font-weight: 500
+  color: var(--text-muted)
+
+  &:hover
+    color: var(--accent)
+
+.meta-rows
+  margin-top: 12px
+  display: flex
+  flex-direction: column
+  gap: 10px
+
+.meta-row
+  display: flex
+  justify-content: space-between
+  gap: 12px
+  font-size: 0.84rem
+  padding-bottom: 8px
+  border-bottom: 1px solid var(--border)
+
+  &__label
+    color: var(--text-muted)
+
+  &__val
+    font-weight: 500
+    text-align: right
+
+.projects-showcase
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 24px
+
+@media (max-width: 768px)
+  .projects-showcase
+    grid-template-columns: 1fr
+
+.status-pill
+  font-size: 0.72rem
+  padding: 2px 8px
+  border-radius: 999px
+  background: var(--surface-alt)
+  border: 1px solid var(--border)
+  color: var(--text-secondary)
+
+.project-card__cta
+  font-size: 0.82rem
+  font-weight: 600
+  color: var(--accent)
+  white-space: nowrap
+
+.lead-article
+  display: block
+  padding: 28px 32px
+  margin-bottom: 24px
+  border-radius: var(--radius-md)
+  background: var(--surface)
+  border: 1px solid var(--border)
+  box-shadow: var(--shadow-sm)
+  transition: border-color 0.2s ease, box-shadow 0.2s ease
+
+  &:hover
+    border-color: var(--accent)
+    box-shadow: var(--shadow-md)
+
+  &__meta
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    gap: 10px
+    font-size: 0.8rem
+    color: var(--text-muted)
+    margin-bottom: 10px
+
+  &__title
+    margin: 0 0 10px
+    font-size: 1.4rem
+    font-weight: 800
+    letter-spacing: -0.02em
+
+  &__excerpt
+    margin: 0 0 14px
+    font-size: 0.94rem
+    color: var(--text-secondary)
+    max-width: 780px
+
+  &__cta
+    font-size: 0.85rem
+    font-weight: 600
+    color: var(--accent)
+
+.topic-list
+  border-top: 1px solid var(--border)
+
+.topic-row
+  display: flex
+  align-items: center
+  gap: 20px
+  padding: 16px 8px
+  border-bottom: 1px solid var(--border)
+
+  &__num
+    font-size: 0.82rem
+    color: var(--accent)
+    font-weight: 600
+
+  &__text
+    font-size: 0.98rem
+    font-weight: 500
+
+.reading-progress
+  position: fixed
+  top: 64px
+  left: 0
+  height: 2px
+  width: 0%
+  background: var(--accent)
+  z-index: 45
+  transition: width 0.08s linear
+
+.author-sig
+  display: flex
+  align-items: center
+  gap: 14px
+  margin-top: 36px
+  padding: 18px 20px
+  border-radius: var(--radius-md)
+  background: var(--surface)
+  border: 1px solid var(--border)
+
+  &__avatar
+    width: 48px
+    height: 48px
+    border-radius: 50%
+    object-fit: cover
+    border: 1px solid var(--border)
+
+  &__body
+    p
+      margin: 2px 0 0
+      font-size: 0.82rem
+      color: var(--text-muted)
+
+.post-nav
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 14px
+  margin-top: 28px
+
+  &__item
+    display: flex
+    flex-direction: column
+    gap: 4px
+    padding: 14px 16px
+    border-radius: var(--radius-sm)
+    background: var(--surface)
+    border: 1px solid var(--border)
+    transition: border-color 0.16s ease
+
+    &:hover
+      border-color: var(--accent)
+
+    &--next
+      text-align: right
+
+  &__label
+    font-size: 0.76rem
+    color: var(--text-muted)
+
+  &__title
+    font-size: 0.88rem
+    font-weight: 600
+
+@media (max-width: 640px)
+  .post-nav
+    grid-template-columns: 1fr
+
+.archive-year-group
+  display: grid
+  grid-template-columns: 100px 1fr
+  gap: 24px
+  padding: 24px 0
+  border-top: 1px solid var(--border)
+
+  &__title
+    margin: 0
+    font-size: 1.15rem
+    font-weight: 700
+    color: var(--text)
+
+  &__list
+    display: flex
+    flex-direction: column
+    gap: 4px
+
+.archive-row
+  display: flex
+  align-items: baseline
+  gap: 16px
+  padding: 8px 12px
+  margin: 0 -12px
+  border-radius: var(--radius-sm)
+  transition: background-color 0.15s ease
+
+  &:hover
+    background: var(--surface-alt)
+
+    .archive-row__title
+      color: var(--accent)
+
+  &__date
+    flex-shrink: 0
+    font-size: 0.82rem
+    color: var(--text-muted)
+
+  &__title
+    flex: 1
+    font-size: 0.94rem
+    font-weight: 500
+
+  &__cat
+    flex-shrink: 0
+    font-size: 0.75rem
+    padding: 2px 8px
+    border-radius: 4px
+    background: var(--surface-alt)
+    color: var(--text-muted)
+
+@media (max-width: 640px)
+  .archive-year-group
+    grid-template-columns: 1fr
+    gap: 10px
+
+  .archive-row__cat
+    display: none
+
+// Complete Resume Styles
+.resume
+  .resume-contact
+    display: flex
+    flex-wrap: wrap
+    gap: 8px 18px
+    margin: 14px 0 0
+    padding: 0
+    list-style: none
+    font-size: 0.85rem
+    color: var(--text-secondary)
+
+    li
+      display: flex
+      align-items: center
+      gap: 6px
+
+    a
+      color: var(--accent)
+      text-decoration: underline
+      text-underline-offset: 3px
+
+  .resume-target
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    gap: 6px
+    margin: 10px 0 0
+    font-size: 0.85rem
+
+    &__label
+      min-width: 4.5em
+      color: var(--text-muted)
+
+    &__tag
+      padding: 2px 10px
+      border-radius: 999px
+      background: var(--accent-soft)
+      color: var(--accent)
+      font-size: 0.8rem
+
+  .resume-dim__head
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 12px
+
+  .resume-dim__name
+    font-weight: 600
+    font-size: 0.92rem
+
+  .resume-dim__level
+    display: flex
+    align-items: center
+    gap: 8px
+
+  .resume-dim__level-num
+    font-size: 0.76rem
+    color: var(--text-muted)
+
+  .resume-dim__level-bar
+    width: 68px
+    height: 6px
+    border-radius: 999px
+    background: var(--surface-alt)
+    overflow: hidden
+
+  .resume-dim__level-fill
+    display: block
+    height: 100%
+    background: var(--accent)
+
+  .resume-dim__evidence
+    margin: 8px 0 0
+    padding-left: 18px
+    font-size: 0.85rem
+    color: var(--text-secondary)
+
+  .resume-dim__empty
+    margin: 6px 0 0
+    font-size: 0.8rem
+    color: var(--text-muted)
+
+  .resume-foot
+    margin-top: 28px
+    padding-top: 16px
+    border-top: 1px solid var(--border)
+    font-size: 0.82rem
+    color: var(--text-muted)
+
+
+// -----------------------------------------------------------------------------
+// Redesigned About Page (.ab-*) — Premium Editorial Personal Branding
+// -----------------------------------------------------------------------------
+.ab-hero
+  padding: 56px 0 64px
+
+  &__grid
+    display: grid
+    grid-template-columns: 1.2fr 0.9fr
+    gap: 52px
+    align-items: center
+
+  &__title
+    margin: 14px 0 12px
+    font-size: 2.6rem
+    font-weight: 800
+    letter-spacing: -0.03em
+    line-height: 1.2
+
+  &__pos
+    margin: 0 0 18px
+    display: flex
+    flex-wrap: wrap
+    align-items: baseline
+    gap: 10px
+    font-size: 1rem
+
+    strong
+      color: var(--accent)
+      font-weight: 700
+
+  &__pos-en
+    font-size: 0.85rem
+    color: var(--text-muted)
+
+  &__bio
+    p
+      margin: 0 0 10px
+      font-size: 0.98rem
+      color: var(--text-secondary)
+      max-width: 540px
+
+  &__tags
+    display: flex
+    flex-wrap: wrap
+    gap: 8px
+    margin: 22px 0 26px
+
+  &__actions
+    display: flex
+    flex-wrap: wrap
+    gap: 12px
+
+  &__img
+    display: block
+    width: 100%
+    aspect-ratio: 4 / 3
+    object-fit: cover
+    object-position: center 18%
+    border-radius: 4px
+    border: 1px solid var(--border)
+    box-shadow: var(--shadow-md)
+
+.ab-tag
+  font-family: "JetBrains Mono", monospace
+  font-size: 0.74rem
+  padding: 4px 10px
+  border-radius: 3px
+  background: var(--surface)
+  border: 1px solid var(--border)
+  color: var(--text-secondary)
+
+@media (max-width: 860px)
+  .ab-hero
+    padding: 32px 0 48px
+
+    &__grid
+      grid-template-columns: 1fr
+      gap: 28px
+
+    &__title
+      font-size: 2rem
+
+.ab-section
+  padding: 68px 0
+
+  &--bordered
+    border-top: 1px solid var(--border)
+
+.ab-head
+  margin-bottom: 32px
+
+.ab-display
+  margin: 8px 0 6px
+  font-size: 1.85rem
+  font-weight: 800
+  letter-spacing: -0.025em
+  line-height: 1.25
+
+.ab-title
+  margin: 8px 0 0
+  font-size: 1.5rem
+  font-weight: 700
+  letter-spacing: -0.02em
+
+.ab-zh-sub
+  margin: 0 0 10px
+  font-size: 1.05rem
+  font-weight: 600
+  color: var(--text-secondary)
+
+.ab-lead
+  margin: 6px 0 0
+  font-size: 0.95rem
+  color: var(--text-muted)
+  max-width: 640px
+
+// 02 Intro
+.ab-intro
+  display: grid
+  grid-template-columns: 1fr 1.2fr
+  gap: 48px
+  align-items: start
+
+  &__body
+    p
+      margin: 0 0 16px
+      font-size: 1.04rem
+      line-height: 1.85
+      color: var(--text-secondary)
+
+      &:last-child
+        margin-bottom: 0
+
+@media (max-width: 768px)
+  .ab-intro
+    grid-template-columns: 1fr
+    gap: 20px
+
+// 03 What I Do (4 Domains)
+.ab-cap-grid
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  gap: 18px
+
+.ab-cap-card
+  padding: 24px 20px
+  border-radius: 4px
+  background: var(--surface)
+  border: 1px solid var(--border)
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease
+
+  &:hover
+    transform: translateY(-3px)
+    border-color: var(--accent)
+    box-shadow: var(--shadow-sm)
+
+    .ab-cap-card__dot
+      background: var(--accent)
+
+  &__top
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-bottom: 16px
+
+  &__num
+    font-size: 0.72rem
+    color: var(--accent)
+    font-weight: 600
+
+  &__dot
+    width: 8px
+    height: 8px
+    border-radius: 2px
+    background: var(--border-strong)
+    transition: background-color 0.2s ease
+
+  &__title
+    margin: 0 0 10px
+    font-size: 1.02rem
+    font-weight: 700
+
+  &__desc
+    margin: 0
+    font-size: 0.85rem
+    line-height: 1.7
+    color: var(--text-secondary)
+
+@media (max-width: 960px)
+  .ab-cap-grid
+    grid-template-columns: repeat(2, 1fr)
+
+@media (max-width: 560px)
+  .ab-cap-grid
+    grid-template-columns: 1fr
+
+// 04 Speaking Asymmetric Gallery (Wide Main Stage + 3-Item Photo Grid)
+.ab-gallery
+  display: flex
+  flex-direction: column
+  gap: 20px
+
+  &__main,
+  &__item
+    margin: 0
+    position: relative
+    overflow: hidden
+    border-radius: 4px
+    border: 1px solid var(--border)
+    background: var(--surface)
+
+    img
+      display: block
+      width: 100%
+      height: 100%
+      object-fit: cover
+      object-position: center 22%
+      cursor: zoom-in
+      transition: transform 0.35s ease
+
+    &:hover img
+      transform: scale(1.02)
+
+  &__main
+    width: 100%
+    aspect-ratio: 16 / 9
+
+  &__side
+    display: grid
+    grid-template-columns: 1.15fr 1fr 0.85fr
+    gap: 18px
+
+  &__item
+    aspect-ratio: 4 / 3
+
+  &__cap
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    padding: 32px 16px 12px
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent)
+    color: #ffffff
+    font-size: 0.82rem
+    pointer-events: none
+
+@media (max-width: 768px)
+  .ab-gallery
+    &__main
+      aspect-ratio: 3 / 2
+
+    &__side
+      grid-template-columns: 1fr
+
+    &__item
+      aspect-ratio: 4 / 3
+
+// 05 Representative Projects
+.ab-proj-list
+  border-top: 1px solid var(--border)
+
+.ab-proj-row
+  display: grid
+  grid-template-columns: 0.95fr 1.35fr
+  gap: 32px
+  padding: 26px 12px
+  margin: 0 -12px
+  border-bottom: 1px solid var(--border)
+  transition: background-color 0.18s ease
+
+  &:hover
+    background: var(--surface)
+
+    .ab-proj-row__name
+      color: var(--accent)
+
+  &__left
+    display: flex
+    gap: 16px
+    align-items: flex-start
+
+  &__idx
+    font-size: 0.82rem
+    color: var(--accent)
+    font-weight: 600
+    padding-top: 4px
+
+  &__type
+    display: block
+    font-size: 0.76rem
+    color: var(--text-muted)
+    margin-bottom: 4px
+
+  &__name
+    margin: 0
+    font-size: 1.08rem
+    font-weight: 700
+    transition: color 0.16s ease
+
+  &__detail
+    display: flex
+    flex-direction: column
+    gap: 6px
+    font-size: 0.87rem
+    color: var(--text-secondary)
+
+    strong
+      color: var(--text)
+      font-weight: 600
+
+@media (max-width: 768px)
+  .ab-proj-row
+    grid-template-columns: 1fr
+    gap: 14px
+
+// 06 Philosophy (Large Typography)
+.ab-phil-list
+  border-top: 1px solid var(--border)
+
+.ab-phil-item
+  display: flex
+  align-items: baseline
+  gap: 28px
+  padding: 24px 0
+  border-bottom: 1px solid var(--border)
+
+  &__num
+    font-size: 0.9rem
+    font-weight: 600
+    color: var(--accent)
+    flex-shrink: 0
+
+  &__text
+    margin: 0
+    font-size: 1.45rem
+    font-weight: 700
+    letter-spacing: -0.02em
+    line-height: 1.4
+
+@media (max-width: 640px)
+  .ab-phil-item
+    gap: 14px
+
+    &__text
+      font-size: 1.15rem
+
+// 07 Looking Ahead
+.ab-ahead-grid
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 18px
+
+.ab-ahead-card
+  padding: 24px
+  border-radius: 4px
+  background: var(--surface)
+  border: 1px solid var(--border)
+
+  &__title
+    margin: 0 0 8px
+    font-size: 1.05rem
+    font-weight: 700
+    color: var(--accent)
+
+  &__desc
+    margin: 0
+    font-size: 0.88rem
+    color: var(--text-secondary)
+
+@media (max-width: 640px)
+  .ab-ahead-grid
+    grid-template-columns: 1fr
+
+// 08 Contact Box
+.ab-contact-box
+  display: grid
+  grid-template-columns: 1.3fr 0.9fr
+  gap: 40px
+  padding: 36px
+  border-radius: 4px
+  background: var(--surface)
+  border: 1px solid var(--border)
+
+  &__actions
+    display: flex
+    flex-wrap: wrap
+    gap: 12px
+    margin-top: 24px
+
+  &__list-title
+    margin: 0 0 14px
+    font-size: 0.95rem
+    font-weight: 700
+
+  &__list
+    margin: 0
+    padding-left: 18px
+    font-size: 0.9rem
+    color: var(--text-secondary)
+
+    li
+      margin-bottom: 8px
+
+@media (max-width: 768px)
+  .ab-contact-box
+    grid-template-columns: 1fr
+    padding: 24px

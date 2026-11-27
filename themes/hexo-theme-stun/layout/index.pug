@@ -1,7 +1,137 @@
 extends ./_layout.pug
 
 block content
-  include ./_partials/post/post-list.pug
+  -
+    var brandData = (site.data && site.data.brand) || {}
+    var brand = brandData.brand || {}
+    var hero = brandData.hero || {}
+    var focusAreas = brandData.focus_areas || []
+    var philosophy = brandData.philosophy || {}
+    var speaking = brandData.speaking || {}
+    var projectsData = (site.data && site.data.projects) || {}
+    var allProjects = projectsData.projects || []
+    var featuredProjects = allProjects.filter(function(p) { return p.featured }).slice(0, 3)
+    var allPosts = site.posts.sort('date', -1).toArray()
+    var featuredPosts = allPosts.filter(function(p) { return p.featured })
+    var latestInsights = (featuredPosts.length ? featuredPosts : allPosts).slice(0, 4)
 
-  if theme.post_list.paginate.home
-    include ./_partials/widgets/paginator.pug
+  //- ================= Hero 首屏 =================
+  section.hero
+    div.site-container.hero__grid
+      div.hero__content
+        span.eyebrow(data-zh=brand.title_zh data-en=brand.title_en)= brand.title_zh
+        h1.hero__title(data-zh=hero.headline_zh data-en=hero.headline_en)= hero.headline_zh
+        p.hero__subtitle(data-zh=hero.subtitle_zh data-en=hero.subtitle_en)= hero.subtitle_zh
+        p.hero__desc(data-zh=hero.intro_zh data-en=hero.intro_en)= hero.intro_zh
+        div.hero__actions
+          a.btn.btn--primary(href=url_for('/projects/') data-zh="探索我的项目 →" data-en="Explore Projects →") 探索我的项目 →
+          a.btn.btn--secondary(href=url_for('/insights/') data-zh="阅读我的观点" data-en="Read Insights") 阅读我的观点
+      div.hero__visual
+        img.hero__photo(src=url_for(hero.portrait || '/img/avatar-pro.jpg') alt=(hero.portrait_alt || '王恒演讲现场') loading="eager")
+        div.hero__caption
+          span(data-zh="王恒 · James Wang" data-en="James Wang") 王恒 · James Wang
+          span(data-zh="行业分享与解决方案演讲现场" data-en="Keynote & Solution Briefing") 行业分享与解决方案演讲现场
+
+  //- ================= A. Personal Profile =================
+  section.section.section--bordered(data-reveal)
+    div.site-container
+      div.profile-strip
+        div
+          span.eyebrow 01 / PERSONAL PROFILE
+          h2.profile-strip__role(data-zh=brand.title_zh data-en=brand.title_en)= brand.title_zh
+          p.profile-strip__en= brand.title_en
+        ul.profile-strip__points
+          li 长期深耕工业软件、智能制造与质量数据分析（SPC / MSA / Minitab）。
+          li 具备企业级软件产品规划、技术架构设计与产品商业化落地完整经验。
+          li 熟悉 AI Agent、RAG 企业知识库、数据工程（ETL）与系统集成。
+          li 擅长跨部门协作、产品宣讲、客户培训及公开场合行业分享。
+
+  //- ================= B. Focus Areas =================
+  section.section.section--bordered(data-reveal)
+    div.site-container
+      div.section__head
+        div
+          span.eyebrow 02 / FOCUS AREAS
+          h2.section__title(data-zh="核心关注领域" data-en="Core Focus Areas") 核心关注领域
+        a.section__more(href=url_for('/about/') data-zh="了解更多背景 →" data-en="About Me →") 了解更多背景 →
+      div.focus-grid
+        each area in focusAreas
+          a.focus-card(href=url_for(area.link))
+            span.focus-card__en= area.label_en
+            h3.focus-card__title(data-zh=area.title_zh data-en=area.title_en)= area.title_zh
+            p.focus-card__desc(data-zh=area.desc_zh data-en=area.desc_en)= area.desc_zh
+
+  //- ================= C. Featured Projects =================
+  section.section.section--bordered(data-reveal)
+    div.site-container
+      div.section__head
+        div
+          span.eyebrow 03 / FEATURED PROJECTS
+          h2.section__title(data-zh="精选项目与产品实践" data-en="Featured Projects") 精选项目与产品实践
+        a.section__more(href=url_for('/projects/') data-zh="查看全部项目 →" data-en="All Projects →") 查看全部项目 →
+      div.project-grid
+        each proj in featuredProjects
+          a.project-card(href=url_for(proj.url))
+            div.project-card__cover
+              img(src=url_for(proj.cover) alt=proj.title_zh loading="lazy")
+            div.project-card__body
+              span.project-card__cat= proj.category
+              h3.project-card__title(data-zh=proj.title_zh data-en=proj.title_en)= proj.title_zh
+              p.project-card__desc(data-zh=proj.summary_zh data-en=proj.summary_en)= proj.summary_zh
+              div.project-card__tags
+                each t in (proj.tags || []).slice(0, 3)
+                  span= t
+
+  //- ================= D. Latest Insights =================
+  section.section.section--bordered(data-reveal)
+    div.site-container
+      div.section__head
+        div
+          span.eyebrow 04 / LATEST INSIGHTS
+          h2.section__title(data-zh="最新观点与深度实践" data-en="Latest Insights & Writing") 最新观点与深度实践
+        a.section__more(href=url_for('/insights/') data-zh="进入行业观察 →" data-en="View Insights →") 进入行业观察 →
+      div.insights-grid
+        each post in latestInsights
+          -
+            var catName = (post.categories && post.categories.length) ? post.categories.toArray()[0].name : (post.channel || '专栏')
+            var rawExcerpt = post.description || strip_html(post.excerpt || post.content || '').replace(/\s+/g, ' ').slice(0, 110) + '...'
+          a.insight-card(href=url_for(post.path))
+            div.insight-card__meta
+              span.mono= date(post.date, 'YYYY-MM-DD')
+              span.insight-card__cat= catName
+            h3.insight-card__title= post.title
+            p.insight-card__excerpt= rawExcerpt
+
+  //- ================= E. Personal Philosophy =================
+  section.section.section--bordered(data-reveal)
+    div.site-container
+      div.philosophy-box
+        span.eyebrow 05 / PHILOSOPHY
+        p.philosophy-box__quote(data-zh=philosophy.quote_zh data-en=philosophy.quote_en)= philosophy.quote_zh
+        div.philosophy-box__grid
+          each item in (philosophy.principles || [])
+            div.philosophy-box__item
+              h3(data-zh=item.title_zh data-en=item.title_en)= item.title_zh
+              p(data-zh=item.desc_zh data-en=item.desc_en)= item.desc_zh
+
+  //- ================= F. Speaking & Collaboration =================
+  section.section.section--bordered(data-reveal)
+    div.site-container
+      div.section__head
+        div
+          span.eyebrow 06 / SPEAKING & COLLABORATION
+          h2.section__title(data-zh="公开演讲与商业合作" data-en="Speaking & Collaboration") 公开演讲与商业合作
+        a.section__more(href=url_for('/speaking/') data-zh="演讲与合作详情 →" data-en="Speaking Details →") 演讲与合作详情 →
+      div.speaking-split
+        img.speaking-split__img(src=url_for('/img/speaking-minitab.jpg') alt="2025 上海 Minitab 战略合作研讨会演讲现场" loading="lazy")
+        div
+          span.eyebrow 2025.02 · SHANGHAI
+          h3.section__title(style="margin-top:8px" data-zh="行业分享、企业内训与数字化咨询" data-en="Keynotes, Enterprise Training & Advisory") 行业分享、企业内训与数字化咨询
+          p(style="color:var(--text-secondary);margin-top:10px" data-zh=speaking.summary_zh data-en=speaking.summary_en)= speaking.summary_zh
+          ul.speaking-split__topics
+            each tp in (speaking.topics || [])
+              li= tp
+          div.speaking-split__actions
+            a.btn.btn--primary(href="mailto:adymilk@icloud.com?subject=个人品牌网站合作与交流" data-zh="预约交流与合作" data-en="Get in Touch") 预约交流与合作
+            if brand.email
+              button.btn.btn--secondary(type="button" data-copy=brand.email data-zh="复制联系邮箱" data-en="Copy Email") 复制联系邮箱

@@ -1,0 +1,61 @@
+extends ./_layout.pug
+
+block content
+  -
+    var ch = page.channel_key || 'insights'
+    var allPosts = site.posts.sort('date', -1).toArray()
+    var matched = allPosts.filter(function(p) { return p.channel === ch })
+    var list = matched.length ? matched : allPosts
+    var leadPost = list.length ? list[0] : null
+    var restPosts = list.length > 1 ? list.slice(1) : []
+    var cats = []
+    list.forEach(function(p) {
+      if (p.categories && p.categories.length) {
+        p.categories.toArray().forEach(function(c) {
+          if (cats.indexOf(c.name) === -1) cats.push(c.name)
+        })
+      }
+    })
+
+  section.channel-hero
+    div.site-container
+      span.eyebrow= page.eyebrow || ch.toUpperCase()
+      h1.channel-hero__title= page.title
+      if page.description
+        p.channel-hero__desc= page.description
+
+  section.site-container(style="padding-bottom:72px")
+    div.filter-bar(data-filter-group)
+      button.filter-chip.is-active(type="button" data-filter="all") 全部 (#{list.length})
+      each c in cats
+        button.filter-chip(type="button" data-filter=c)= c
+
+    if leadPost
+      -
+        var leadCat = (leadPost.categories && leadPost.categories.length) ? leadPost.categories.toArray()[0].name : '精选'
+        var leadExcerpt = leadPost.description || strip_html(leadPost.excerpt || leadPost.content || '').replace(/\s+/g, ' ').slice(0, 160) + '...'
+      a.lead-article(href=url_for(leadPost.path) data-category=leadCat)
+        div.lead-article__meta
+          span.eyebrow FEATURED
+          span.mono= date(leadPost.date, 'YYYY-MM-DD')
+          span.insight-card__cat= leadCat
+          if typeof min2read === 'function'
+            span 约 #{min2read(leadPost.content)} 分钟阅读
+        h2.lead-article__title= leadPost.title
+        p.lead-article__excerpt= leadExcerpt
+        span.lead-article__cta 阅读全文 →
+
+    if restPosts.length
+      div.insights-grid
+        each post in restPosts
+          -
+            var catName = (post.categories && post.categories.length) ? post.categories.toArray()[0].name : '专栏'
+            var rawExcerpt = post.description || strip_html(post.excerpt || post.content || '').replace(/\s+/g, ' ').slice(0, 115) + '...'
+          a.insight-card(href=url_for(post.path) data-category=catName)
+            div.insight-card__meta
+              span.mono= date(post.date, 'YYYY-MM-DD')
+              span.insight-card__cat= catName
+              if typeof min2read === 'function'
+                span(style="margin-left:auto") #{min2read(post.content)} min
+            h2.insight-card__title= post.title
+            p.insight-card__excerpt= rawExcerpt

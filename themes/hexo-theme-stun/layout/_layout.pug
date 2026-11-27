@@ -1,82 +1,153 @@
 -
-  var HEXO_URL = 'http://hexo.io/';
-  var STUN_URL = 'https://github.com/liuyib/hexo-theme-stun/';
-  var isNoHeader = !theme.header.enable || (is_post() && !theme.header.show_on.post);
-  var isEnableNoHeader = !theme.header.enable || !theme.header.show_on.post;
-  var isShowReward = typeof page.reward === 'boolean' ? page.reward === true : (theme.reward.enable && is_post());
-  var isShowCC = typeof page.copyright === 'boolean' ? page.copyright === true : (theme.creative_commons.enable && is_post());
-
-  var pjax = false;
-  var dataPjax = {};
-  if (theme.pjax.enable) {
-    pjax = true;
-    dataPjax = { 'data-pjax': '' };
+  var brandData = (site.data && site.data.brand) || {}
+  var brand = brandData.brand || {}
+  var siteTitle = config.title || '王恒 · James Wang'
+  var pageTitle = is_home() ? (siteTitle + ' | ' + (brand.title_zh || config.subtitle)) : ((page.title || (is_archive() ? '写作归档' : (is_category() ? page.category : (is_tag() ? page.tag : '页面')))) + ' — ' + siteTitle)
+  var p = page.path || ''
+  var jsonLd = is_post() ? {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": page.title,
+    "datePublished": date_xml(page.date),
+    "dateModified": date_xml(page.updated || page.date),
+    "author": { "@type": "Person", "name": brand.name || config.author }
+  } : {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": brand.name || config.author,
+    "alternateName": brand.name_en || "James Wang",
+    "jobTitle": brand.title_en || "Industrial Digitalization & AI Practitioner",
+    "url": config.url
   }
-
-  var ccLicense = '';
-  var ccLanguage = '';
-  if (theme.creative_commons) {
-    var cc = theme.creative_commons;
-    ccLicense = cc.license && cc.license.toLowerCase();
-    ccLanguage = cc.language && cc.language.toLowerCase() || 'en';
-  }
-  var ccUrl = `https://creativecommons.org/licenses/${ccLicense}/4.0/deed.${ccLanguage}`;
 
 doctype html
-html(lang=config.language)
+html(lang=config.language || 'zh-CN')
   head
-    include ./_partials/head/head.pug
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="description" content=(page.description || config.description))
+    meta(name="keywords" content=(page.keywords || config.keywords))
+    != open_graph()
+    title= pageTitle
+    link(rel="canonical" href=full_url_for(page.path))
+    if theme.favicon && theme.favicon.small
+      link(rel="icon" href=url_for(theme.favicon.small) type="image/png" sizes="16x16")
+    if theme.favicon && theme.favicon.medium
+      link(rel="icon" href=url_for(theme.favicon.medium) type="image/png" sizes="32x32")
+    link(rel="stylesheet" href=url_for('/css/index.css'))
+    script(type="application/ld+json")!= JSON.stringify(jsonLd)
+    script.
+      (function() {
+        try {
+          var t = localStorage.getItem('site-theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('nightmode');
+          }
+          var l = localStorage.getItem('site-lang');
+          if (l === 'en') document.documentElement.setAttribute('data-lang', 'en');
+        } catch (e) {}
+      })();
   body
-    div#container.container
-      header#header.header
-        div.header-inner(class=`${isNoHeader ? 'header-inner--height header-inner--bgcolor' : ''}`)
-          include ./_partials/header/header.pug
+    header#site-header.site-header
+      div.site-container.site-header__inner
+        a.site-brand(href=url_for('/'))
+          span.site-brand__name(data-zh="王恒" data-en="James Wang") 王恒
+          span.site-brand__tag(data-zh="AI & 工业数字化" data-en="Industrial AI") AI &amp; 工业数字化
 
-      main#main.main
-        div.main-inner
-          div#content-wrap.content-wrap(
-            class=`${page.sidebar === false ? 'content-wrap--noside' : ''}`
-          )
-            div#content.content(class=`${is_home() ? 'content-home' : ''}`)
-              block content
+        nav.site-nav(aria-label="主导航")
+          a.site-nav__link(href=url_for('/') class=(is_home() ? 'is-active' : '') data-zh="首页" data-en="HOME") 首页
+          a.site-nav__link(href=url_for('/about/') class=(p.indexOf('about') === 0 ? 'is-active' : '') data-zh="关于我" data-en="ABOUT") 关于我
+          a.site-nav__link(href=url_for('/insights/') class=(p.indexOf('insights') === 0 ? 'is-active' : '') data-zh="行业观察" data-en="INSIGHTS") 行业观察
+          a.site-nav__link(href=url_for('/technology/') class=(p.indexOf('technology') === 0 ? 'is-active' : '') data-zh="技术实践" data-en="TECHNOLOGY") 技术实践
+          a.site-nav__link(href=url_for('/projects/') class=(p.indexOf('projects') === 0 ? 'is-active' : '') data-zh="项目作品" data-en="PROJECTS") 项目作品
+          a.site-nav__link(href=url_for('/thoughts/') class=(p.indexOf('thoughts') === 0 ? 'is-active' : '') data-zh="思考随笔" data-en="THOUGHTS") 思考随笔
+          a.site-nav__link(href=url_for('/speaking/') class=(p.indexOf('speaking') === 0 ? 'is-active' : '') data-zh="演讲与合作" data-en="SPEAKING") 演讲与合作
 
-            if (is_archive() && theme.post_list.paginate.archives) || is_category() || is_tag()
-              include ./_partials/widgets/paginator.pug
+        div.site-controls
+          button#search-trigger.icon-btn(type="button" aria-label="搜索文章" title="搜索")
+            svg(width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+              circle(cx="11" cy="11" r="8")
+              path(d="m21 21-4.3-4.3")
+          button#lang-toggle.lang-btn(type="button" aria-label="切换中英文" title="中 / EN") EN
+          button#theme-toggle.icon-btn(type="button" aria-label="切换明暗主题" title="切换明暗主题")
+            svg.theme-sun(width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+              circle(cx="12" cy="12" r="4")
+              path(d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41")
+            svg.theme-moon(width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+              path(d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z")
+          a.contact-cta(href="mailto:adymilk@icloud.com?subject=个人品牌网站合作与交流" data-zh="联系合作" data-en="Contact") 联系合作
+          button#drawer-open.menu-btn(type="button" aria-label="打开菜单")
+            svg(width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+              line(x1="4" x2="20" y1="7" y2="7")
+              line(x1="4" x2="20" y1="12" y2="12")
+              line(x1="4" x2="20" y1="17" y2="17")
 
-            if page.comments
-              include ./_partials/widgets/comments.pug
+    //- Mobile Drawer
+    div#mobile-drawer.mobile-drawer(aria-hidden="true")
+      div.mobile-drawer__backdrop
+      div.mobile-drawer__panel
+        div.mobile-drawer__head
+          span.site-brand__name(data-zh="导航菜单" data-en="Navigation") 导航菜单
+          button#drawer-close.icon-btn(type="button" aria-label="关闭菜单")
+            svg(width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+              path(d="M18 6 6 18M6 6l12 12")
+        nav.mobile-drawer__nav
+          a(href=url_for('/') data-zh="HOME / 首页" data-en="HOME") HOME / 首页
+          a(href=url_for('/about/') data-zh="ABOUT / 关于我" data-en="ABOUT") ABOUT / 关于我
+          a(href=url_for('/insights/') data-zh="INSIGHTS / 行业观察" data-en="INSIGHTS") INSIGHTS / 行业观察
+          a(href=url_for('/technology/') data-zh="TECHNOLOGY / 技术实践" data-en="TECHNOLOGY") TECHNOLOGY / 技术实践
+          a(href=url_for('/projects/') data-zh="PROJECTS / 项目作品" data-en="PROJECTS") PROJECTS / 项目作品
+          a(href=url_for('/thoughts/') data-zh="THOUGHTS / 思考随笔" data-en="THOUGHTS") THOUGHTS / 思考随笔
+          a(href=url_for('/speaking/') data-zh="SPEAKING / 演讲与合作" data-en="SPEAKING") SPEAKING / 演讲与合作
 
-          if page.sidebar !== false && theme.sidebar.enable
-            div#sidebar-wrap.sidebar-wrap
-              aside#sidebar.sidebar
-                include ./_partials/sidebar/sidebar.pug
+    main.site-main
+      block content
 
-          div.clearfix
+    footer.site-footer
+      div.site-container.site-footer__grid
+        div.site-footer__brand
+          p.site-footer__name 王恒 · James Wang
+          p.site-footer__tagline(data-zh="工业数字化与 AI 商业化实践者 · 用技术洞察产业，用产品创造价值。" data-en="Industrial Digitalization & AI Practitioner · Turning technology into business value.")
+            | 工业数字化与 AI 商业化实践者 · 用技术洞察产业，用产品创造价值。
+          div.site-footer__contact
+            if brand.email
+              button.copy-btn(type="button" data-copy=brand.email)
+                span(data-zh=`复制邮箱：${brand.email}` data-en=`Copy Email: ${brand.email}`) 复制邮箱：#{brand.email}
+            if brand.github
+              a(href=brand.github target="_blank" rel="noopener") GitHub
+            a(href=url_for('/atom.xml')) RSS
+        div.site-footer__nav
+          div
+            h4(data-zh="核心栏目" data-en="Navigation") 核心栏目
+            a(href=url_for('/about/') data-zh="关于我" data-en="About") 关于我
+            a(href=url_for('/insights/') data-zh="行业观察" data-en="Insights") 行业观察
+            a(href=url_for('/technology/') data-zh="技术实践" data-en="Technology") 技术实践
+            a(href=url_for('/projects/') data-zh="项目作品" data-en="Projects") 项目作品
+          div
+            h4(data-zh="延伸与合作" data-en="Connect") 延伸与合作
+            a(href=url_for('/thoughts/') data-zh="思考随笔" data-en="Thoughts") 思考随笔
+            a(href=url_for('/speaking/') data-zh="演讲与合作" data-en="Speaking") 演讲与合作
+            a(href=url_for('/archives/') data-zh="全部归档" data-en="Archives") 全部归档
+            a(href=url_for('/resume/') data-zh="在线履历" data-en="Resume") 在线履历
+      div.site-container.site-footer__bottom
+        span © #{new Date().getFullYear()} 王恒 (James Wang). All rights reserved.
+        span(data-zh="上海 · 中国" data-en="Shanghai · China") 上海 · 中国
 
-      footer#footer.footer
-        div.footer-inner
-          include ./_partials/footer/footer.pug
+    //- Search Modal
+    div#search-modal.search-modal(aria-hidden="true")
+      div.search-modal__backdrop
+      div.search-modal__dialog(role="dialog" aria-modal="true" aria-label="站内搜索")
+        div.search-modal__input-wrap
+          input#search-input.search-modal__input(type="search" placeholder="搜索文章标题、关键词或技术方案..." autocomplete="off")
+          button#search-close.icon-btn(type="button" aria-label="关闭搜索") ✕
+        div#search-results.search-modal__results
 
-      include ./_partials/widgets/loading-bar.pug
+    //- Image Lightbox
+    div#lightbox.lightbox(aria-hidden="true")
+      img#lightbox-img.lightbox__img(alt="")
 
-      if theme.back2top.enable
-        include ./_partials/widgets/back2top.pug
-    include ./_partials/search/index.pug
+    //- Toast
+    div#toast.toast(role="status" aria-live="polite")
 
-    include ./_scripts/vendors.pug
-    include ./_third-party/search/index.pug
-
-    if pjax
-      include ./_third-party/pjax.pug
-
-      div#pjax-reload
-        include ./_third-party/math/index.pug
-        include ./_third-party/quicklink.pug
-        include ./_third-party/analytics/busuanzi.pug
-    else
-      include ./_third-party/math/index.pug
-      include ./_third-party/quicklink.pug
-      include ./_third-party/analytics/busuanzi.pug
-
-    include ./_third-party/comments/index.pug
-    include ./_scripts/stun.pug
+    script(src=url_for('/js/brand.js'))

@@ -1,0 +1,69 @@
+# =============================================================================
+# 项目作品集索引 (Projects Portfolio Data)
+# 每个项目对应 /projects/<slug>/ 下的独立案例详情页。
+# 未提供的商业数据或客户名称均保留为可编辑占位，不作编造。
+# =============================================================================
+
+projects:
+  - slug: minitab-com-bridge
+    featured: true
+    title_zh: Minitab COM 桥接与企业级统计分析服务
+    title_en: Minitab COM Bridge & Enterprise Analytics Service
+    category: 工业数据平台 / 系统集成
+    status: 已交付（可编辑状态）
+    summary_zh: 解决桌面级工业统计软件无法被 Web 系统直接并发调用的架构约束，实现自动化统计分析与图表交付。
+    summary_en: Bridging desktop statistical engines with modern web applications through resilient async task orchestration.
+    cover: /img/speaking-minitab.jpg
+    tags:
+      - 工业软件集成
+      - Minitab COM
+      - 异步任务架构
+      - 质量数据分析
+    url: /projects/minitab-com-bridge/
+
+  - slug: realtime-spc-control-chart
+    featured: true
+    title_zh: 产线实时 SPC 控制图与质量监控系统
+    title_en: Real-Time SPC Control Chart & Quality Monitoring
+    category: 工业 SPC / MSA 软件产品
+    status: 可演示
+    summary_zh: 面向智能制造质量工程场景，打通产线数据采集、判异规则计算与实时控制图可视化链路。
+    summary_en: Real-time statistical process control and anomaly detection pipeline for smart manufacturing quality engineering.
+    cover: /img/about/event-02.jpg
+    tags:
+      - SPC / 过程能力分析
+      - Minitab 二次开发
+      - 实时可视化
+      - 智能制造
+    url: /projects/realtime-spc-control-chart/
+
+  - slug: industrial-ai-agent-platform
+    featured: true
+    title_zh: 工业数据分析 AI Agent 与企业知识工作流探索
+    title_en: Industrial Analytics AI Agent & Knowledge Workflow
+    category: AI Agent 产品探索
+    status: 持续演进中
+    summary_zh: 结合自然语言交互、RAG 企业知识库、MCP 工具调用与自动化评测集，探索 AI 在工业质量分析中的企业级落地。
+    summary_en: Exploring natural-language SPC analysis, RAG knowledge bases, MCP tools, and evaluation loops for industrial teams.
+    cover: /img/avatar-pro.jpg
+    tags:
+      - AI Agent
+      - RAG & 知识库
+      - MCP / n8n
+      - 评测体系
+    url: /projects/industrial-ai-agent-platform/
+
+  - slug: enterprise-etl-integration
+    featured: false
+    title_zh: 制造企业多源异构数据集成与 ETL 方案模板
+    title_en: Enterprise Manufacturing ETL & Data Integration
+    category: 数据集成和 ETL 方案
+    status: 案例模板（待补充真实数据）
+    summary_zh: 针对制造现场多系统数据孤岛问题，设计标准化数据抽取、清洗、质量校验与分析入库架构。
+    summary_en: Standardized ETL and data governance architecture connecting fragmented manufacturing systems.
+    cover: /img/bg.jpeg
+    tags:
+      - 数据工程
+      - ETL
+      - 系统集成
+    url: /projects/enterprise-etl-integration/

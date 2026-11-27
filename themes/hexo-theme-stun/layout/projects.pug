@@ -1,0 +1,39 @@
+extends ./_layout.pug
+
+block content
+  -
+    var projectsData = (site.data && site.data.projects) || {}
+    var projects = projectsData.projects || []
+    var cats = []
+    projects.forEach(function(p) {
+      if (p.category && cats.indexOf(p.category) === -1) cats.push(p.category)
+    })
+
+  section.channel-hero
+    div.site-container
+      span.eyebrow PROJECTS & CASE STUDIES
+      h1.channel-hero__title= page.title || '产品与项目作品'
+      p.channel-hero__desc 围绕工业 SPC/MSA、工业数据平台、企业级 AI Agent 与 ETL 数据集成，以「项目背景 → 业务痛点 → 解决方案 → 系统架构 → 实施成果」结构呈现真实工程与产品思考。
+
+  section.site-container(style="padding-bottom:72px")
+    div.filter-bar(data-filter-group)
+      button.filter-chip.is-active(type="button" data-filter="all") 全部 (#{projects.length})
+      each c in cats
+        button.filter-chip(type="button" data-filter=c)= c
+
+    div.projects-showcase
+      each proj in projects
+        a.project-card(href=url_for(proj.url) data-category=proj.category)
+          div.project-card__cover
+            img(src=url_for(proj.cover) alt=proj.title_zh loading="lazy")
+          div.project-card__body
+            div(style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px")
+              span.project-card__cat(style="margin:0")= proj.category
+              span.status-pill= proj.status
+            h2.project-card__title(data-zh=proj.title_zh data-en=proj.title_en)= proj.title_zh
+            p.project-card__desc(data-zh=proj.summary_zh data-en=proj.summary_en)= proj.summary_zh
+            div(style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto")
+              div.project-card__tags
+                each t in (proj.tags || []).slice(0, 3)
+                  span= t
+              span.project-card__cta 详情 →

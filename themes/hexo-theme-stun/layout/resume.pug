@@ -18,20 +18,24 @@ block content
     var jt = profile.job_target || {}
     var sk = profile.skills || {}
 
-  div.resume
+  div.site-container.resume
 
     //- ================= 1. 头部卡片（HR 扫这里）=================
     header.resume-head
-      h1.resume-head__name
-        = id.name || config.author
-        if id.name_en
-          span.resume-head__name-en= id.name_en
+      div.resume-head__top
+        div.resume-head__info
+          h1.resume-head__name
+            = id.name || config.author
+            if id.name_en
+              span.resume-head__name-en= id.name_en
 
-      if id.title
-        p.resume-head__title= id.title
+          if id.title
+            p.resume-head__title= id.title
 
-      if id.one_liner
-        p.resume-head__oneliner= id.one_liner
+          if id.one_liner
+            p.resume-head__oneliner= id.one_liner
+        div.resume-head__avatar-wrap
+          img.resume-head__avatar(src=url_for('/img/avatar-pro.jpg') alt=(id.name || config.author))
 
       ul.resume-contact
         if id.location

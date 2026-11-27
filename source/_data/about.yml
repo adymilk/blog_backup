@@ -1,0 +1,148 @@
+# =============================================================================
+# About 页面独立数据源 (source/_data/about.yml)
+# 修改本文件即可更新 /about/ 页面全部文案、照片与项目展示，无需改动模板代码。
+# 未提供的具体企业名称、活动名称、数据指标均保留为通用描述或 [可编辑占位]。
+# =============================================================================
+
+hero:
+  eyebrow: ABOUT ME / PERSONAL PROFILE
+  headline_line1: 探索技术的边界，
+  headline_line2: 创造商业的价值。
+  positioning: 工业数字化与 AI 商业化实践者
+  positioning_en: Industrial Digitalization & AI Practitioner
+  bio:
+    - 专注于工业软件、智能制造与企业 AI 应用，具备技术架构、产品创新和商业化落地的复合型经验。
+    - 擅长将复杂技术转化为实际业务价值，持续探索 AI 技术与传统产业结合的创新机会。
+  tags:
+    - Industrial Digitalization
+    - Artificial Intelligence
+    - Product Innovation
+  portrait: /img/avatar-pro.jpg
+  portrait_alt: 王恒（James Wang）个人职业形象与演讲现场照
+
+intro:
+  title_en: Beyond Technology, Creating Value.
+  title_zh: 不止于技术，更关注价值创造。
+  paragraphs:
+    - 我的职业经历横跨技术研发、工业软件产品规划、解决方案设计和商业化落地。
+    - 相比单纯关注技术本身，我更关注技术如何解决实际问题、产品如何创造用户价值，以及创新如何形成可持续的商业模式。
+
+capabilities:
+  title: What I Do
+  items:
+    - num: "01"
+      tag: INDUSTRY
+      title: 产业与行业理解
+      desc: 工业软件、智能制造、质量管理、工业数据分析（SPC / MSA / 过程能力分析）。
+    - num: "02"
+      tag: TECHNOLOGY
+      title: 技术与架构
+      desc: AI Agent、数据工程、ETL、企业级软件架构、系统集成。
+    - num: "03"
+      tag: PRODUCT
+      title: 产品与创新
+      desc: 产品战略、需求分析、产品规划、交互设计、从 0 到 1。
+    - num: "04"
+      tag: BUSINESS
+      title: 商业与落地
+      desc: 解决方案规划、项目交付、商业化探索、客户沟通与资源协同。
+
+speaking:
+  title_en: Ideas Worth Sharing.
+  title_zh: 分享专业认知，连接行业价值。
+  subtitle: 通过公开演讲、技术分享、产品宣讲和专业培训，传递技术价值，推动行业交流。
+  tags:
+    - Keynote Speaking
+    - Industry Sharing
+    - Technology Presentation
+    - Professional Training
+  # 全部使用已导入的真实高清摄影照片，不重复展示同一张照片。
+  main_photo:
+    src: /img/about/speaking-01.jpg
+    alt: 工业软件与数据分析主题演讲舞台全景
+    caption: 行业峰会主题演讲 · 工业数据分析方案分享现场
+  gallery:
+    - src: /img/about/speaking-02.jpg
+      alt: 演讲现场特写与解决方案表达
+      caption: 行业论坛主题演讲与现场互动
+    - src: /img/about/event-01.jpg
+      alt: 制造企业现场产品培训与业务交流
+      caption: 企业客户现场培训与方案宣讲
+    - src: /img/about/event-02.jpg
+      alt: 实时分析平台（MSA / SPC / PA）现场演示
+      caption: 工业实时分析产品（MSA / SPC / PA）现场演示
+
+projects:
+  title: From Ideas to Impact.
+  items:
+    - name: 工业 SPC / MSA 软件产品与实时监控
+      type: 工业 SPC / MSA 产品
+      background: 面向制造企业质量工程与过程控制需求，推动统计分析从离线桌面走向产线实时协同。
+      problem: 传统离线分析反馈滞后，一线质量人员难以实时捕捉制程趋势波动。
+      role: 产品规划、二次开发架构设计与端到端交付落地。
+      outcome: "[可编辑占位：例如 形成可演示的实时监控链路，缩短异常响应周期]"
+      link: /projects/realtime-spc-control-chart/
+    - name: 工业数据分析平台与引擎桥接
+      type: 工业数据分析平台
+      background: 企业级质量管理平台需要统一调用专业统计分析内核，生成标准化控制图与分析报告。
+      problem: 桌面级统计软件 COM 接口无法被 Web 服务端直接并发调用，存在阻塞与稳定性隐患。
+      role: 核心桥接服务架构设计、异步任务状态机实现与工程交付。
+      outcome: "[可编辑占位：例如 打通 Web 平台与专业统计引擎的自动化交付链路]"
+      link: /projects/minitab-com-bridge/
+    - name: 企业多源数据集成与 ETL 架构
+      type: 数据集成与 ETL 架构
+      background: 制造现场并存 MES、LIMS、设备日志与离线台账，制约上层数据分析与 AI 应用。
+      problem: 数据孤岛严重、口径不统一且存在脏数据，导致分析结果失真。
+      role: 数据架构设计、清洗校验规则制定与自动化同步方案规划。
+      outcome: "[可编辑占位：例如 沉淀标准化 Analysis-Ready 数据底座方案]"
+      link: /projects/enterprise-etl-integration/
+    - name: 企业 AI Agent 应用与知识工作流
+      type: 企业 AI Agent 应用
+      background: 探索大模型、RAG 企业知识库与 MCP 工具链在工业质量分析与业务决策中的企业级应用。
+      problem: 通用大模型在专业工业场景存在幻觉风险，且缺乏客观的上线评测标准。
+      role: AI Agent 工作流设计、确定性工具封装与 Golden Set 评测体系构建。
+      outcome: "[可编辑占位：例如 构建可回归评测的企业级 AI 原型架构]"
+      link: /projects/industrial-ai-agent-platform/
+    - name: AI 与传统产业结合的创新产品探索
+      type: 创新产品实践
+      background: 围绕传统制造业与企业服务场景，持续验证高 ROI 的智能化切入点与商业化模式。
+      problem: 许多技术方案脱离产线实际预算与操作习惯，难以实现商业闭环。
+      role: 客户需求调研、产品定义、方案宣讲与商业化路径验证。
+      outcome: "[可编辑占位：持续探索与行业共创中]"
+      link: /projects/
+
+philosophy:
+  title: My Philosophy
+  items:
+    - num: "01"
+      text: 技术应该服务于真实业务。
+    - num: "02"
+      text: 产品的价值在于解决问题，而不是堆积功能。
+    - num: "03"
+      text: AI 的真正价值在于创造可衡量的商业价值。
+
+looking_ahead:
+  title: Looking Ahead.
+  subtitle: 保持对真实产业现场的敬畏，持续在技术演进与商业落地之间寻找高价值交汇点。
+  areas:
+    - name: Enterprise AI Agent
+      desc: 面向复杂业务流的可控、可评测企业级智能体。
+    - name: Industrial Intelligence
+      desc: 工业软件、质量工程与产线决策的智能化升级。
+    - name: Data Intelligence
+      desc: 从多源异构数据治理到可解释的统计与智能洞察。
+    - name: AI-driven Product Innovation
+      desc: 以 AI 重塑传统软件交互形态与 B2B 商业化模式。
+
+contact:
+  title_en: Let's Build Something Meaningful.
+  title_zh: 让专业认知产生连接，让创新想法创造价值。
+  directions:
+    - 企业 AI 应用与数字化项目
+    - 工业软件与数据智能解决方案
+    - 产品创新与技术交流
+    - 行业演讲与专业培训
+    - 商业合作与资源交流
+  email: adymilk@icloud.com
+  github: https://github.com/adymilk
+  linkedin: ""   # [可编辑占位：填写您的 LinkedIn 主页 URL]
