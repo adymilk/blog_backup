@@ -762,7 +762,7 @@ html.nightmode
   display: grid
   grid-template-columns: minmax(0, 720px) 220px
   gap: 48px
-  padding: 48px 0 72px
+  padding: 48px 24px 72px
   align-items: start
 
 .article-header
@@ -1994,3 +1994,140 @@ html.nightmode
   .ab-contact-box
     grid-template-columns: 1fr
     padding: 24px
+
+
+// -----------------------------------------------------------------------------
+// Article Detail Page Mobile & Overflow Fixes
+// -----------------------------------------------------------------------------
+.article-wrap--no-toc
+  grid-template-columns: minmax(0, 740px)
+  justify-content: center
+
+.article-wrap > article,
+.article-main
+  min-width: 0
+
+.article-header__summary
+  color: var(--text-secondary)
+  margin: 8px 0 14px
+  font-size: 0.96rem
+  line-height: 1.7
+
+.article-header__meta .copy-btn
+  margin-left: auto
+
+.article-tags
+  margin-top: 32px
+  display: flex
+  flex-wrap: wrap
+  gap: 8px
+
+.author-sig__cta
+  margin-left: auto
+  padding: 7px 14px
+  font-size: 0.8rem
+  flex-shrink: 0
+
+.mobile-toc
+  display: none
+  margin-bottom: 24px
+  border-radius: var(--radius-sm)
+  background: var(--surface)
+  border: 1px solid var(--border)
+
+  &__summary
+    padding: 10px 14px
+    font-size: 0.86rem
+    font-weight: 600
+    cursor: pointer
+    color: var(--text)
+
+  &__body
+    padding: 0 14px 12px
+    font-size: 0.84rem
+    border-top: 1px solid var(--border)
+
+    .toc
+      list-style: none
+      margin: 10px 0 0
+      padding: 0
+
+      ol
+        list-style: none
+        padding-left: 14px
+        margin: 4px 0
+
+      li
+        margin-bottom: 5px
+
+      a
+        color: var(--text-secondary)
+
+.prose
+  overflow-wrap: break-word
+  word-break: break-word
+
+  pre,
+  figure.highlight
+    max-width: 100%
+    overflow-x: auto
+    -webkit-overflow-scrolling: touch
+
+  table
+    display: block
+    max-width: 100%
+    overflow-x: auto
+    -webkit-overflow-scrolling: touch
+
+@media (max-width: 960px)
+  .article-wrap
+    padding: 32px 20px 56px
+    gap: 0
+
+  .mobile-toc
+    display: block
+
+@media (max-width: 640px)
+  .article-wrap
+    padding: 24px 16px 48px
+
+  .article-header
+    margin-bottom: 24px
+    padding-bottom: 18px
+
+    &__title
+      font-size: 1.45rem
+      line-height: 1.35
+
+    &__meta
+      gap: 6px 10px
+
+      .copy-btn
+        margin-left: 0
+        width: 100%
+        text-align: center
+        margin-top: 6px
+
+  .prose
+    font-size: 0.94rem
+    line-height: 1.8
+
+    h2
+      font-size: 1.18rem
+      margin: 28px 0 12px
+
+    h3
+      font-size: 1.02rem
+
+  .author-sig
+    flex-wrap: wrap
+    padding: 16px
+
+    &__cta
+      margin-left: 0
+      width: 100%
+      justify-content: center
+      margin-top: 4px
+
+  .post-nav__item--next
+    text-align: left

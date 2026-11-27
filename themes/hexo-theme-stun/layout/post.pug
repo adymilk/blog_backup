@@ -5,6 +5,7 @@ block content
     var brandData = (site.data && site.data.brand) || {}
     var brand = brandData.brand || {}
     var tocHtml = toc(page.content, { list_number: false, max_depth: 3 })
+    var hasToc = !!(tocHtml && page.toc !== false)
     var catName = (page.categories && page.categories.length) ? page.categories.toArray()[0].name : ''
     var summary = page.description || ''
     var related = site.posts.sort('date', -1).toArray().filter(function(p) {
@@ -18,14 +19,14 @@ block content
 
   div#reading-progress.reading-progress
 
-  div.site-container.article-wrap
-    article
+  div.site-container.article-wrap(class=(hasToc ? '' : 'article-wrap--no-toc'))
+    article.article-main
       header.article-header
         if catName
           span.eyebrow= catName
         h1.article-header__title= page.title
         if summary
-          p(style="color:var(--text-secondary);margin:8px 0 12px")= summary
+          p.article-header__summary= summary
         div.article__meta.article-header__meta
           span= brand.name || config.author
           span ·
@@ -33,13 +34,18 @@ block content
           if typeof min2read === 'function'
             span ·
             span 约 #{min2read(page.content)} 分钟阅读
-          button.copy-btn(type="button" data-copy=full_url_for(page.path) style="margin-left:auto") 复制本文链接
+          button.copy-btn(type="button" data-copy=full_url_for(page.path)) 复制本文链接
+
+      if hasToc
+        details.mobile-toc
+          summary.mobile-toc__summary 文章目录
+          div.mobile-toc__body!= tocHtml
 
       div.prose
         != page.content
 
       if page.tags && page.tags.length
-        div(style="margin-top:32px;display:flex;flex-wrap:wrap;gap:8px")
+        div.article-tags
           each tag in page.tags.toArray()
             a.filter-chip(href=url_for(tag.path)) ##{tag.name}
 
@@ -49,7 +55,7 @@ block content
         div.author-sig__body
           strong 王恒 · James Wang
           p= brand.title_zh || '工业数字化与 AI 商业化实践者'
-        a.btn.btn--secondary(href="mailto:adymilk@icloud.com?subject=个人品牌网站合作与交流" style="margin-left:auto;padding:7px 14px;font-size:0.8rem") 交流与合作
+        a.btn.btn--secondary.author-sig__cta(href="mailto:adymilk@icloud.com?subject=个人品牌网站合作与交流") 交流与合作
 
       if page.prev || page.next
         nav.post-nav(aria-label="文章翻页")
@@ -71,7 +77,7 @@ block content
             each rp in related
               a.related-posts__item(href=url_for(rp.path))= rp.title
 
-    if tocHtml && page.toc !== false
+    if hasToc
       aside.toc-aside(aria-label="文章目录")
         div.toc-aside__title 目录
         != tocHtml
