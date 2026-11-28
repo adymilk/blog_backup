@@ -49,9 +49,8 @@ block content
           each tag in page.tags.toArray()
             a.filter-chip(href=url_for(tag.path)) ##{tag.name}
 
-      //- Author Bio Signature
       div.author-sig
-        img.author-sig__avatar(src=url_for('/img/avatar-pro.jpg') alt=(brand.name || '王恒'))
+        != responsive_img('/img/avatar-pro.jpg', { class: 'author-sig__avatar', alt: brand.name || '王恒', loading: 'lazy', width: 56, height: 56, sizes: '56px', lightbox: false })
         div.author-sig__body
           strong 王恒 · James Wang
           p= brand.title_zh || '工业数字化与 AI 商业化实践者'

@@ -1,5 +1,12 @@
 extends ./_layout.pug
 
+block head_extra
+  -
+    var _data = (site.data && site.data.about) || {}
+    var _hero = _data.hero || {}
+  if typeof hero_preload === 'function'
+    != hero_preload(_hero.portrait || '/img/avatar-pro.jpg', '(max-width: 768px) 92vw, 480px')
+
 block content
   -
     var data = (site.data && site.data.about) || {}
@@ -14,7 +21,6 @@ block content
     var mailHref = `mailto:${ct.email || 'adymilk@icloud.com'}?subject=${encodeURIComponent('个人品牌网站交流与合作')}`
 
   div.about-page
-    //- ================= 01. Hero 个人形象首屏 =================
     section.ab-hero
       div.site-container.ab-hero__grid
         div.ab-hero__content
@@ -36,9 +42,8 @@ block content
             a.btn.btn--primary(href="#what-i-do") 探索我的专业领域
             a.btn.btn--secondary(href=mailHref) 演讲与商务合作
         div.ab-hero__media
-          img.ab-hero__img(src=url_for(hero.portrait) alt=hero.portrait_alt loading="eager")
+          != responsive_img(hero.portrait, { class: 'ab-hero__img', alt: hero.portrait_alt, loading: 'eager', fetchpriority: 'high', sizes: '(max-width: 768px) 92vw, 480px' })
 
-    //- ================= 02. 个人职业介绍 =================
     section.ab-section.ab-section--bordered(data-reveal)
       div.site-container.ab-intro
         div.ab-intro__head
@@ -49,7 +54,6 @@ block content
           each p in (intro.paragraphs || [])
             p= p
 
-    //- ================= 03. 专业能力 (What I Do) =================
     section#what-i-do.ab-section.ab-section--bordered(data-reveal)
       div.site-container
         div.ab-head
@@ -64,7 +68,6 @@ block content
               h3.ab-cap-card__title= item.title
               p.ab-cap-card__desc= item.desc
 
-    //- ================= 04. 演讲与行业交流 =================
     section.ab-section.ab-section--bordered(data-reveal)
       div.site-container
         div.ab-head
@@ -76,14 +79,14 @@ block content
         div.ab-gallery
           if spk.main_photo && spk.main_photo.src
             figure.ab-gallery__main
-              img.speaking-card__img(src=url_for(spk.main_photo.src) alt=spk.main_photo.alt loading="lazy")
+              != responsive_img(spk.main_photo.src, { class: 'speaking-card__img', alt: spk.main_photo.alt, loading: 'lazy', sizes: '(max-width: 768px) 92vw, 820px' })
               figcaption.ab-gallery__cap= spk.main_photo.caption
 
           div.ab-gallery__side
             each g in (spk.gallery || [])
               if g.src
                 figure.ab-gallery__item
-                  img.speaking-card__img(src=url_for(g.src) alt=g.alt loading="lazy")
+                  != responsive_img(g.src, { class: 'speaking-card__img', alt: g.alt, loading: 'lazy', sizes: '(max-width: 768px) 92vw, 420px' })
                   figcaption.ab-gallery__cap= g.caption
               else
                 div.ab-gallery__placeholder
@@ -95,7 +98,6 @@ block content
           each st in (spk.tags || [])
             span.ab-tag= st
 
-    //- ================= 05. 代表性项目与实践 =================
     section.ab-section.ab-section--bordered(data-reveal)
       div.site-container
         div.ab-head
@@ -124,7 +126,6 @@ block content
                     strong 成果：
                     = item.outcome
 
-    //- ================= 06. 职业理念 (My Philosophy) =================
     section.ab-section.ab-section--bordered(data-reveal)
       div.site-container
         div.ab-head
@@ -136,7 +137,6 @@ block content
               span.mono.ab-phil-item__num= item.num
               p.ab-phil-item__text= item.text
 
-    //- ================= 07. 未来关注方向 (Looking Ahead) =================
     section.ab-section.ab-section--bordered(data-reveal)
       div.site-container
         div.ab-head
@@ -149,7 +149,6 @@ block content
               h3.ab-ahead-card__title= area.name
               p.ab-ahead-card__desc= area.desc
 
-    //- ================= 08. 联系与合作 =================
     section#contact.ab-section.ab-section--bordered(data-reveal)
       div.site-container
         div.ab-contact-box

@@ -1,119 +1,317 @@
 extends ./_layout.pug
 
+block head_extra
+  -
+    var _r = (site.data && site.data.resume) || {}
+    var _p = _r.personal || {}
+  if typeof hero_preload === 'function'
+    != hero_preload(_p.portrait || '/img/avatar-pro.jpg', '(max-width: 768px) 220px, 240px')
+
 block content
   -
-    var profile = (site.data && site.data.profile) || {}
-    var id = profile.identity || {}
-    var ct = profile.contact || {}
-    var sk = profile.skills || {}
-    var projects = profile.projects || []
-    var mailHref = `mailto:${ct.email || 'adymilk@icloud.com'}?subject=${encodeURIComponent('个人履历沟通与合作交流')}`
+    var r = (site.data && site.data.resume) || {}
+    var meta = r.meta || {}
+    var p = r.personal || {}
+    var hero = r.hero || {}
+    var summary = r.summary || {}
+    var highlights = r.highlights || []
+    var jobs = r.work_experience || []
+    var projects = r.featured_projects || []
+    var comps = r.core_competencies || []
+    var tech = r.technical_expertise || []
+    var lead = r.leadership || {}
+    var spk = r.speaking || {}
+    var langSec = r.languages_and_international || {}
+    var edu = r.education || []
+    var ct = r.contact || {}
+    var mailHref = `mailto:${p.email || 'adymilk@icloud.com'}?subject=${encodeURIComponent('【职业简历与合作交流】王恒 · James Wang')}`
+    var pdfUrl = url_for(meta.pdf_url || '/uploads/Professional_Resume_CN.pdf')
+    var pdfName = meta.pdf_filename || 'Professional_Resume_CN.pdf'
+    var pdfEnUrl = url_for(meta.pdf_en_url || '/uploads/Professional_Resume_EN.pdf')
+    var pdfEnName = meta.pdf_en_filename || 'Professional_Resume_EN.pdf'
 
-  section.channel-hero.resume-hero
-    div.site-container
-      div.resume-head__top
-        div.resume-head__info
-          span.eyebrow RESUME / 个人履历
-          h1.resume-head__name
-            = id.name || config.author
-            if id.name_en
-              span.resume-head__name-en= id.name_en
-          if id.title
-            p.resume-head__title
-              = id.title
-              if id.title_en
-                span.resume-head__title-en · #{id.title_en}
-          if id.one_liner
-            p.resume-head__oneliner= id.one_liner
+  div.resume-page
+    //- ================= 01. Hero：个人职业定位与核心介绍 =================
+    section.r-hero
+      div.site-container.r-hero__grid
+        div.r-hero__content
+          span.eyebrow= hero.eyebrow || 'EXECUTIVE RESUME'
+          h1.r-hero__title(data-zh=hero.headline data-en=hero.headline_en)= hero.headline
+          p.r-hero__subtitle(data-zh=hero.subtitle data-en=hero.subtitle_en)= hero.subtitle
+          div.r-hero__bio
+            each para, idx in (hero.intro || [])
+              p(data-zh=para data-en=(hero.intro_en && hero.intro_en[idx]) || para)= para
+          div.r-hero__meta
+            span #{p.name} · #{p.name_en}
+            span(data-zh=p.location data-en=p.location_en)= p.location
+            span(data-zh=p.education_brief data-en=p.education_brief_en)= p.education_brief
+          div.r-hero__actions
+            a.btn.btn--primary.js-download-resume(href=pdfUrl download=pdfName data-zh="下载中文 PDF 简历" data-en="Download Resume (CN)") 下载中文 PDF 简历
+            a.btn.btn--secondary.js-download-resume(href=pdfEnUrl download=pdfEnName data-zh="下载英文 PDF 简历" data-en="Download Resume (EN)") 下载英文 PDF 简历
+            button.btn.btn--secondary.no-print(type="button" onclick="window.print()" data-zh="打印简历" data-en="Print") 打印简历
+            a.btn.btn--secondary(href=mailHref data-zh="邮件联系" data-en="Email") 邮件联系
+        div.r-hero__side
+          div.r-hero__portrait-wrap
+            if typeof responsive_img === 'function'
+              != responsive_img(p.portrait || '/img/avatar-pro.jpg', { class: 'r-hero__portrait', alt: p.portrait_alt || '王恒职业形象照', loading: 'eager', fetchpriority: 'high', sizes: '(max-width: 768px) 220px, 240px' })
+            else
+              img.r-hero__portrait(src=url_for(p.portrait || '/img/avatar-pro.jpg') alt=(p.portrait_alt || '王恒职业形象照') loading="eager")
+          div.r-hero__facts
+            div
+              span.r-fact-label(data-zh="个人信息" data-en="Profile") 个人信息
+              span.r-fact-val(data-zh=`${p.gender} · ${p.birth}` data-en=`${p.gender_en} · ${p.birth_en}`) #{p.gender} · #{p.birth}
+            div
+              span.r-fact-label(data-zh="毕业院校" data-en="Education") 毕业院校
+              span.r-fact-val(data-zh=p.education_brief data-en=p.education_brief_en)= p.education_brief
+            div
+              span.r-fact-label(data-zh="联系邮箱" data-en="Email") 联系邮箱
+              a.r-fact-val(href=mailHref)= p.email
 
-          ul.resume-contact
-            if id.location
-              li
-                span.resume-contact__label 城市
-                span= id.location
-            if ct.email
-              li
-                span.resume-contact__label 邮箱
-                a(href=mailHref)= ct.email
-            if ct.github
-              li
-                span.resume-contact__label GitHub
-                a(href=ct.github target="_blank" rel="noopener")= ct.github.replace(/^https?:\/\/(www\.)?/, '')
-            if ct.linkedin
-              li
-                span.resume-contact__label LinkedIn
-                a(href=ct.linkedin target="_blank" rel="noopener") LinkedIn
+    //- ================= 02. Professional Summary：专业能力概要 =================
+    section.r-section.r-section--bordered(data-reveal)
+      div.site-container.r-split
+        div.r-split__head
+          span.eyebrow 02 / SUMMARY
+          h2.r-heading(data-zh=summary.title_zh data-en=summary.title_en)= summary.title_zh || '专业能力概要'
+          p.r-heading-en= summary.title_en || 'Professional Summary'
+        div.r-split__body
+          div.r-prose
+            each para, idx in (summary.paragraphs || [])
+              p(data-zh=para data-en=(summary.paragraphs_en && summary.paragraphs_en[idx]) || para)= para
+          if p.career_directions && p.career_directions.length
+            div.r-tag-row
+              each d, idx in p.career_directions
+                span.r-tag(data-zh=d data-en=(p.career_directions_en && p.career_directions_en[idx]) || d)= d
 
-          div.resume-actions
-            if ct.resume_pdf
-              a.btn.btn--primary(href=url_for(ct.resume_pdf) download="王恒-James-Wang-个人履历.pdf" target="_blank" rel="noopener")
-                svg(width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
-                  path(d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4")
-                  polyline(points="7 10 12 15 17 10")
-                  line(x1="12" x2="12" y1="15" y2="3")
-                span 下载 PDF 履历
-            button.btn.btn--secondary(type="button" onclick="window.print()")
-              svg(width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
-                polyline(points="6 9 6 2 18 2 18 9")
-                path(d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2")
-                rect(width="12" height="8" x="6" y="14")
-              span 打印 / 另存 PDF
-            a.btn.btn--secondary(href=mailHref) 邮件联系
+    //- ================= 03. Career Highlights：关键成果与里程碑 =================
+    section.r-section.r-section--bordered(data-reveal)
+      div.site-container
+        div.r-sec-head
+          span.eyebrow 03 / CAREER HIGHLIGHTS
+          h2.r-heading(data-zh="关键职业成果" data-en="Career Highlights") 关键职业成果
+        div.r-metrics-grid
+          each m in highlights
+            div.r-metric
+              div.r-metric__val(data-zh=m.value data-en=m.value_en || m.value)= m.value
+              div.r-metric__label(data-zh=m.label data-en=m.label_en || m.label)= m.label
+              div.r-metric__note(data-zh=m.note data-en=m.note_en || m.note)= m.note
 
-        div.resume-head__avatar-wrap
-          img.resume-head__avatar(src=url_for('/img/avatar-pro.jpg') alt=(id.name || config.author))
+    //- ================= 04. Work Experience：详细工作履历 =================
+    section.r-section.r-section--bordered(data-reveal)
+      div.site-container
+        div.r-sec-head
+          span.eyebrow 04 / WORK EXPERIENCE
+          h2.r-heading(data-zh="详细工作履历" data-en="Work Experience") 详细工作履历
+        div.r-timeline
+          each job in jobs
+            article.r-job(class=(job.is_primary ? 'r-job--primary' : ''))
+              div.r-job__head
+                div
+                  div.r-job__company-row
+                    h3.r-job__company(data-zh=job.company data-en=job.company_en || job.company)= job.company
+                    if job.location
+                      span.r-job__loc(data-zh=job.location data-en=job.location_en || job.location)= job.location
+                  p.r-job__role(data-zh=job.role data-en=job.role_en || job.role)= job.role
+                span.mono.r-job__period(data-zh=job.period data-en=job.period_en || job.period)= job.period
+              p.r-job__overview(data-zh=job.overview data-en=job.overview_en || job.overview)= job.overview
 
-  div.site-container.resume
-    //- ================= 1. 四维核心能力矩阵 =================
-    if sk.domains && sk.domains.length
-      section.resume-section
-        span.eyebrow 01 / CORE CAPABILITIES
-        h2.resume-section__title 核心能力版图
-        div.resume-domain-grid
-          each d in sk.domains
-            div.resume-domain-card
-              span.mono.resume-domain-card__code= d.code
-              h3.resume-domain-card__name= d.name
-              ul.resume-domain-card__list
-                each it in (d.items || [])
-                  li= it
+              if job.directions && job.directions.length
+                div.r-dir-grid
+                  each dir in job.directions
+                    div.r-dir-block
+                      div.r-dir-block__head
+                        span.mono.r-dir-block__num= dir.num
+                        h4.r-dir-block__title(data-zh=dir.title data-en=dir.title_en || dir.title)= dir.title
+                      ul.r-list
+                        each it in (dir.items || [])
+                          li= it
+              else if job.bullets && job.bullets.length
+                ul.r-list.r-list--single
+                  each b in job.bullets
+                    li= b
 
-    //- ================= 2. 代表性项目与实践 =================
-    if projects && projects.length
-      section.resume-section
-        div.resume-section__head
+    //- ================= 05. Featured Projects：三个代表项目 =================
+    section.r-section.r-section--bordered(data-reveal)
+      div.site-container
+        div.r-sec-head.r-sec-head--row
           div
-            span.eyebrow 02 / SELECTED PROJECTS
-            h2.resume-section__title 代表性项目与实践
-          a.section__more(href=url_for('/projects/')) 查看全部案例详情 →
-        div.resume-proj-grid
+            span.eyebrow 05 / FEATURED PROJECTS
+            h2.r-heading(data-zh="代表项目案例" data-en="Featured Projects") 代表项目案例
+          a.section__more.no-print(href=url_for('/projects/') data-zh="查看全部项目案例 →" data-en="All Projects →") 查看全部项目案例 →
+        div.r-proj-list
           each proj in projects
-            a.resume-proj-card(href=url_for(proj.url))
-              span.resume-proj-card__cat= proj.category
-              h3.resume-proj-card__name= proj.name
-              p.resume-proj-card__desc= proj.summary
+            article.r-proj-card
+              div.r-proj-card__top
+                div.r-proj-card__title-wrap
+                  span.mono.r-proj-card__num= proj.code
+                  div
+                    h3.r-proj-card__name(data-zh=proj.name data-en=proj.name_en || proj.name)= proj.name
+                    p.r-proj-card__role
+                      strong(data-zh="担任角色：" data-en="Role: ") 担任角色：
+                      span(data-zh=proj.role data-en=proj.role_en || proj.role)= proj.role
+                span.r-stage-pill(data-zh=proj.stage data-en=proj.stage_en || proj.stage)= proj.stage
+              p.r-proj-card__pos(data-zh=proj.positioning data-en=proj.positioning_en || proj.positioning)= proj.positioning
+              div.r-proj-card__body
+                div.r-proj-card__work
+                  span.r-sub-label(data-zh="主要工作" data-en="Key Responsibilities") 主要工作
+                  ul.r-list
+                    each w in (proj.responsibilities || [])
+                      li= w
+                div.r-proj-card__val-box
+                  span.r-sub-label(data-zh="业务价值" data-en="Business Value") 业务价值
+                  p(data-zh=proj.value data-en=proj.value_en || proj.value)= proj.value
+                  if proj.link
+                    a.r-inline-link.no-print(href=url_for(proj.link) data-zh="查看相关项目说明 →" data-en="View Case Details →") 查看相关项目说明 →
 
-    //- ================= 3. 专业关键词 =================
-    if sk.keywords && sk.keywords.length
-      section.resume-section
-        span.eyebrow 03 / KEYWORDS
-        h2.resume-section__title 专业领域与技术关键词
-        div.resume-keywords
-          each k in sk.keywords
-            span.resume-keyword= k
+    //- ================= 06. Core Competencies：六大核心能力 =================
+    section.r-section.r-section--bordered(data-reveal)
+      div.site-container
+        div.r-sec-head
+          span.eyebrow 06 / CORE COMPETENCIES
+          h2.r-heading(data-zh="六大核心能力" data-en="Core Competencies") 六大核心能力
+        div.r-comp-grid
+          each c in comps
+            div.r-comp-item
+              div.r-comp-item__top
+                span.mono.r-comp-item__num #{c.num} / #{c.en}
+              h3.r-comp-item__title(data-zh=c.title data-en=c.title_en || c.title)= c.title
+              p.r-comp-item__desc(data-zh=c.desc data-en=c.desc_en || c.desc)= c.desc
 
-    //- ================= 4. 履历正文 =================
-    if page.content
-      section.resume-section.resume-body.prose
-        != page.content
+    //- ================= 07. Technical Expertise：技术与专业领域 =================
+    section.r-section.r-section--bordered(data-reveal)
+      div.site-container
+        div.r-sec-head
+          span.eyebrow 07 / TECHNICAL EXPERTISE
+          h2.r-heading(data-zh="技术与专业领域" data-en="Technical Expertise") 技术与专业领域
+        div.r-tech-grid
+          each grp in tech
+            div.r-tech-col
+              h3.r-tech-col__title(data-zh=grp.domain data-en=grp.domain_en)= grp.domain
+              p.mono.r-tech-col__en= grp.domain_en
+              ul.r-tech-list
+                each item, idx in (grp.items || [])
+                  li(data-zh=item data-en=(grp.items_en && grp.items_en[idx]) || item)= item
 
-    //- ================= 5. 页脚引导 =================
-    footer.resume-foot
-      p
-        | 了解更多实践案例与深度观点，请访问
-        a(href=url_for('/projects/'))  项目作品
-        | 、
-        a(href=url_for('/about/'))  关于我
-        |  或
-        a(href=url_for('/speaking/'))  演讲与合作
-        | 。
+    //- ================= 08. Leadership & Management：研发管理与规划 =================
+    section.r-section.r-section--bordered(data-reveal)
+      div.site-container
+        div.r-sec-head
+          span.eyebrow 08 / LEADERSHIP & MANAGEMENT
+          h2.r-heading(data-zh=lead.title_zh data-en=lead.title_en)= lead.title_zh || '研发团队管理与产品研发规划'
+          p.r-lead-desc(data-zh=lead.intro data-en=lead.intro_en || lead.intro)= lead.intro
+        div.r-lead-grid
+          each pl in (lead.pillars || [])
+            div.r-lead-item
+              h3.r-lead-item__title(data-zh=pl.title data-en=pl.title_en || pl.title)= pl.title
+              p.r-lead-item__desc(data-zh=pl.desc data-en=pl.desc_en || pl.desc)= pl.desc
+
+    //- ================= 09. Speaking & Engagement：公开演讲与行业交流 =================
+    section.r-section.r-section--bordered(data-reveal)
+      div.site-container
+        div.r-sec-head
+          span.eyebrow 09 / SPEAKING & ENGAGEMENT
+          h2.r-heading(data-zh=spk.title_zh data-en=spk.title_en)= spk.title_zh || '公开演讲与行业交流'
+          p.r-lead-desc(data-zh=spk.subtitle data-en=spk.subtitle_en || spk.subtitle)= spk.subtitle
+        div.r-tag-row(style="margin-bottom:24px")
+          each fmt, idx in (spk.formats || [])
+            span.r-tag(data-zh=fmt data-en=(spk.formats_en && spk.formats_en[idx]) || fmt)= fmt
+        div.r-spk-gallery
+          each ph in (spk.photos || [])
+            figure.r-spk-item(class=(ph.featured ? 'r-spk-item--featured' : ''))
+              if typeof responsive_img === 'function'
+                != responsive_img(ph.src, { class: 'speaking-card__img r-spk-img', alt: ph.alt, loading: 'lazy', sizes: ph.featured ? '(max-width: 768px) 92vw, 720px' : '(max-width: 768px) 92vw, 380px' })
+              else
+                img.speaking-card__img.r-spk-img(src=url_for(ph.src) alt=ph.alt loading="lazy")
+              figcaption.r-spk-cap= ph.caption
+
+    //- ================= 10. Languages & International Collaboration =================
+    section.r-section.r-section--bordered(data-reveal)
+      div.site-container
+        div.r-sec-head
+          span.eyebrow 10 / LANGUAGES &amp; INTERNATIONAL COLLABORATION
+          h2.r-heading(data-zh=langSec.title_zh data-en=langSec.title_en)= langSec.title_zh || '语言能力与国际化协作经验'
+          p.r-heading-en= langSec.title_en || 'Languages & International Collaboration'
+
+        div.r-lang-layout
+          div.r-lang-cards
+            each lg in (langSec.languages || [])
+              div.r-lang-card
+                div.r-lang-card__head
+                  div.r-lang-card__title-wrap
+                    span.r-icon-badge(aria-hidden="true")
+                      svg(width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+                        path(d="m5 8 6 6")
+                        path(d="m4 14 6-6 2-3")
+                        path(d="M2 5h12")
+                        path(d="M7 2h1")
+                        path(d="m22 22-5-10-5 10")
+                        path(d="M14 18h6")
+                    h3.r-lang-card__name(data-zh=lg.name_zh data-en=lg.name_en)= lg.name_zh
+                  span.r-lang-pill(data-zh=lg.tag_zh data-en=lg.tag_en)= lg.tag_zh
+                p.r-lang-card__desc(data-zh=lg.desc_zh data-en=lg.desc_en)= lg.desc_zh
+
+          div.r-intl-card
+            div.r-intl-card__head
+              span.r-icon-badge(aria-hidden="true")
+                svg(width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+                  circle(cx="12" cy="12" r="10")
+                  path(d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20")
+                  path(d="M2 12h20")
+              h3.r-intl-card__title(data-zh=langSec.collaboration_title_zh data-en=langSec.collaboration_title_en)= langSec.collaboration_title_zh || '国际化协作经验'
+            ul.r-list.r-intl-list
+              each item, idx in (langSec.collaboration_items_zh || [])
+                li(data-zh=item data-en=(langSec.collaboration_items_en && langSec.collaboration_items_en[idx]) || item)= item
+            div.r-intl-foot
+              span.r-intl-chip
+                svg(width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+                  rect(width="20" height="16" x="2" y="4" rx="2")
+                  path(d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7")
+                span(data-zh="香港 / 美国业务邮件沟通" data-en="HK & US Business Email") 香港 / 美国业务邮件沟通
+              span.r-intl-chip
+                svg(width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true")
+                  path(d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2")
+                  circle(cx="9" cy="7" r="4")
+                  path(d="M22 21v-2a4 4 0 0 0-3-3.87")
+                  path(d="M16 3.13a4 4 0 0 1 0 7.75")
+                span(data-zh="外籍管理者跨文化协作" data-en="Cross-Cultural Management") 外籍管理者跨文化协作
+
+    //- ================= 11. Education：教育背景 =================
+    section.r-section.r-section--bordered(data-reveal)
+      div.site-container.r-split
+        div.r-split__head
+          span.eyebrow 11 / EDUCATION
+          h2.r-heading(data-zh="教育背景" data-en="Education") 教育背景
+          p.r-heading-en Education
+        div.r-split__body
+          each ed in edu
+            div.r-edu-row
+              h3.r-edu-row__school(data-zh=ed.school data-en=ed.school_en || ed.school)= ed.school
+              p.r-edu-row__meta(data-zh=`${ed.degree} · ${ed.major}` data-en=`${ed.degree_en || ed.degree} · ${ed.major_en || ed.major}`) #{ed.degree} · #{ed.major}
+
+    //- ================= 12 & 13. Contact & Download Resume =================
+    section#resume-contact.r-section.r-section--bordered(data-reveal)
+      div.site-container
+        div.r-bottom-grid
+          div.r-contact-panel
+            span.eyebrow 12 / CONTACT
+            h2.r-heading(data-zh=ct.title_zh data-en=ct.title_en)= ct.title_zh || '联系方式与合作交流'
+            p.r-lead-desc= ct.subtitle
+            ul.r-list(style="margin-top:16px")
+              each d in (ct.directions || [])
+                li= d
+            div.r-contact-actions
+              a.btn.btn--primary(href=mailHref) 发送邮件：#{p.email}
+              button.btn.btn--secondary.no-print(type="button" data-copy=p.email) 复制邮箱
+              if p.github
+                a.btn.btn--secondary(href=p.github target="_blank" rel="noopener") GitHub
+          div.r-download-panel.no-print
+            span.eyebrow 13 / DOWNLOAD RESUME
+            h2.r-heading(data-zh="下载中英文 PDF 简历" data-en="Download PDF Resumes") 下载中英文 PDF 简历
+            p.r-lead-desc 本页在线履历与中英文 PDF 文件基于同一份数据源自动生成，A4 排版、中英文字体清晰、支持全文复制与检索，便于内部流转与存档。
+            div.r-download-actions
+              a.btn.btn--primary.js-download-resume(href=pdfUrl download=pdfName) 下载中文版（#{pdfName}）
+              a.btn.btn--secondary.js-download-resume(href=pdfEnUrl download=pdfEnName) 下载英文版（#{pdfEnName}）
+              button.btn.btn--secondary(type="button" onclick="window.print()") 浏览器打印 / 另存 PDF
+            div.r-download-links
+              a(href=url_for('/about/')) ← 返回关于我（About）
+              a(href=url_for('/projects/')) 浏览项目作品集 →

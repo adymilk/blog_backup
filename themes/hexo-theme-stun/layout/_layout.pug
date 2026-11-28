@@ -35,6 +35,7 @@ html(lang=config.language || 'zh-CN')
       link(rel="icon" href=url_for(theme.favicon.small) type="image/png" sizes="16x16")
     if theme.favicon && theme.favicon.medium
       link(rel="icon" href=url_for(theme.favicon.medium) type="image/png" sizes="32x32")
+    block head_extra
     link(rel="stylesheet" href=url_for('/css/index.css'))
     script(type="application/ld+json")!= JSON.stringify(jsonLd)
     script.
@@ -58,6 +59,7 @@ html(lang=config.language || 'zh-CN')
         nav.site-nav(aria-label="主导航")
           a.site-nav__link(href=url_for('/') class=(is_home() ? 'is-active' : '') data-zh="首页" data-en="HOME") 首页
           a.site-nav__link(href=url_for('/about/') class=(p.indexOf('about') === 0 ? 'is-active' : '') data-zh="关于我" data-en="ABOUT") 关于我
+          a.site-nav__link(href=url_for('/resume/') class=(p.indexOf('resume') === 0 ? 'is-active' : '') data-zh="职业简历" data-en="RESUME") 职业简历
           a.site-nav__link(href=url_for('/insights/') class=(p.indexOf('insights') === 0 ? 'is-active' : '') data-zh="行业观察" data-en="INSIGHTS") 行业观察
           a.site-nav__link(href=url_for('/technology/') class=(p.indexOf('technology') === 0 ? 'is-active' : '') data-zh="技术实践" data-en="TECHNOLOGY") 技术实践
           a.site-nav__link(href=url_for('/projects/') class=(p.indexOf('projects') === 0 ? 'is-active' : '') data-zh="项目作品" data-en="PROJECTS") 项目作品
@@ -95,6 +97,7 @@ html(lang=config.language || 'zh-CN')
         nav.mobile-drawer__nav
           a(href=url_for('/') data-zh="HOME / 首页" data-en="HOME") HOME / 首页
           a(href=url_for('/about/') data-zh="ABOUT / 关于我" data-en="ABOUT") ABOUT / 关于我
+          a(href=url_for('/resume/') data-zh="RESUME / 职业简历" data-en="RESUME") RESUME / 职业简历
           a(href=url_for('/insights/') data-zh="INSIGHTS / 行业观察" data-en="INSIGHTS") INSIGHTS / 行业观察
           a(href=url_for('/technology/') data-zh="TECHNOLOGY / 技术实践" data-en="TECHNOLOGY") TECHNOLOGY / 技术实践
           a(href=url_for('/projects/') data-zh="PROJECTS / 项目作品" data-en="PROJECTS") PROJECTS / 项目作品
@@ -119,17 +122,17 @@ html(lang=config.language || 'zh-CN')
             a(href=url_for('/atom.xml')) RSS
         div.site-footer__nav
           div
-            h4(data-zh="核心栏目" data-en="Navigation") 核心栏目
+            p.site-footer__heading(data-zh="核心栏目" data-en="Navigation") 核心栏目
             a(href=url_for('/about/') data-zh="关于我" data-en="About") 关于我
+            a(href=url_for('/resume/') data-zh="职业简历" data-en="Resume") 职业简历
             a(href=url_for('/insights/') data-zh="行业观察" data-en="Insights") 行业观察
-            a(href=url_for('/technology/') data-zh="技术实践" data-en="Technology") 技术实践
             a(href=url_for('/projects/') data-zh="项目作品" data-en="Projects") 项目作品
           div
-            h4(data-zh="延伸与合作" data-en="Connect") 延伸与合作
+            p.site-footer__heading(data-zh="延伸与合作" data-en="Connect") 延伸与合作
+            a(href=url_for('/technology/') data-zh="技术实践" data-en="Technology") 技术实践
             a(href=url_for('/thoughts/') data-zh="思考随笔" data-en="Thoughts") 思考随笔
             a(href=url_for('/speaking/') data-zh="演讲与合作" data-en="Speaking") 演讲与合作
             a(href=url_for('/archives/') data-zh="全部归档" data-en="Archives") 全部归档
-            a(href=url_for('/resume/') data-zh="在线履历" data-en="Resume") 在线履历
       div.site-container.site-footer__bottom
         span © #{new Date().getFullYear()} 王恒 (James Wang). All rights reserved.
         span(data-zh="上海 · 中国" data-en="Shanghai · China") 上海 · 中国
@@ -150,4 +153,4 @@ html(lang=config.language || 'zh-CN')
     //- Toast
     div#toast.toast(role="status" aria-live="polite")
 
-    script(src=url_for('/js/brand.js'))
+    script(defer src=url_for('/js/brand.js'))

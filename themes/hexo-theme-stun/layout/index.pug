@@ -1,5 +1,12 @@
 extends ./_layout.pug
 
+block head_extra
+  -
+    var _brandData = (site.data && site.data.brand) || {}
+    var _hero = _brandData.hero || {}
+  if typeof hero_preload === 'function'
+    != hero_preload(_hero.portrait || '/img/avatar-pro.jpg', '(max-width: 768px) 92vw, 460px')
+
 block content
   -
     var brandData = (site.data && site.data.brand) || {}
@@ -15,7 +22,6 @@ block content
     var featuredPosts = allPosts.filter(function(p) { return p.featured })
     var latestInsights = (featuredPosts.length ? featuredPosts : allPosts).slice(0, 4)
 
-  //- ================= Hero 首屏 =================
   section.hero
     div.site-container.hero__grid
       div.hero__content
@@ -27,12 +33,11 @@ block content
           a.btn.btn--primary(href=url_for('/projects/') data-zh="探索我的项目 →" data-en="Explore Projects →") 探索我的项目 →
           a.btn.btn--secondary(href=url_for('/insights/') data-zh="阅读我的观点" data-en="Read Insights") 阅读我的观点
       div.hero__visual
-        img.hero__photo(src=url_for(hero.portrait || '/img/avatar-pro.jpg') alt=(hero.portrait_alt || '王恒演讲现场') loading="eager")
+        != responsive_img(hero.portrait || '/img/avatar-pro.jpg', { class: 'hero__photo', alt: hero.portrait_alt || '王恒演讲现场', loading: 'eager', fetchpriority: 'high', sizes: '(max-width: 768px) 92vw, 460px' })
         div.hero__caption
           span(data-zh="王恒 · James Wang" data-en="James Wang") 王恒 · James Wang
           span(data-zh="行业分享与解决方案演讲现场" data-en="Keynote & Solution Briefing") 行业分享与解决方案演讲现场
 
-  //- ================= A. Personal Profile =================
   section.section.section--bordered(data-reveal)
     div.site-container
       div.profile-strip
@@ -46,7 +51,6 @@ block content
           li 熟悉 AI Agent、RAG 企业知识库、数据工程（ETL）与系统集成。
           li 擅长跨部门协作、产品宣讲、客户培训及公开场合行业分享。
 
-  //- ================= B. Focus Areas =================
   section.section.section--bordered(data-reveal)
     div.site-container
       div.section__head
@@ -61,7 +65,6 @@ block content
             h3.focus-card__title(data-zh=area.title_zh data-en=area.title_en)= area.title_zh
             p.focus-card__desc(data-zh=area.desc_zh data-en=area.desc_en)= area.desc_zh
 
-  //- ================= C. Featured Projects =================
   section.section.section--bordered(data-reveal)
     div.site-container
       div.section__head
@@ -73,7 +76,7 @@ block content
         each proj in featuredProjects
           a.project-card(href=url_for(proj.url))
             div.project-card__cover
-              img(src=url_for(proj.cover) alt=proj.title_zh loading="lazy")
+              != responsive_img(proj.cover, { alt: proj.title_zh, loading: 'lazy', sizes: '(max-width: 768px) 92vw, 380px', lightbox: false })
             div.project-card__body
               span.project-card__cat= proj.category
               h3.project-card__title(data-zh=proj.title_zh data-en=proj.title_en)= proj.title_zh
@@ -82,7 +85,6 @@ block content
                 each t in (proj.tags || []).slice(0, 3)
                   span= t
 
-  //- ================= D. Latest Insights =================
   section.section.section--bordered(data-reveal)
     div.site-container
       div.section__head
@@ -102,7 +104,6 @@ block content
             h3.insight-card__title= post.title
             p.insight-card__excerpt= rawExcerpt
 
-  //- ================= E. Personal Philosophy =================
   section.section.section--bordered(data-reveal)
     div.site-container
       div.philosophy-box
@@ -114,7 +115,6 @@ block content
               h3(data-zh=item.title_zh data-en=item.title_en)= item.title_zh
               p(data-zh=item.desc_zh data-en=item.desc_en)= item.desc_zh
 
-  //- ================= F. Speaking & Collaboration =================
   section.section.section--bordered(data-reveal)
     div.site-container
       div.section__head
@@ -123,7 +123,7 @@ block content
           h2.section__title(data-zh="公开演讲与商业合作" data-en="Speaking & Collaboration") 公开演讲与商业合作
         a.section__more(href=url_for('/speaking/') data-zh="演讲与合作详情 →" data-en="Speaking Details →") 演讲与合作详情 →
       div.speaking-split
-        img.speaking-split__img(src=url_for('/img/speaking-minitab.jpg') alt="2025 上海 Minitab 战略合作研讨会演讲现场" loading="lazy")
+        != responsive_img('/img/speaking-minitab.jpg', { class: 'speaking-split__img speaking-card__img', alt: '2025 上海 Minitab 战略合作研讨会演讲现场', loading: 'lazy', sizes: '(max-width: 768px) 92vw, 480px' })
         div
           span.eyebrow 2025.02 · SHANGHAI
           h3.section__title(style="margin-top:8px" data-zh="行业分享、企业内训与数字化咨询" data-en="Keynotes, Enterprise Training & Advisory") 行业分享、企业内训与数字化咨询

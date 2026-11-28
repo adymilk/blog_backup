@@ -60,7 +60,7 @@
     if (bd) bd.addEventListener('click', function () { toggleDrawer(false); });
   }
 
-  // 5. Search Modal (/search.json)
+  // 5. Search Modal (/search.json, fetched lazily on open)
   var searchModal = document.getElementById('search-modal');
   var searchTrigger = document.getElementById('search-trigger');
   var searchClose = document.getElementById('search-close');
@@ -140,13 +140,19 @@
     }
   });
 
-  // 7. Image Lightbox
+  // 6b. Resume PDF Download Feedback
+  document.addEventListener('click', function (e) {
+    var dl = e.target.closest('.js-download-resume');
+    if (dl) showToast('正在下载 PDF 简历：' + (dl.getAttribute('download') || 'Professional_Resume_CN.pdf'));
+  });
+
+  // 7. Image Lightbox (loads HD original via data-full only on click)
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
   document.addEventListener('click', function (e) {
-    var img = e.target.closest('.prose img, .speaking-card__img, .project-detail__cover img');
+    var img = e.target.closest('.prose img, .speaking-card__img, .project-detail__cover img, .hero__photo, .ab-hero__img, .r-hero__portrait');
     if (img && lightbox && lightboxImg) {
-      lightboxImg.src = img.src;
+      lightboxImg.src = img.getAttribute('data-full') || img.currentSrc || img.src;
       lightboxImg.alt = img.alt || '';
       lightbox.classList.add('is-open');
       lightbox.setAttribute('aria-hidden', 'false');
@@ -202,15 +208,21 @@
   } else {
     for (var r2 = 0; r2 < reveals.length; r2++) reveals[r2].classList.add('is-revealed');
   }
-})();
 
-  // 10. Article Reading Progress Bar
-  var prog = document.getElementById("reading-progress");
+  // 10. Article Reading Progress Bar (GPU-composited transform: scaleX)
+  var prog = document.getElementById('reading-progress');
   if (prog) {
-    window.addEventListener("scroll", function () {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      var pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
-      prog.style.width = pct + "%";
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        var ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        prog.style.transform = 'scaleX(' + ratio.toFixed(4) + ')';
+        ticking = false;
+      });
     }, { passive: true });
   }
+})();

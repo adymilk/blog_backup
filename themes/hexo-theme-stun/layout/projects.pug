@@ -22,10 +22,10 @@ block content
         button.filter-chip(type="button" data-filter=c)= c
 
     div.projects-showcase
-      each proj in projects
+      each proj, idx in projects
         a.project-card(href=url_for(proj.url) data-category=proj.category)
           div.project-card__cover
-            img(src=url_for(proj.cover) alt=proj.title_zh loading="lazy")
+            != responsive_img(proj.cover, { alt: proj.title_zh, loading: idx === 0 ? 'eager' : 'lazy', fetchpriority: idx === 0 ? 'high' : undefined, sizes: '(max-width: 768px) 92vw, 560px', lightbox: false })
           div.project-card__body
             div(style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px")
               span.project-card__cat(style="margin:0")= proj.category

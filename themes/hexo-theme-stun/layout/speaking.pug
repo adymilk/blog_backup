@@ -15,7 +15,6 @@ block content
       p.channel-hero__desc= speaking.summary_zh
 
   section.site-container(style="padding:36px 24px 72px")
-    //- 1. Collaboration Modes
     div.focus-grid(style="margin-bottom:48px")
       div.focus-card
         span.focus-card__en 01 / KEYNOTES
@@ -30,7 +29,6 @@ block content
         h2.focus-card__title 企业咨询与项目合作
         p.focus-card__desc 围绕工业数据平台规划、AI Agent 工作流设计与产品商业化落地提供顾问与架构支持。
 
-    //- 2. Inviteable Topics
     if topics.length
       div(style="margin-bottom:48px")
         span.eyebrow SPEAKING TOPICS
@@ -41,23 +39,21 @@ block content
               span.mono.topic-row__num 0#{idx + 1}
               span.topic-row__text= tp
 
-    //- 3. Past Events Showcase
     h2(style="margin:0 0 20px;font-size:1.25rem") 近期演讲与现场记录
     div.insights-grid(style="margin-bottom:48px")
       each ev in events
         div.insight-card
-          img.speaking-card__img(src=url_for(ev.image) alt=ev.title_zh style="width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center 25%;border-radius:6px;margin-bottom:14px;cursor:zoom-in" loading="lazy")
+          != responsive_img(ev.image, { class: 'speaking-card__img', alt: ev.title_zh, loading: 'lazy', sizes: '(max-width: 768px) 92vw, 560px', style: 'width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center 25%;border-radius:6px;margin-bottom:14px;cursor:zoom-in' })
           div.insight-card__meta
             span.mono= ev.date
             span.insight-card__cat= ev.location
           h3.insight-card__title= ev.title_zh
           p.insight-card__excerpt= ev.desc_zh
 
-    //- 4. Business Contact Card
     div#contact.philosophy-box
       span.eyebrow CONTACT & INQUIRIES
       h2(style="margin:8px 0 12px;font-size:1.35rem") 商务沟通与合作联系
-      p(style="color:var(--text-secondary);margin:0 0 20px") 欢迎通过邮件或微信联系，探讨公开演讲邀请、企业内训、工业数字化方案或 AI 应用落地合作。
+      p(style="color:var(--text-secondary);margin:0 0 20px") 欢迎通过邮件联系，探讨公开演讲邀请、企业内训、工业数字化方案或 AI 应用落地合作。
       div(style="display:flex;flex-wrap:wrap;gap:12px")
         if brand.email
           a.btn.btn--primary(href=`mailto:${brand.email}?subject=${encodeURIComponent('【合作咨询】工业数字化 / AI 应用 / 演讲邀请')}`) 发送合作邮件

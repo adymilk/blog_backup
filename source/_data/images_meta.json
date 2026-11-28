@@ -1,0 +1,51 @@
+{
+  "/img/avatar-pro.jpg": {
+    "original": "/img/avatar-pro.jpg",
+    "width": 800,
+    "height": 534,
+    "fallback": "/img/opt/avatar-pro-800w.jpg",
+    "webp_variants": []
+  },
+  "/img/speaking-minitab.jpg": {
+    "original": "/img/speaking-minitab.jpg",
+    "width": 800,
+    "height": 1067,
+    "fallback": "/img/opt/speaking-minitab-800w.jpg",
+    "webp_variants": []
+  },
+  "/img/about/speaking-01.jpg": {
+    "original": "/img/about/speaking-01.jpg",
+    "width": 800,
+    "height": 534,
+    "fallback": "/img/opt/about/speaking-01-800w.jpg",
+    "webp_variants": []
+  },
+  "/img/about/speaking-02.jpg": {
+    "original": "/img/about/speaking-02.jpg",
+    "width": 800,
+    "height": 534,
+    "fallback": "/img/opt/about/speaking-02-800w.jpg",
+    "webp_variants": []
+  },
+  "/img/about/event-01.jpg": {
+    "original": "/img/about/event-01.jpg",
+    "width": 800,
+    "height": 600,
+    "fallback": "/img/opt/about/event-01-800w.jpg",
+    "webp_variants": []
+  },
+  "/img/about/event-02.jpg": {
+    "original": "/img/about/event-02.jpg",
+    "width": 800,
+    "height": 1067,
+    "fallback": "/img/opt/about/event-02-800w.jpg",
+    "webp_variants": []
+  },
+  "/img/bg.jpeg": {
+    "original": "/img/bg.jpeg",
+    "width": 800,
+    "height": 536,
+    "fallback": "/img/opt/bg-800w.jpg",
+    "webp_variants": []
+  }
+}

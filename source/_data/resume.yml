@@ -1,0 +1,491 @@
+# =============================================================================
+# 个人简历单一数据源 (Single Source of Truth)
+# 同时驱动 /resume/ 网页、Professional_Resume_CN.pdf 与 Professional_Resume_EN.pdf
+# =============================================================================
+
+meta:
+  pdf_filename: Professional_Resume_CN.pdf
+  pdf_url: /uploads/Professional_Resume_CN.pdf
+  pdf_en_filename: Professional_Resume_EN.pdf
+  pdf_en_url: /uploads/Professional_Resume_EN.pdf
+  updated_at: "2026-11"
+
+personal:
+  name: 王恒
+  name_en: James Wang
+  gender: 男
+  gender_en: Male
+  birth: 1995年1月
+  birth_en: Jan 1995
+  location: 上海 · 中国
+  location_en: Shanghai, China
+  education_brief: 本科 · 上海理工大学 · 计算机科学与技术
+  education_brief_en: B.Eng. in Computer Science & Technology, University of Shanghai for Science and Technology
+  email: adymilk@icloud.com
+  github: https://github.com/adymilk
+  website: https://adymilk.github.io
+  portrait: /img/avatar-pro.jpg
+  portrait_alt: 王恒职业形象照
+  positions:
+    - 工业软件产品与技术负责人
+    - 高级系统架构师
+    - 企业数字化解决方案专家
+    - 智能制造与 AI 应用实践者
+  positions_en:
+    - Industrial Software Product & Tech Lead
+    - Senior Systems Architect
+    - Enterprise Digitalization Solutions Specialist
+    - Smart Manufacturing & AI Practitioner
+  career_directions:
+    - 工业软件与智能制造
+    - 企业级软件系统架构
+    - 产品研发与团队管理
+    - 企业数字化转型
+    - AI Agent 与企业 AI 应用
+    - 技术产品商业化
+  career_directions_en:
+    - Industrial Software & Smart Manufacturing
+    - Enterprise Systems Architecture
+    - R&D & Team Management
+    - Enterprise Digital Transformation
+    - AI Agent & Enterprise AI
+    - Product Commercialization
+
+hero:
+  eyebrow: EXECUTIVE RESUME / 个人履历
+  headline: 连接技术、产品与商业价值
+  headline_en: Bridging Technology, Product & Business Value
+  subtitle: 工业软件产品与技术负责人 · 高级系统架构师 · 企业数字化解决方案专家
+  subtitle_en: Industrial Software Product & Tech Lead · Senior Systems Architect · Enterprise Solutions Specialist
+  intro:
+    - 专注工业软件、智能制造与企业数字化领域，具备从软件开发、系统架构、5人研发团队管理到产品规划、解决方案设计和客户交付的复合型经验。
+    - 长期参与工业质量分析软件及企业数据平台建设，参与服务约40家客户、约50个项目，持续推动技术能力向产品价值和商业成果转化。
+  intro_en:
+    - Focused on industrial software, smart manufacturing, and enterprise digitalization, combining hands-on software engineering, systems architecture, 5-person R&D team management, product planning, solution design, and client delivery.
+    - Contributed to industrial quality analytics platforms and enterprise data infrastructure, serving approx. 40 clients across approx. 50 projects while translating technical capability into product and commercial value.
+
+summary:
+  title_en: Professional Summary
+  title_zh: 专业能力概要
+  paragraphs:
+    - 从一线软件开发工程师起步，逐步成长为兼具企业级系统架构设计、5人研发团队管理、工业软件产品规划、制造业数字化解决方案与售前交付经验的复合型产品与技术负责人。
+    - 长期深耕制造业质量管理与工业数据分析场景，熟悉 SPC、MSA、过程能力分析等专业业务，推动 Minitab 统计分析算法与现代 Web/Python 工程体系融合，参与打造 BSA（Brumano Smart Analytics）系列产品及企业数据集成平台规划。
+    - 既能把控 B/S 架构、数据库、接口集成与部署体系的工程落地，也能直接面向客户开展需求调研、产品演示、技术方案汇报与项目交付，协同研发、产品、销售与实施团队推动产品商业化与客户持续合作。
+  paragraphs_en:
+    - Progressed from hands-on software developer to a multidisciplinary product and technology lead combining enterprise systems architecture, 5-person R&D team management, industrial software product planning, manufacturing digitalization solutions, and pre-sales/delivery execution.
+    - Deeply experienced in manufacturing quality management and industrial data analytics (SPC, MSA, process capability analysis), integrating Minitab statistical algorithms with modern Web/Python engineering to build the BSA (Brumano Smart Analytics) product suite and plan enterprise data integration infrastructure.
+    - Capable of both end-to-end B/S architecture and system integration as well as direct customer discovery, product demonstrations, technical proposals, cross-team delivery coordination, and cross-regional business collaboration.
+
+highlights:
+  - value: 约40家
+    value_en: Approx. 40
+    label: 累计服务客户
+    label_en: Manufacturing Clients Served
+    note: 制造业质量数字化客户场景落地
+    note_en: Industrial quality digitalization deployments
+  - value: 约50个
+    value_en: Approx. 50
+    label: 累计参与项目
+    label_en: Projects Participated
+    note: 覆盖售前方案、产品实施与持续服务
+    note_en: Pre-sales, implementation & ongoing support
+  - value: 5人
+    value_en: 5 Engineers
+    label: 研发团队管理
+    label_en: R&D Team Management
+    note: 研发计划、任务协调与交付质量把控
+    note_en: Planning, coordination & delivery quality
+  - value: 2019年至今
+    value_en: 2019 – Present
+    label: TECHMAX 任职
+    label_en: Tenure at TECHMAX
+    note: 从系统架构、产品规划到解决方案与商业支持
+    note_en: Architecture, product, solutions & commercialization
+
+work_experience:
+  - company: TECHMAX
+    company_en: TECHMAX
+    period: 2019年至今
+    period_en: 2019 – Present
+    role: 高级系统架构师 / 解决方案工程师
+    role_en: Senior Systems Architect / Solutions Engineer
+    location: 上海
+    location_en: Shanghai
+    is_primary: true
+    overview: 负责5人研发团队的日常管理与协作，参与产品技术路线规划、系统架构设计、工业软件产品规划及企业数字化解决方案落地；统筹协调产品、研发、销售与实施资源，推动从客户需求、产品迭代到项目交付与客户续约的全流程协同。具备国际化业务协作经验，长期与外籍管理者协作，并与香港、美国业务团队保持英文邮件沟通，能够独立处理日常英文商务及技术资料往来。
+    overview_en: Manage day-to-day collaboration for a 5-person R&D team while driving product technical roadmaps, systems architecture, industrial software product planning, and enterprise digitalization delivery across product, R&D, sales, and implementation. Experienced in international business collaboration, working long-term with foreign management and maintaining regular English email communication with business teams in Hong Kong and the United States for routine commercial and technical matters.
+    directions:
+      - num: "01"
+        title: 技术架构与研发管理
+        title_en: Systems Architecture & R&D Management
+        items:
+          - 负责企业级软件产品的整体技术架构设计与技术路线规划。
+          - 参与 B/S 架构产品的系统设计、技术选型和架构优化。
+          - 负责前后端系统架构、数据库、缓存、接口服务及部署体系规划。
+          - 带领5人研发团队，负责研发计划制定、任务分配、进度跟踪和质量管理。
+          - 协调研发资源，推动产品标准化、模块化和平台化建设。
+          - 参与技术方案评审，解决产品研发及项目实施中的关键技术问题，并持续优化研发协作与交付效率。
+        items_en:
+          - Led overall enterprise software architecture design and technical roadmap planning.
+          - Participated in B/S system design, technology selection, and architecture optimization across frontend, backend, databases, caching, APIs, and deployment.
+          - Managed a 5-person R&D team covering sprint planning, task allocation, progress tracking, and delivery quality.
+          - Drove product standardization and modularization, participating in technical reviews and resolving critical engineering and implementation issues.
+      - num: "02"
+        title: 工业软件产品规划与管理
+        title_en: Industrial Software Product Planning
+        items:
+          - 参与工业软件产品的整体规划、产品定位和功能体系设计。
+          - 深入制造业质量管理场景，理解 SPC、MSA、过程能力分析等专业业务。
+          - 负责产品需求调研、需求分析、产品功能规划和版本迭代。
+          - 推动 BSA（Brumano Smart Analytics）智能数据分析平台建设，参与 BSA-SPC、BSA-MSA 等核心产品的规划与研发。
+          - 推动 Minitab 统计分析算法与 Python 技术结合，实现专业统计分析能力的产品化。
+          - 协调研发团队，将客户需求转化为可实施、可维护和可商业化的产品功能。
+        items_en:
+          - Contributed to industrial software product strategy, positioning, and functional architecture for manufacturing quality management (SPC, MSA, process capability).
+          - Owned requirements discovery, analysis, feature design, and release iteration planning.
+          - Helped build the BSA (Brumano Smart Analytics) platform, including planning and R&D for BSA-SPC and BSA-MSA.
+          - Productized Minitab statistical algorithms integrated with Python engineering workflows.
+      - num: "03"
+        title: 企业数字化解决方案
+        title_en: Enterprise Digitalization Solutions
+        items:
+          - 面向制造业客户提供质量管理数字化及生产数据分析整体解决方案。
+          - 负责客户业务场景调研、需求分析和解决方案设计，规划 SPC 实时监控、质量数据分析及测量系统分析等场景。
+          - 参与 MES、ERP、SQL Server、MySQL 等系统的数据集成与接口对接。
+          - 参与企业数据采集、ETL、数据治理及统一数据模型架构规划。
+          - 结合客户现有 IT 环境制定可落地的系统部署及集成方案，推动传统质量管理向数据化、自动化和智能化升级。
+        items_en:
+          - Designed end-to-end quality digitalization and production analytics solutions for manufacturing clients (real-time SPC monitoring, quality analytics, MSA).
+          - Participated in data integration and interface connectivity with MES, ERP, SQL Server, and MySQL environments.
+          - Contributed to enterprise data acquisition, ETL, governance, and unified data model planning tailored to client IT landscapes.
+      - num: "04"
+        title: 售前咨询与客户交付
+        title_en: Pre-Sales Consulting & Client Delivery
+        items:
+          - 参与重点客户售前技术交流、需求调研和业务分析。
+          - 负责产品演示、技术方案设计、项目方案汇报及技术答疑。
+          - 将客户需求转化为产品功能、技术方案和项目实施计划。
+          - 参与项目实施、系统部署、客户培训、产品使用指导及售后技术支持。
+          - 协调研发、销售、实施及客户团队推动项目交付，并参与客户续约、产品升级与持续服务。
+          - 具备国际化业务协作经验，长期与外籍管理者协作，并与香港、美国业务团队保持英文邮件沟通，独立处理日常英文商务及技术资料往来。
+        items_en:
+          - Supported key-account pre-sales discussions, product demos, technical solution proposals, and executive presentations.
+          - Participated in deployment, customer training, technical support, renewals, and product upgrades across R&D, sales, and implementation teams.
+          - Collaborated closely with foreign management and maintained regular English business email correspondence with Hong Kong and US teams for commercial and technical documentation.
+      - num: "05"
+        title: 产品商业化与业务成果
+        title_en: Product Commercialization & Business Impact
+        items:
+          - 参与工业软件产品的市场推广与商业化落地，产品累计服务客户约40家、累计参与项目约50个。
+          - 通过客户需求分析、产品演示与商务技术交流，支持销售团队推动项目机会转化。
+          - 参与项目实施及交付，推动产品在制造业客户现场实际落地。
+          - 参与已有客户的产品升级、续约及客户关系维护，促进长期合作。
+          - 将项目中的共性需求沉淀为标准化产品能力，通过持续迭代提升客户使用价值与产品竞争力。
+        items_en:
+          - Contributed to market adoption and commercialization of industrial software serving approx. 40 clients across approx. 50 projects.
+          - Supported sales conversion through requirements discovery, product demos, and technical proposals.
+          - Consolidated recurring client needs into reusable standard product capabilities while supporting renewals and upgrades.
+      - num: "06"
+        title: AI 与技术创新
+        title_en: AI & Technical Innovation
+        items:
+          - 围绕企业级 AI 应用规划、AI Agent 与智能工作流、AI 数据治理与智能分析方向开展持续探索。
+          - 探索工业软件与 AI 技术融合，包括智能统计分析、自动化报告生成、企业知识库及智能业务应用。
+          - 重点参与规划 BSA Data Hub 企业数据集成与智能数据处理平台，探索多源数据接入、数据标准化、ETL 自动化、统一测量事件模型及多分析引擎协同。
+        items_en:
+          - Explored enterprise AI planning, AI Agents, automated workflows, AI-assisted data governance, automated reporting, and enterprise knowledge bases.
+          - Participated in planning BSA Data Hub for multi-source industrial data ingestion, ETL automation, unified measurement event modeling, and multi-engine analytics.
+
+  - company: 安徽居者之家网络科技有限公司
+    company_en: Anhui Juzhezhijia Network Technology Co., Ltd.
+    period: 2018年—2019年
+    period_en: 2018 – 2019
+    role: 软件开发工程师
+    role_en: Software Development Engineer
+    location: 安徽
+    location_en: Anhui
+    is_primary: false
+    overview: 夯实软件工程基础与业务系统开发实践，积累需求转化、功能实现、联调排查及团队协作交付经验，为后续向系统架构、产品规划与解决方案方向成长奠定工程底座。
+    overview_en: Built a solid foundation in software engineering, requirement translation, module implementation, troubleshooting, and cross-functional delivery, paving the way for progression into architecture, product, and solution leadership.
+    bullets:
+      - 参与公司软件系统的日常开发、维护及功能迭代。
+      - 参与业务需求分析，将实际业务诉求转化为可落地的软件功能模块。
+      - 负责相关功能模块编码实现、接口联调及线上线下问题排查。
+      - 参与数据库设计、系统测试与版本发布流程。
+      - 配合产品、测试及其他开发人员推进项目按期交付，积累规范化软件工程与跨角色协作经验。
+    bullets_en:
+      - Participated in ongoing development, maintenance, and feature iteration of company software systems.
+      - Assisted in analyzing business requirements and translating them into practical software modules.
+      - Implemented functional modules, API integration, troubleshooting, database design, testing, and release support.
+      - Collaborated with product managers, QA, and engineering peers to support on-time project delivery.
+
+featured_projects:
+  - code: "01"
+    name: Brumano Smart Analytics - SPC 统计过程控制平台
+    name_en: Brumano Smart Analytics - SPC Platform
+    short_name: BSA-SPC
+    stage: 商业化落地产品
+    stage_en: Commercial Product
+    role: 产品经理 / 高级系统架构师 / 售前与客户交付
+    role_en: Product Manager / Senior Systems Architect / Pre-Sales & Delivery
+    positioning: 面向制造业的统计过程控制与质量数据分析平台，实现生产过程质量数据采集、实时监控、统计分析、异常预警及过程能力分析。
+    positioning_en: Manufacturing SPC and quality analytics platform enabling production quality data collection, real-time monitoring, statistical analysis, anomaly alerts, and process capability evaluation.
+    responsibilities:
+      - 参与产品整体规划及核心功能体系设计。
+      - 负责或参与产品需求分析、功能设计和版本迭代规划。
+      - 参与 SPC 业务算法、系统架构及技术实现方案设计。
+      - 协调研发团队完成产品研发与版本交付。
+      - 面向客户开展产品演示、需求调研、技术方案交流，并参与项目实施、技术支持、客户培训及产品升级。
+    responsibilities_en:
+      - Contributed to overall product planning, feature architecture, requirements analysis, and release roadmaps.
+      - Participated in SPC statistical algorithm productization, systems architecture, and R&D delivery coordination.
+      - Delivered client product demonstrations, technical proposals, implementation support, training, and upgrades.
+    value: 推动制造业质量管理从传统人工统计向在线化、数字化和实时化转型。
+    value_en: Helped manufacturing clients transition quality management from manual statistical spreadsheets to online, digital, real-time monitoring.
+    link: /projects/realtime-spc-control-chart/
+
+  - code: "02"
+    name: Brumano Smart Analytics - MSA 测量系统分析平台
+    name_en: Brumano Smart Analytics - MSA Platform
+    short_name: BSA-MSA
+    stage: 商业化落地产品
+    stage_en: Commercial Product
+    role: 产品经理 / 系统架构设计 / 售前与客户交付
+    role_en: Product Manager / Systems Architecture / Pre-Sales & Delivery
+    positioning: 面向制造业质量管理场景，提供测量系统分析、统计计算、报告管理及质量评估能力。
+    positioning_en: Measurement System Analysis platform for manufacturing quality engineering, providing statistical calculation, standardized reporting, and quality evaluation.
+    responsibilities:
+      - 参与 MSA 产品功能体系和业务流程规划。
+      - 负责需求分析、产品功能设计及版本迭代。
+      - 参与测量系统分析算法和报告体系的产品化设计。
+      - 协调研发团队推进产品功能实现和质量优化。
+      - 面向客户提供产品介绍、方案设计、技术支持，并参与客户实施、培训和持续服务。
+    responsibilities_en:
+      - Planned MSA feature architecture, business workflows, requirements, and iterative product releases.
+      - Productized measurement system analysis algorithms and standardized reporting modules with the R&D team.
+      - Provided client presentations, solution design, implementation, training, and ongoing technical support.
+    value: 帮助制造企业建立标准化测量系统分析流程，提高质量分析工作的规范性和效率。
+    value_en: Enabled manufacturing enterprises to establish standardized MSA workflows with higher consistency and analytical efficiency.
+    link: /projects/minitab-com-bridge/
+
+  - code: "03"
+    name: BSA Data Hub 企业数据集成与智能数据处理平台
+    name_en: BSA Data Hub - Enterprise Data Integration & Intelligent Processing
+    short_name: BSA Data Hub
+    stage: 架构规划与探索实践
+    stage_en: Architecture & Exploration
+    role: 产品规划 / 系统架构设计 / 解决方案设计
+    role_en: Product Planning / Systems Architecture / Solution Design
+    positioning: 面向工业企业构建统一的数据接入、数据治理和分析数据基础设施，为 SPC、MSA 及其他工业分析应用提供数据支持。
+    positioning_en: Unified industrial data ingestion, governance, and analytics foundation designed to serve SPC, MSA, and broader enterprise industrial analytics applications.
+    responsibilities:
+      - 参与企业数据平台整体架构规划，规划多源异构数据接入及连接器体系。
+      - 设计数据采集、ETL、清洗、转换及标准化处理流程。
+      - 探索 SQL Server、MySQL、MES、ERP 等数据源集成方案。
+      - 参与统一测量事件模型和数据治理体系设计。
+      - 探索 AI Agent、AI Workflow 与数据处理流程融合，规划面向 SPC、MSA 等多分析引擎的数据服务架构。
+    responsibilities_en:
+      - Participated in overall data platform architecture, multi-source connector design, and ETL standardization pipelines.
+      - Explored integration approaches for SQL Server, MySQL, MES, and ERP sources alongside a unified measurement event model.
+      - Explored integrating AI Agents and AI Workflows into data processing to support multi-engine analytics (SPC, MSA, etc.).
+    value: 减少工业企业数据孤岛，提升数据接入与处理效率，为企业质量数据分析及 AI 应用提供统一的数据基础。（注：该平台中部分 AI 与多引擎协同能力处于规划与演进探索阶段。）
+    value_en: "Aims to reduce industrial data silos and establish a unified foundation for quality analytics and AI applications. (Note: selected AI and multi-engine capabilities remain in planning and exploratory stages.)"
+    link: /projects/enterprise-etl-integration/
+
+core_competencies:
+  - num: "01"
+    en: ARCHITECTURE
+    title: 技术架构
+    title_en: Systems Architecture
+    desc: 企业级系统架构、B/S 架构、数据库、接口集成、部署架构。
+    desc_en: Enterprise architecture, B/S systems, databases, API integration, and deployment design.
+  - num: "02"
+    en: R&D MANAGEMENT
+    title: 研发管理
+    title_en: R&D Management
+    desc: 5人研发团队管理、研发计划、任务协调、版本管理。
+    desc_en: 5-person R&D team leadership, sprint planning, coordination, and release management.
+  - num: "03"
+    en: PRODUCT
+    title: 产品管理
+    title_en: Product Management
+    desc: 产品规划、需求分析、产品设计、版本迭代、产品商业化。
+    desc_en: Product strategy, discovery, functional design, iteration, and commercialization.
+  - num: "04"
+    en: SOLUTIONS
+    title: 行业解决方案
+    title_en: Industry Solutions
+    desc: 工业软件、智能制造、质量管理、企业数字化。
+    desc_en: Industrial software, smart manufacturing, quality management, and digitalization.
+  - num: "05"
+    en: COMMERCIAL
+    title: 客户与商业
+    title_en: Client & Commercial
+    desc: 售前咨询、产品演示、项目交付、客户续约、产品销售支持。
+    desc_en: Pre-sales consulting, demos, project delivery, renewals, and sales enablement.
+  - num: "06"
+    en: AI INNOVATION
+    title: AI 创新
+    title_en: AI Innovation
+    desc: AI Agent、企业数据平台、AI 工作流、智能数据分析。
+    desc_en: AI Agents, enterprise data platforms, AI workflows, and intelligent analytics.
+
+technical_expertise:
+  - domain: 工业软件与统计分析
+    domain_en: Industrial Software & Statistics
+    items:
+      - SPC：统计过程控制
+      - MSA：测量系统分析
+      - CP / CPK / PP / PPK：过程能力与绩效分析
+      - Minitab 统计分析算法
+      - 工业质量管理数字化
+    items_en:
+      - SPC (Statistical Process Control)
+      - MSA (Measurement System Analysis)
+      - CP / CPK / PP / PPK Process Capability
+      - Minitab Statistical Algorithms
+      - Manufacturing Quality Digitalization
+  - domain: 系统架构与数据技术
+    domain_en: Architecture & Data Engineering
+    items:
+      - React
+      - PHP / Laravel
+      - Python / FastAPI
+      - MySQL
+      - MongoDB
+      - Redis
+      - SQL Server
+      - Linux
+      - Docker
+      - Nginx
+      - ETL 与数据集成
+    items_en:
+      - React
+      - PHP / Laravel
+      - Python / FastAPI
+      - MySQL
+      - MongoDB
+      - Redis
+      - SQL Server
+      - Linux
+      - Docker
+      - Nginx
+      - ETL & Data Integration
+  - domain: AI 与智能化
+    domain_en: AI & Intelligent Applications
+    items:
+      - AI Agent
+      - RAG 与企业知识库
+      - AI Workflow
+      - 企业数据治理
+      - 智能数据分析
+      - 自动化报告生成
+    items_en:
+      - AI Agent
+      - RAG & Enterprise Knowledge Base
+      - AI Workflow
+      - Enterprise Data Governance
+      - Intelligent Data Analytics
+      - Automated Report Generation
+
+leadership:
+  title_en: Leadership & Management
+  title_zh: 研发团队管理与产品研发规划
+  intro: 在 TECHMAX 任职期间承担5人研发团队的日常管理与跨部门推进职责，注重工程规范、版本节奏与业务交付结果的闭环。
+  intro_en: Responsible for daily management of a 5-person R&D team and cross-functional alignment at TECHMAX, focusing on engineering standards, release cadence, and delivery outcomes.
+  pillars:
+    - title: 5人研发团队管理与协作
+      title_en: 5-Person R&D Team Management
+      desc: 负责团队日常管理、研发计划制定、任务拆解与分配、进度跟踪及代码与交付质量把控。
+      desc_en: Managed daily team operations, R&D planning, task delegation, milestone tracking, and code/delivery quality.
+    - title: 技术路线与架构评审
+      title_en: Technical Roadmap & Architecture Reviews
+      desc: 参与制定 B/S 架构与数据平台技术路线，组织关键技术方案评审，攻克研发及项目现场复杂技术问题。
+      desc_en: Defined B/S and data platform roadmaps, led technical design reviews, and resolved complex engineering blockers.
+    - title: 跨部门资源协同
+      title_en: Cross-Functional Alignment
+      desc: 联动产品、研发、销售与实施团队，平衡标准产品版本演进与重点客户项目交付节奏。
+      desc_en: Coordinated product, R&D, sales, and implementation teams to balance product roadmap and client commitments.
+    - title: 产品标准化与平台化沉淀
+      title_en: Standardization & Platformization
+      desc: 将服务约40家客户、约50个项目中的共性需求沉淀为可复用产品模块，提升整体交付效率与产品竞争力。
+      desc_en: Abstracted common needs across approx. 40 clients and approx. 50 projects into reusable platform modules.
+
+speaking:
+  title_en: Speaking & Industry Engagement
+  title_zh: 公开演讲与行业交流
+  subtitle: 具备面向行业峰会、企业客户与技术团队的公开演讲、产品宣讲、方案汇报及专业培训能力，能够将复杂技术架构与统计分析方法转化为清晰的业务语言。
+  subtitle_en: Experienced in keynote presentations, industrial software product briefings, client technical exchanges, executive solution briefings, and enterprise training.
+  formats:
+    - 技术与产品主题演讲
+    - 工业软件产品介绍与宣讲
+    - 面向客户的技术交流
+    - 企业数字化解决方案汇报
+    - 产品培训及业务知识分享
+  formats_en:
+    - Technical & Product Keynotes
+    - Industrial Software Product Briefings
+    - Client Technical Exchanges
+    - Enterprise Digitalization Solution Briefings
+    - Product Training & Knowledge Sharing
+  photos:
+    - src: /img/about/speaking-01.jpg
+      alt: 行业会议公开演讲现场全景
+      caption: 行业论坛主题演讲与工业数字化趋势分享
+      featured: true
+    - src: /img/about/speaking-02.jpg
+      alt: 演讲现场技术与产品阐述
+      caption: 产品规划与技术架构专题阐述
+    - src: /img/about/event-01.jpg
+      alt: 企业客户现场培训与方案交流
+      caption: 面向制造企业团队的产品培训与方案汇报
+    - src: /img/about/event-02.jpg
+      alt: Brumano Smart Analytics 平台现场演示
+      caption: 工业质量数据分析（SPC / MSA）产品现场演示
+
+languages_and_international:
+  title_zh: 语言能力与国际化协作经验
+  title_en: Languages & International Collaboration
+  languages:
+    - name_zh: 中文
+      name_en: Chinese
+      tag_zh: 母语
+      tag_en: Native
+      desc_zh: 母语。
+      desc_en: Native.
+    - name_zh: 英语
+      name_en: English
+      tag_zh: 商务读写 · 口语持续提升
+      tag_en: Business Reading & Writing · Improving Spoken
+      desc_zh: 具备良好的商务英文读写能力，能够独立处理英文商务邮件、技术文档及日常工作沟通；具备一定英语口语交流能力，持续提升英语口语表达及商务沟通能力。
+      desc_en: Strong business writing and reading proficiency, with practical experience handling business correspondence, technical documentation, and day-to-day professional communication. Currently improving spoken English and verbal communication skills.
+  collaboration_title_zh: 国际化协作经验
+  collaboration_title_en: International Collaboration
+  collaboration_items_zh:
+    - 长期与外籍管理者协作，具备跨文化工作沟通经验。
+    - 经常与香港、美国业务团队开展英文邮件沟通。
+    - 能够独立处理英文商务邮件、技术资料和日常业务往来。
+    - 具备国际业务协作意识，能够适应跨区域团队协作环境。
+  collaboration_items_en:
+    - Experienced in working with foreign management.
+    - Regularly communicate with business teams in Hong Kong and the United States through English business correspondence.
+    - Able to independently handle routine English business emails and technical documentation.
+    - Familiar with cross-cultural and cross-regional business collaboration.
+
+education:
+  - school: 上海理工大学
+    school_en: University of Shanghai for Science and Technology (USST)
+    degree: 本科
+    degree_en: Bachelor of Engineering (B.Eng.)
+    major: 计算机科学与技术
+    major_en: Computer Science and Technology
+
+contact:
+  title_en: Contact & Collaboration
+  title_zh: 联系方式与合作交流
+  subtitle: 欢迎企业高管、猎头顾问、制造业客户及行业合作伙伴通过邮件联系，探讨工业软件产品与技术管理岗位机会、企业数字化解决方案、AI 应用落地或公开演讲与培训合作。
+  directions:
+    - 工业软件产品与技术管理岗位交流
+    - 企业质量数字化与数据平台解决方案合作
+    - AI Agent 与智能数据分析探索交流
+    - 行业公开演讲、产品宣讲与企业内训
