@@ -1,124 +1,119 @@
 extends ./_layout.pug
 
-//-
-  简历页采用「双读者分层」：
-    · 上半部分（头部卡片 + 六维能力 + 技能关键词）给 HR —— 20 秒扫完
-      这部分全部来自 source/_data/profile.yml，改一处全站生效
-    · 下半部分（page.content）给面试官 —— 3 分钟读决策链
-      这部分写在 source/resume/index.md，因为长叙事放 YAML 是自虐
-
-  注意：extends 模板的顶层只能放具名 block 和 mixin，
-  所以变量声明必须写在 block content 内部。
-
 block content
   -
     var profile = (site.data && site.data.profile) || {}
     var id = profile.identity || {}
     var ct = profile.contact || {}
-    var jt = profile.job_target || {}
     var sk = profile.skills || {}
+    var projects = profile.projects || []
+    var mailHref = `mailto:${ct.email || 'adymilk@icloud.com'}?subject=${encodeURIComponent('个人履历沟通与合作交流')}`
 
-  div.site-container.resume
-
-    //- ================= 1. 头部卡片（HR 扫这里）=================
-    header.resume-head
+  section.channel-hero.resume-hero
+    div.site-container
       div.resume-head__top
         div.resume-head__info
+          span.eyebrow RESUME / 个人履历
           h1.resume-head__name
             = id.name || config.author
             if id.name_en
               span.resume-head__name-en= id.name_en
-
           if id.title
-            p.resume-head__title= id.title
-
+            p.resume-head__title
+              = id.title
+              if id.title_en
+                span.resume-head__title-en · #{id.title_en}
           if id.one_liner
             p.resume-head__oneliner= id.one_liner
+
+          ul.resume-contact
+            if id.location
+              li
+                span.resume-contact__label 城市
+                span= id.location
+            if ct.email
+              li
+                span.resume-contact__label 邮箱
+                a(href=mailHref)= ct.email
+            if ct.github
+              li
+                span.resume-contact__label GitHub
+                a(href=ct.github target="_blank" rel="noopener")= ct.github.replace(/^https?:\/\/(www\.)?/, '')
+            if ct.linkedin
+              li
+                span.resume-contact__label LinkedIn
+                a(href=ct.linkedin target="_blank" rel="noopener") LinkedIn
+
+          div.resume-actions
+            if ct.resume_pdf
+              a.btn.btn--primary(href=url_for(ct.resume_pdf) download="王恒-James-Wang-个人履历.pdf" target="_blank" rel="noopener")
+                svg(width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                  path(d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4")
+                  polyline(points="7 10 12 15 17 10")
+                  line(x1="12" x2="12" y1="15" y2="3")
+                span 下载 PDF 履历
+            button.btn.btn--secondary(type="button" onclick="window.print()")
+              svg(width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                polyline(points="6 9 6 2 18 2 18 9")
+                path(d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2")
+                rect(width="12" height="8" x="6" y="14")
+              span 打印 / 另存 PDF
+            a.btn.btn--secondary(href=mailHref) 邮件联系
+
         div.resume-head__avatar-wrap
           img.resume-head__avatar(src=url_for('/img/avatar-pro.jpg') alt=(id.name || config.author))
 
-      ul.resume-contact
-        if id.location
-          li
-            i.fas.fa-map-marker-alt
-            span= id.location
-        if ct.email
-          li
-            i.fas.fa-envelope
-            a(href=`mailto:${ct.email}`)= ct.email
-        if ct.github
-          li
-            i.fab.fa-github
-            a(href=ct.github target="_blank" rel="noopener")= ct.github.replace(/^https?:\/\/(www\.)?/, '')
-        if ct.linkedin
-          li
-            i.fab.fa-linkedin
-            a(href=ct.linkedin target="_blank" rel="noopener") LinkedIn
-        if ct.resume_pdf
-          li
-            i.fas.fa-file-pdf
-            a(href=url_for(ct.resume_pdf) target="_blank" rel="noopener") 下载 PDF 版
-
-      //- 求职意向的三项摘要（HR 最先找的就是这个）
-      if jt.roles && jt.roles.length
-        p.resume-target
-          span.resume-target__label 目标岗位
-          each r, i in jt.roles
-            span.resume-target__tag= r
-      if jt.availability
-        p.resume-target
-          span.resume-target__label 到岗时间
-          span= jt.availability
-      if id.open_to_travel
-        p.resume-target
-          span.resume-target__label 出差/驻场
-          span 可接受
-
-    //- ================= 2. FDE 六维能力矩阵 =================
-    if sk.dimensions && sk.dimensions.length
+  div.site-container.resume
+    //- ================= 1. 四维核心能力矩阵 =================
+    if sk.domains && sk.domains.length
       section.resume-section
-        h2.resume-section__title 核心能力
-        p.resume-section__hint 按 FDE 能力模型自评，每条都附可指认的证据
+        span.eyebrow 01 / CORE CAPABILITIES
+        h2.resume-section__title 核心能力版图
+        div.resume-domain-grid
+          each d in sk.domains
+            div.resume-domain-card
+              span.mono.resume-domain-card__code= d.code
+              h3.resume-domain-card__name= d.name
+              ul.resume-domain-card__list
+                each it in (d.items || [])
+                  li= it
 
-        div.resume-dims
-          each d in sk.dimensions
-            div.resume-dim(data-level=(d.level || 0))
-              div.resume-dim__head
-                span.resume-dim__name= d.name
-                span.resume-dim__level
-                  //- level: 0 未填 / 1 了解 / 2 熟悉 / 3 熟练 / 4 精通 / 5 可教学
-                  - var lv = d.level || 0
-                  span.resume-dim__level-num= lv > 0 ? lv + ' / 5' : '未自评'
-                  span.resume-dim__level-bar
-                    span.resume-dim__level-fill(style=`width: ${lv > 0 ? (lv / 5 * 100) : 0}%`)
-              if d.evidence && d.evidence.length
-                ul.resume-dim__evidence
-                  each e in d.evidence
-                    li= e
-              else
-                p.resume-dim__empty 待补充证据
+    //- ================= 2. 代表性项目与实践 =================
+    if projects && projects.length
+      section.resume-section
+        div.resume-section__head
+          div
+            span.eyebrow 02 / SELECTED PROJECTS
+            h2.resume-section__title 代表性项目与实践
+          a.section__more(href=url_for('/projects/')) 查看全部案例详情 →
+        div.resume-proj-grid
+          each proj in projects
+            a.resume-proj-card(href=url_for(proj.url))
+              span.resume-proj-card__cat= proj.category
+              h3.resume-proj-card__name= proj.name
+              p.resume-proj-card__desc= proj.summary
 
-    //- ================= 3. 技能关键词（HR 机器筛选）=================
+    //- ================= 3. 专业关键词 =================
     if sk.keywords && sk.keywords.length
       section.resume-section
-        h2.resume-section__title 技能关键词
+        span.eyebrow 03 / KEYWORDS
+        h2.resume-section__title 专业领域与技术关键词
         div.resume-keywords
           each k in sk.keywords
             span.resume-keyword= k
 
-    //- ================= 4. 正文：case study 决策链 =================
-    //- 内容来自 source/resume/index.md 的 markdown
+    //- ================= 4. 履历正文 =================
     if page.content
-      section.resume-section.resume-body
+      section.resume-section.resume-body.prose
         != page.content
 
-    //- ================= 5. 页脚提示 =================
+    //- ================= 5. 页脚引导 =================
     footer.resume-foot
       p
-        | 本页信息与
-        a(href=url_for('/works/'))  作品与证据
+        | 了解更多实践案例与深度观点，请访问
+        a(href=url_for('/projects/'))  项目作品
         | 、
         a(href=url_for('/about/'))  关于我
-        | 同源。案例均标注证据等级（L0–L3），欢迎按
-        a(href=url_for('/works/'))  可复现证据
-        | 一节自行验证。
+        |  或
+        a(href=url_for('/speaking/'))  演讲与合作
+        | 。

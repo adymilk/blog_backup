@@ -2140,3 +2140,246 @@ html.nightmode
 
   .post-nav__item--next
     text-align: left
+
+
+// -----------------------------------------------------------------------------
+// Redesigned Resume Page (.resume-hero & .resume) + Print A4 Styling
+// -----------------------------------------------------------------------------
+.resume-hero
+  padding: 44px 0 36px
+
+.resume-head
+  &__top
+    display: grid
+    grid-template-columns: 1fr auto
+    gap: 36px
+    align-items: center
+
+  &__info
+    min-width: 0
+
+  &__name
+    margin: 10px 0 6px
+    font-size: 2.1rem
+    font-weight: 800
+    letter-spacing: -0.025em
+    line-height: 1.2
+
+  &__name-en
+    margin-left: 10px
+    font-size: 1.1rem
+    font-weight: 400
+    color: var(--text-muted)
+
+  &__title
+    margin: 0 0 12px
+    font-size: 1.02rem
+    font-weight: 600
+    color: var(--accent)
+
+  &__title-en
+    font-weight: 400
+    font-size: 0.88rem
+    color: var(--text-muted)
+
+  &__oneliner
+    margin: 0
+    font-size: 0.96rem
+    color: var(--text-secondary)
+    max-width: 680px
+    line-height: 1.75
+
+  &__avatar
+    display: block
+    width: 132px
+    height: 132px
+    border-radius: 6px
+    object-fit: cover
+    object-position: center 20%
+    border: 1px solid var(--border)
+    box-shadow: var(--shadow-md)
+
+.resume-contact
+  display: flex
+  flex-wrap: wrap
+  gap: 8px 22px
+  margin: 18px 0 0
+  padding: 0
+  list-style: none
+  font-size: 0.86rem
+  color: var(--text-secondary)
+
+  li
+    display: inline-flex
+    align-items: center
+    gap: 6px
+
+  &__label
+    color: var(--text-muted)
+    font-size: 0.78rem
+
+  a
+    color: var(--accent)
+    text-decoration: underline
+    text-underline-offset: 3px
+
+.resume-actions
+  display: flex
+  flex-wrap: wrap
+  gap: 10px
+  margin-top: 22px
+
+.resume
+  padding: 44px 24px 72px
+
+  .resume-section
+    margin-bottom: 44px
+
+    &__head
+      display: flex
+      align-items: flex-end
+      justify-content: space-between
+      gap: 16px
+      margin-bottom: 18px
+
+    &__title
+      margin: 6px 0 18px
+      font-size: 1.35rem
+      font-weight: 700
+      letter-spacing: -0.02em
+
+    &__head &__title
+      margin-bottom: 0
+
+.resume-domain-grid
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 18px
+
+.resume-domain-card
+  padding: 22px 24px
+  border-radius: var(--radius-md)
+  background: var(--surface)
+  border: 1px solid var(--border)
+  border-top: 2px solid var(--accent)
+
+  &__code
+    font-size: 0.72rem
+    font-weight: 600
+    color: var(--accent)
+    letter-spacing: 0.06em
+
+  &__name
+    margin: 6px 0 10px
+    font-size: 1.02rem
+    font-weight: 700
+
+  &__list
+    margin: 0
+    padding-left: 18px
+    font-size: 0.87rem
+    color: var(--text-secondary)
+
+    li
+      margin-bottom: 5px
+
+      &:last-child
+        margin-bottom: 0
+
+.resume-proj-grid
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 16px
+
+.resume-proj-card
+  display: flex
+  flex-direction: column
+  padding: 20px 22px
+  border-radius: var(--radius-md)
+  background: var(--surface)
+  border: 1px solid var(--border)
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease
+
+  &:hover
+    border-color: var(--accent)
+    box-shadow: var(--shadow-sm)
+    transform: translateY(-2px)
+
+  &__cat
+    font-size: 0.74rem
+    font-weight: 600
+    color: var(--accent)
+    margin-bottom: 6px
+
+  &__name
+    margin: 0 0 8px
+    font-size: 1rem
+    font-weight: 700
+
+  &__desc
+    margin: 0
+    font-size: 0.85rem
+    color: var(--text-secondary)
+    line-height: 1.65
+
+.resume-body
+  max-width: 780px
+
+.resume-foot
+  margin-top: 40px
+  padding-top: 20px
+  border-top: 1px solid var(--border)
+  font-size: 0.84rem
+  color: var(--text-muted)
+
+  a
+    color: var(--accent)
+    text-decoration: underline
+    text-underline-offset: 3px
+
+@media (max-width: 768px)
+  .resume-head__top
+    grid-template-columns: 1fr
+    gap: 20px
+
+  .resume-head__avatar-wrap
+    order: -1
+
+  .resume-head__avatar
+    width: 96px
+    height: 96px
+
+  .resume-head__name
+    font-size: 1.7rem
+
+  .resume-domain-grid,
+  .resume-proj-grid
+    grid-template-columns: 1fr
+
+  .resume
+    padding: 28px 16px 56px
+
+@media print
+  body
+    padding-top: 0 !important
+    background: #ffffff !important
+    color: #111827 !important
+
+  .site-header,
+  .site-footer,
+  .resume-actions,
+  .resume-foot,
+  .section__more
+    display: none !important
+
+  .resume-hero
+    padding: 0 0 16px !important
+    border-bottom: 2px solid #111827 !important
+
+  .resume
+    padding: 16px 0 0 !important
+
+  .resume-domain-card,
+  .resume-proj-card
+    break-inside: avoid
+    box-shadow: none !important
