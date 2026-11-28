@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2B5B84"/>
+    </marker>
+    <style>
+      .font { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+      .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; fill: #2B5B84; }
+      .title { font-size: 20px; font-weight: 700; fill: #111827; }
+      .layer-tag { font-size: 11px; font-weight: 700; fill: #FFFFFF; }
+      .box-t { font-size: 12.5px; font-weight: 700; fill: #111827; }
+      .box-b { font-size: 11px; fill: #4B5563; }
+      .note { font-size: 11px; fill: #2B5B84; font-weight: 600; }
+    </style>
+  </defs>
+
+  <rect width="960" height="540" fill="#FAFAFA"/>
+  <rect x="24" y="24" width="912" height="492" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.2"/>
+
+  <text x="52" y="58" class="font eyebrow">REFERENCE ARCHITECTURE · 闭环质量数据平台五层架构</text>
+  <text x="52" y="84" class="font title">从单点统计工具到闭环质量数据平台的工程演进</text>
+
+  <!-- Layer 5: AI Exploration (Top) -->
+  <rect x="52" y="102" width="128" height="62" rx="6" fill="#4B5563"/>
+  <text x="66" y="129" class="font layer-tag">L5 智能演进层</text>
+  <text x="66" y="147" class="font layer-tag" opacity="0.85">规划与探索阶段</text>
+  <rect x="190" y="102" width="718" height="62" rx="6" fill="#F9FAFB" stroke="#D1D5DB" stroke-dasharray="4 3"/>
+  <text x="210" y="126" class="font box-t">AI Agent 与智能质量辅助（规划探索）</text>
+  <text x="210" y="147" class="font box-b">自然语言指标检索  ·  基于历史 OCAP 的根因建议  ·  周期性质量周报/审厂报告自动草拟（严禁由大模型直接替代统计计算）</text>
+
+  <!-- Layer 4: Business Closed-Loop Applications -->
+  <rect x="52" y="178" width="128" height="76" rx="6" fill="#111827"/>
+  <text x="66" y="211" class="font layer-tag">L4 业务闭环层</text>
+  <text x="66" y="229" class="font layer-tag" opacity="0.8">角色与协同应用</text>
+
+  <rect x="190" y="178" width="228" height="76" rx="6" fill="#EEF4F9" stroke="#B6CFE4"/>
+  <text x="206" y="202" class="font box-t">BSA-SPC 实时监控与看板</text>
+  <text x="206" y="222" class="font box-b">Xbar-R / I-MR / P 图实时刷新</text>
+  <text x="206" y="240" class="font box-b">多级越限预警与产线终端推送</text>
+
+  <rect x="434" y="178" width="228" height="76" rx="6" fill="#EEF4F9" stroke="#B6CFE4"/>
+  <text x="450" y="202" class="font box-t">BSA-MSA 测量系统管理</text>
+  <text x="450" y="222" class="font box-b">GR&amp;R / 偏倚 / 线性 / 稳定性</text>
+  <text x="450" y="240" class="font box-b">检具周期效验与量具准入联动</text>
+
+  <rect x="678" y="178" width="230" height="76" rx="6" fill="#EEF4F9" stroke="#B6CFE4"/>
+  <text x="694" y="202" class="font box-t">OCAP 异常处置与改进闭环</text>
+  <text x="694" y="222" class="font box-b">异常派单 → 现场遏制 → 根因登记</text>
+  <text x="694" y="240" class="font box-b">措施回写控制图注释与审计追踪</text>
+
+  <!-- Layer 3: Deterministic Statistical Engine -->
+  <rect x="52" y="268" width="128" height="68" rx="6" fill="#2B5B84"/>
+  <text x="66" y="298" class="font layer-tag">L3 统计引擎层</text>
+  <text x="66" y="316" class="font layer-tag" opacity="0.85">确定性算法内核</text>
+
+  <rect x="190" y="268" width="350" height="68" rx="6" fill="#FFFFFF" stroke="#2B5B84" stroke-width="1.2"/>
+  <text x="208" y="292" class="font box-t">Python / FastAPI 实时统计微服务</text>
+  <text x="208" y="312" class="font box-b">控制限计算 · Nelson 8 项判异规则 · Cp/Cpk/Pp/Ppk · 异步队列</text>
+
+  <rect x="556" y="268" width="352" height="68" rx="6" fill="#FFFFFF" stroke="#2B5B84" stroke-width="1.2"/>
+  <text x="574" y="292" class="font box-t">Minitab 统计分析算法桥接引擎</text>
+  <text x="574" y="312" class="font box-b">高精度非正态转换 / 复杂 MSA / 审厂级标准报告输出与校验</text>
+
+  <!-- Layer 2: Unified Data Hub & ETL -->
+  <rect x="52" y="350" width="128" height="72" rx="6" fill="#1E4363"/>
+  <text x="66" y="381" class="font layer-tag">L2 数据底座层</text>
+  <text x="66" y="399" class="font layer-tag" opacity="0.85">BSA Data Hub</text>
+
+  <rect x="190" y="350" width="718" height="72" rx="6" fill="#F3F6F9" stroke="#B6CFE4"/>
+  <text x="210" y="374" class="font box-t">统一测量事件模型（Unified Measurement Event）与 ETL 数据治理</text>
+  <text x="210" y="394" class="font box-b">字段映射与量纲标准化  ·  时间戳与班次对齐  ·  工单/物料/机台/检具/操作员 5M1E 上下文关联  ·  脏数据隔离</text>
+  <text x="210" y="412" class="font note">存储与缓存协同：MySQL / SQL Server（主业务与模型） + MongoDB（非结构化报文） + Redis（实时滑窗与规则缓存）</text>
+
+  <!-- Layer 1: Multi-source Data Acquisition -->
+  <rect x="52" y="436" width="128" height="60" rx="6" fill="#374151"/>
+  <text x="66" y="462" class="font layer-tag">L1 数据源接入</text>
+  <text x="66" y="480" class="font layer-tag" opacity="0.85">多源异构连接</text>
+
+  <rect x="190" y="436" width="168" height="60" rx="6" fill="#F9FAFB" stroke="#D1D5DB"/>
+  <text x="206" y="460" class="font box-t">量具与检测设备</text>
+  <text x="206" y="479" class="font box-b">CMM / 影像仪 / 串口采集</text>
+
+  <rect x="373" y="436" width="168" height="60" rx="6" fill="#F9FAFB" stroke="#D1D5DB"/>
+  <text x="389" y="460" class="font box-t">MES / ERP 数据库</text>
+  <text x="389" y="479" class="font box-b">SQL Server / MySQL 视图</text>
+
+  <rect x="556" y="436" width="168" height="60" rx="6" fill="#F9FAFB" stroke="#D1D5DB"/>
+  <text x="572" y="460" class="font box-t">文件与接口网关</text>
+  <text x="572" y="479" class="font box-b">CSV / REST API / 定时同步</text>
+
+  <rect x="739" y="436" width="169" height="60" rx="6" fill="#F9FAFB" stroke="#D1D5DB"/>
+  <text x="755" y="460" class="font box-t">现场轻量补录</text>
+  <text x="755" y="479" class="font box-b">PDA 扫码与防错校验录入</text>
+</svg>

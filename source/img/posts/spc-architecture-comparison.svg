@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540">
+  <defs>
+    <style>
+      .font { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+      .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; fill: #2B5B84; }
+      .title { font-size: 20px; font-weight: 700; fill: #111827; }
+      .th { font-size: 13px; font-weight: 700; fill: #FFFFFF; }
+      .row-k { font-size: 12.5px; font-weight: 700; fill: #111827; }
+      .cell { font-size: 11.8px; fill: #374151; }
+      .cell-hl { font-size: 11.8px; font-weight: 600; fill: #1E4363; }
+      .foot { font-size: 11.5px; fill: #4B5563; }
+    </style>
+  </defs>
+
+  <rect width="960" height="540" fill="#FAFAFA"/>
+  <rect x="24" y="24" width="912" height="492" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.2"/>
+
+  <text x="52" y="60" class="font eyebrow">ARCHITECTURE COMPARISON · 三类质量分析方案工程对比</text>
+  <text x="52" y="88" class="font title">桌面统计工具 vs. 传统报表型 SPC vs. 闭环质量数据平台</text>
+
+  <!-- Table Header -->
+  <rect x="52" y="110" width="150" height="44" rx="4" fill="#111827"/>
+  <rect x="208" y="110" width="222" height="44" rx="4" fill="#4B5563"/>
+  <rect x="436" y="110" width="222" height="44" rx="4" fill="#374151"/>
+  <rect x="664" y="110" width="244" height="44" rx="4" fill="#2B5B84"/>
+
+  <text x="70" y="137" class="font th">评估维度</text>
+  <text x="224" y="137" class="font th">桌面统计工具 / Excel</text>
+  <text x="452" y="137" class="font th">传统单点报表型 SPC</text>
+  <text x="680" y="137" class="font th">闭环质量数据平台（目标态）</text>
+
+  <!-- Row 1: Data Acquisition -->
+  <rect x="52" y="160" width="150" height="62" rx="4" fill="#F9FAFB" stroke="#E5E7EB"/>
+  <rect x="208" y="160" width="222" height="62" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="436" y="160" width="222" height="62" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="664" y="160" width="244" height="62" rx="4" fill="#EEF4F9" stroke="#B6CFE4"/>
+  <text x="70" y="196" class="font row-k">数据采集与上下文</text>
+  <text x="224" y="186" class="font cell">人工拷贝、手工拼表</text>
+  <text x="224" y="206" class="font cell">容易出错且缺乏 5M1E 追溯</text>
+  <text x="452" y="186" class="font cell">半自动导入或固定模板录入</text>
+  <text x="452" y="206" class="font cell">与 MES/ERP 批次联动弱</text>
+  <text x="680" y="186" class="font cell-hl">多源自动接入 + 统一测量事件模型</text>
+  <text x="680" y="206" class="font cell">原生关联工单、机台、检具与班次</text>
+
+  <!-- Row 2: Real-time & Accuracy -->
+  <rect x="52" y="228" width="150" height="62" rx="4" fill="#F9FAFB" stroke="#E5E7EB"/>
+  <rect x="208" y="228" width="222" height="62" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="436" y="228" width="222" height="62" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="664" y="228" width="244" height="62" rx="4" fill="#EEF4F9" stroke="#B6CFE4"/>
+  <text x="70" y="264" class="font row-k">实时性与统计严谨度</text>
+  <text x="224" y="254" class="font cell">事后离线分析（天/周级）</text>
+  <text x="224" y="274" class="font cell">依赖个人操作，口径易漂移</text>
+  <text x="452" y="254" class="font cell">定时刷新或手动点击出图</text>
+  <text x="452" y="274" class="font cell">MSA 与 SPC 割裂，常误算非正态</text>
+  <text x="680" y="254" class="font cell-hl">秒/分钟级流式判异 + MSA 准入校验</text>
+  <text x="680" y="274" class="font cell">Python 实时内核与 Minitab 算法协同</text>
+
+  <!-- Row 3: Closed-Loop Action -->
+  <rect x="52" y="296" width="150" height="62" rx="4" fill="#F9FAFB" stroke="#E5E7EB"/>
+  <rect x="208" y="296" width="222" height="62" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="436" y="296" width="222" height="62" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="664" y="296" width="244" height="62" rx="4" fill="#EEF4F9" stroke="#B6CFE4"/>
+  <text x="70" y="332" class="font row-k">异常处置与闭环</text>
+  <text x="224" y="322" class="font cell">无闭环，仅邮件/微信沟通</text>
+  <text x="224" y="342" class="font cell">异常措施无法与数据点绑定</text>
+  <text x="452" y="322" class="font cell">停留在页面标红或邮件提醒</text>
+  <text x="452" y="342" class="font cell">缺少 OCAP 派单与根因复核</text>
+  <text x="680" y="322" class="font cell-hl">异常自动触发 OCAP 处置工单</text>
+  <text x="680" y="342" class="font cell">根因与措施回写控制图并沉淀知识</text>
+
+  <!-- Row 4: Maintenance & Fit -->
+  <rect x="52" y="364" width="150" height="62" rx="4" fill="#F9FAFB" stroke="#E5E7EB"/>
+  <rect x="208" y="364" width="222" height="62" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="436" y="364" width="222" height="62" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="664" y="364" width="244" height="62" rx="4" fill="#EEF4F9" stroke="#B6CFE4"/>
+  <text x="70" y="400" class="font row-k">适用场景与建设代价</text>
+  <text x="224" y="390" class="font cell">适合研发实验、小批量临时诊断</text>
+  <text x="224" y="410" class="font cell">零部署成本，但无法规模化管控</text>
+  <text x="452" y="390" class="font cell">适合单一车间快速合规建档</text>
+  <text x="452" y="410" class="font cell">上线快，但极易沦为摆设</text>
+  <text x="680" y="390" class="font cell-hl">适合多产线、高良率/审厂严要求企业</text>
+  <text x="680" y="410" class="font cell">前期数据治理投入高，需分阶段推进</text>
+
+  <!-- Footer insight -->
+  <rect x="52" y="446" width="856" height="44" rx="6" fill="#F3F6F9" stroke="#D1D5DB"/>
+  <text x="70" y="473" class="font foot">架构选型原则：不要一上来追求大而全，应先打通“1条核心产线自动采集 → 实时判异 → OCAP 闭环”，再横向复制。</text>
+</svg>
